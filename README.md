@@ -1,5 +1,5 @@
 
-![logo-long](https://github.com/KTFish/neptuns-eye/blob/main/neptuns-eyes-logo-long.svg)
+![logo-400px](https://github.com/KTFish/neptuns-eye/blob/main/neptuns-eyes-logo-400px.svg)
 # Neptun's Eye (ML-powered Point Cloud Object Classification)
 Projekt realizowany w ramach przedmiotu Projekt Zespołowy na Uniwersytecie Warmińsko-Mazurskim w Olsztynie we współpracy z firmą Visimind.
 
