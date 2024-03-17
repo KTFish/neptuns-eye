@@ -28,15 +28,21 @@ def write_las_file(df, output_file_path, new_classification):
     las.write(output_file_path)
 
 
+def columns_names(las_file_path):
+    las = laspy.read(las_file_path)
+    column_names = [dimension.name for dimension in las.point_format.dimensions]
+    print(column_names)
+
+
 def prepare_data_training(df, target_column, sample_rate=0.1, test_size=0.2, random_state=42):
     columns_to_delete = ['synthetic', 'key_point', 'withheld', 'user_data', 'point_source_id']
     df = df.drop(columns=columns_to_delete)
 
     df_sampled = df.sample(frac=sample_rate, random_state=random_state)
 
-    X = df_sampled.drop(columns=[target_column])
+    x = df_sampled.drop(columns=[target_column])
     y = df_sampled[target_column]
-    return train_test_split(X, y, test_size=test_size, random_state=random_state)
+    return train_test_split(x, y, test_size=test_size, random_state=random_state)
 
 
 def prepare_data_predict(df, target_column, sample_rate=0.1, random_state=42):
@@ -44,5 +50,8 @@ def prepare_data_predict(df, target_column, sample_rate=0.1, random_state=42):
     df = df.drop(columns=columns_to_delete)
     df_sampled = df.sample(frac=sample_rate, random_state=random_state)
 
-    test = df_sampled.drop(columns=[target_column])
-    return test
+    test_features = df_sampled.drop(columns=[target_column])  # Usuń tylko kolumny nielabelowe
+    test_labels = df_sampled[target_column]  # Zachowaj tylko kolumnę z etykietami klasyfikacji
+
+    return test_features, test_labels
+
