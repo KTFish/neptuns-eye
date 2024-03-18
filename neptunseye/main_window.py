@@ -33,7 +33,7 @@ class App(customtkinter.CTk):
         self.width = int(self.winfo_screenwidth() / 2.5)
         self.height = int(self.winfo_screenheight() / 2)
         self.geometry(f"{self.width}x{self.height}")
-        self.minsize(500, 500)
+        self.minsize(1280, 720)
         self.after(201, lambda: self.iconbitmap(self.APP_ICON_PATH))
 
         # Frames setup
