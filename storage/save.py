@@ -6,7 +6,7 @@ def save_model(model, filename):
     joblib.dump(model, filename=filename)
 
 
-def write_las_file(df, output_file_path, new_classification):
+def write_las_file(df, new_classification, output_file_path):
     # Tworzenie nowego DataFrame z nową wartością classification
     df['classification'] = new_classification
 
