@@ -1,14 +1,10 @@
-import tkinter
-import customtkinter
 from tkinter import filedialog
-import json
-from typing import Dict, Any
-from CTkMessagebox import CTkMessagebox
-from customtkinter import CTkProgressBar
 
-import locales.locales as locales
-from resources.fonts import *
+import customtkinter
+from CTkMessagebox import CTkMessagebox
+
 from las_handler import *
+from resources.fonts import *
 
 
 class ImportFileFrame(customtkinter.CTkFrame):

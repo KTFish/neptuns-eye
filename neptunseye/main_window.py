@@ -1,13 +1,10 @@
-import tkinter
-import customtkinter
-from tkinter import filedialog
-import json
 from typing import Dict, Any
-import locales.locales as locales
-from import_file_frame import *
+
 from classification_frame import *
-from visualisation_frame import *
+from import_file_frame import *
 from las_handler import *
+from locales import locales
+from visualisation_frame import *
 
 customtkinter.set_appearance_mode("System")
 customtkinter.set_default_color_theme("dark-blue")

@@ -1,7 +1,8 @@
+import threading
+
 import customtkinter
 from CTkMessagebox import CTkMessagebox
 
-import locales.locales as locales
 from las_handler import *
 from resources.fonts import *
 
@@ -41,7 +42,7 @@ class VisualisationFrame(customtkinter.CTkTabview):
         self.stride_slider = customtkinter.CTkSlider(self.tab_2d, from_=1, to=100, number_of_steps=100,
                                                      progress_color='#3a7ebf', command=self.update_stride_event)
         self.stride_tbox = customtkinter.CTkTextbox(self.tab_2d, width=50, height=10)
-        self.plotting_in_progress = customtkinter.CTkLabel(self.tab_2d)
+        self.plotting_in_progress = customtkinter.CTkLabel(self.tab_2d, text=" ")
         self.batch_variable = customtkinter.BooleanVar(value=False)
         self.batch_ckb = customtkinter.CTkCheckBox(self.tab_2d, text="Batching", variable=self.batch_variable)
 
@@ -90,14 +91,6 @@ class VisualisationFrame(customtkinter.CTkTabview):
             return False
 
         return True
-
-    # def update_batch_ckb_event(self) -> None:
-    #     if self.batch_ckb_check_var:
-    #         self.batch_ckb.deselect()
-    #         self.batch_ckb_check_var.set(value=False)
-    #     else:
-    #         self.batch_ckb.select()
-    #         self.batch_ckb_check_var.set(value=True)
 
     def update_stride_event(self, slider_value: float) -> None:
         self.rendering_stride = round(slider_value)

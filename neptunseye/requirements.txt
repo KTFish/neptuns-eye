@@ -1,0 +1,7 @@
+laspy~=2.5.3
+matplotlib~=3.8.3
+numpy~=1.26.4
+pandas~=2.2.1
+plotly~=5.20.0
+customtkinter~=5.2.2
+CTkMessagebox~=2.5

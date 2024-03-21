@@ -1,10 +1,5 @@
-import tkinter
 import customtkinter
-from tkinter import filedialog
-import json
-from typing import Dict, Any
-from CTkMessagebox import CTkMessagebox
-import locales.locales as locales
+
 from las_handler import *
 
 

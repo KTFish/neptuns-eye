@@ -1,13 +1,11 @@
-from typing import List, Any
+from typing import List
+
 import laspy
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
-import threading
-from concurrent.futures import ThreadPoolExecutor
 import plotly.graph_objects as go
-import time
-import CTkToolTip
+
 
 class LasHandler(object):
 
