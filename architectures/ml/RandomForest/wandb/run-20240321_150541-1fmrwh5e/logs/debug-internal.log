@@ -1,0 +1,59 @@
+2024-03-21 15:05:41,048 INFO    StreamThr :4900 [internal.py:wandb_internal():86] W&B internal server running at pid: 4900, started at: 2024-03-21 15:05:41.047318
+2024-03-21 15:05:41,049 DEBUG   HandlerThread:4900 [handler.py:handle_request():146] handle_request: status
+2024-03-21 15:05:41,068 INFO    WriterThread:4900 [datastore.py:open_for_write():87] open: D:\programowanie\python\projekt zespo這wy\struktura\architectures\ml\RandomForest\wandb\run-20240321_150541-1fmrwh5e\run-1fmrwh5e.wandb
+2024-03-21 15:05:41,069 DEBUG   SenderThread:4900 [sender.py:send():378] send: header
+2024-03-21 15:05:41,073 DEBUG   SenderThread:4900 [sender.py:send():378] send: run
+2024-03-21 15:05:41,765 ERROR   SenderThread:4900 [internal_api.py:execute():373] 403 response executing GraphQL.
+2024-03-21 15:05:41,778 ERROR   SenderThread:4900 [internal_api.py:execute():374] {"errors":[{"message":"permission denied","path":["upsertBucket"],"extensions":{"code":"PERMISSION_ERROR"}}],"data":{"upsertBucket":null}}
+2024-03-21 15:05:41,778 ERROR   SenderThread:4900 [sender.py:send_run():950] It appears that you do not have permission to access the requested resource. Please reach out to the project owner to grant you access. If you have the correct permissions, verify that there are no issues with your networking setup.(Error 403: Forbidden)
+Traceback (most recent call last):
+  File "D:\programowanie\python\projekt zespo這wy\struktura\.venv\Lib\site-packages\wandb\sdk\lib\retry.py", line 131, in __call__
+    result = self._call_fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\programowanie\python\projekt zespo這wy\struktura\.venv\Lib\site-packages\wandb\sdk\internal\internal_api.py", line 369, in execute
+    return self.client.execute(*args, **kwargs)  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\programowanie\python\projekt zespo這wy\struktura\.venv\Lib\site-packages\wandb\vendor\gql-0.2.0\wandb_gql\client.py", line 52, in execute
+    result = self._get_result(document, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\programowanie\python\projekt zespo這wy\struktura\.venv\Lib\site-packages\wandb\vendor\gql-0.2.0\wandb_gql\client.py", line 60, in _get_result
+    return self.transport.execute(document, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\programowanie\python\projekt zespo這wy\struktura\.venv\Lib\site-packages\wandb\sdk\lib\gql_request.py", line 59, in execute
+    request.raise_for_status()
+  File "D:\programowanie\python\projekt zespo這wy\struktura\.venv\Lib\site-packages\requests\models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 403 Client Error: Forbidden for url: https://api.wandb.ai/graphql
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\programowanie\python\projekt zespo這wy\struktura\.venv\Lib\site-packages\wandb\sdk\internal\sender.py", line 948, in send_run
+    self._init_run(run, config_value_dict)
+  File "D:\programowanie\python\projekt zespo這wy\struktura\.venv\Lib\site-packages\wandb\sdk\internal\sender.py", line 990, in _init_run
+    server_run, inserted, server_messages = self._api.upsert_run(
+                                            ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\programowanie\python\projekt zespo這wy\struktura\.venv\Lib\site-packages\wandb\apis\normalize.py", line 73, in wrapper
+    raise err
+  File "D:\programowanie\python\projekt zespo這wy\struktura\.venv\Lib\site-packages\wandb\apis\normalize.py", line 41, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\programowanie\python\projekt zespo這wy\struktura\.venv\Lib\site-packages\wandb\sdk\internal\internal_api.py", line 2216, in upsert_run
+    response = self.gql(
+               ^^^^^^^^^
+  File "D:\programowanie\python\projekt zespo這wy\struktura\.venv\Lib\site-packages\wandb\sdk\internal\internal_api.py", line 341, in gql
+    ret = self._retry_gql(
+          ^^^^^^^^^^^^^^^^
+  File "D:\programowanie\python\projekt zespo這wy\struktura\.venv\Lib\site-packages\wandb\sdk\lib\retry.py", line 147, in __call__
+    retry_timedelta_triggered = check_retry_fn(e)
+                                ^^^^^^^^^^^^^^^^^
+  File "D:\programowanie\python\projekt zespo這wy\struktura\.venv\Lib\site-packages\wandb\util.py", line 968, in check_retry_fn
+    return fallback_retry_fn(e)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\programowanie\python\projekt zespo這wy\struktura\.venv\Lib\site-packages\wandb\util.py", line 910, in no_retry_auth
+    raise CommError(
+wandb.errors.CommError: It appears that you do not have permission to access the requested resource. Please reach out to the project owner to grant you access. If you have the correct permissions, verify that there are no issues with your networking setup.(Error 403: Forbidden)
+2024-03-21 15:05:42,302 DEBUG   HandlerThread:4900 [handler.py:handle_request():146] handle_request: shutdown
+2024-03-21 15:05:42,304 INFO    HandlerThread:4900 [handler.py:finish():869] shutting down handler
+2024-03-21 15:05:42,784 INFO    SenderThread:4900 [sender.py:finish():1521] shutting down sender
+2024-03-21 15:05:43,094 INFO    WriterThread:4900 [datastore.py:close():296] close: D:\programowanie\python\projekt zespo這wy\struktura\architectures\ml\RandomForest\wandb\run-20240321_150541-1fmrwh5e\run-1fmrwh5e.wandb

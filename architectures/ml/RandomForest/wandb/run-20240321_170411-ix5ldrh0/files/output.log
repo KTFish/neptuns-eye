@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "D:\programowanie\python\projekt zespołowy\struktura\architectures\ml\RandomForest\train_RandomForest.py", line 43, in <module>
+    train_RandomForest(wmii, sweep_config)
+  File "D:\programowanie\python\projekt zespołowy\struktura\architectures\ml\RandomForest\train_RandomForest.py", line 20, in train_RandomForest
+    n_estimators = sweep_config.n_estimators
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'n_estimators'

@@ -1,7 +1,7 @@
 from sklearn.model_selection import train_test_split
 
 
-def prepare_data_training(df, target_column, sample_rate=0.1, test_size=0.2, random_state=42):
+def prepare_data_training(df, target_column="classification", sample_rate=0.1, test_size=0.2, random_state=42):
     columns_to_delete = ['synthetic', 'key_point', 'withheld', 'user_data', 'point_source_id']
     df = df.drop(columns=columns_to_delete)
 

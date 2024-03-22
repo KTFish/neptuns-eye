@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "D:\programowanie\python\projekt zespołowy\struktura\architectures\ml\RandomForest\train.py", line 33, in train
+    model.fit(X_train, y_train)
+  File "D:\programowanie\python\projekt zespołowy\struktura\.venv\Lib\site-packages\sklearn\base.py", line 1474, in wrapper
+    return fit_method(estimator, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\programowanie\python\projekt zespołowy\struktura\.venv\Lib\site-packages\sklearn\ensemble\_forest.py", line 363, in fit
+    X, y = self._validate_data(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\programowanie\python\projekt zespołowy\struktura\.venv\Lib\site-packages\sklearn\base.py", line 650, in _validate_data
+    X, y = check_X_y(X, y, **check_params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\programowanie\python\projekt zespołowy\struktura\.venv\Lib\site-packages\sklearn\utils\validation.py", line 1281, in check_X_y
+    check_consistent_length(X, y)
+  File "D:\programowanie\python\projekt zespołowy\struktura\.venv\Lib\site-packages\sklearn\utils\validation.py", line 457, in check_consistent_length
+    raise ValueError(
+ValueError: Found input variables with inconsistent numbers of samples: [510050, 127513]

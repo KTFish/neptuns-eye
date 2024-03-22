@@ -1,0 +1,3 @@
+Create sweep with ID: gmo7ahso
+Sweep URL: https://wandb.ai/czarna-magia/forest_test_1/sweeps/gmo7ahso
+wandb: WARNING Calling wandb.login() after wandb.init() has no effect.

@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "D:\programowanie\python\projekt zespołowy\struktura\.venv\Lib\site-packages\wandb\sdk\wandb_config.py", line 162, in __getattr__
+    return self.__getitem__(key)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\programowanie\python\projekt zespołowy\struktura\.venv\Lib\site-packages\wandb\sdk\wandb_config.py", line 130, in __getitem__
+    return self._items[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'parameters'
+The above exception was the direct cause of the following exception:
+Traceback (most recent call last):
+  File "D:\programowanie\python\projekt zespołowy\struktura\architectures\ml\RandomForest\train.py", line 17, in train
+    parameters = config.parameters
+                 ^^^^^^^^^^^^^^^^^
+  File "D:\programowanie\python\projekt zespołowy\struktura\.venv\Lib\site-packages\wandb\sdk\wandb_config.py", line 164, in __getattr__
+    raise AttributeError(
+AttributeError: <class 'wandb.sdk.wandb_config.Config'> object has no attribute 'parameters'

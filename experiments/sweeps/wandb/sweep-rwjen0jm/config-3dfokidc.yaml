@@ -1,0 +1,14 @@
+wandb_version: 1
+
+bootstrap:
+  value: false
+max_depth:
+  value: 9
+max_features:
+  value: log2
+min_samples_leaf:
+  value: 1
+min_samples_split:
+  value: 5
+n_estimators:
+  value: 20

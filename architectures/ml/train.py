@@ -2,6 +2,7 @@ from preprocess.preprocess import prepare_data_training
 from storage.save import save_model
 from sklearn.metrics import accuracy_score
 import pandas as pd
+import wandb
 
 
 def train_ml(df: pd.DataFrame,

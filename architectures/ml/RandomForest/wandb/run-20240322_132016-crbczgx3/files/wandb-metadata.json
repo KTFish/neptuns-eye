@@ -1,0 +1,47 @@
+{
+    "os": "Windows-11-10.0.22621-SP0",
+    "python": "3.12.2",
+    "heartbeatAt": "2024-03-22T12:20:17.954394",
+    "startedAt": "2024-03-22T12:20:16.440309",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "D:\\programowanie\\python\\projekt zespo\u0142owy\\struktura\\architectures\\ml\\RandomForest\\train.py",
+    "codePathLocal": "train.py",
+    "codePath": "train.py",
+    "host": "Kacper",
+    "username": "Kacper",
+    "executable": "D:\\programowanie\\python\\projekt zespo\u0142owy\\struktura\\.venv\\Scripts\\python.exe",
+    "cpu_count": 8,
+    "cpu_count_logical": 16,
+    "cpu_freq": {
+        "current": 3201.0,
+        "min": 0.0,
+        "max": 3201.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 3201.0,
+            "min": 0.0,
+            "max": 3201.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 931.4960899353027,
+            "used": 570.2916946411133
+        }
+    },
+    "gpu": "NVIDIA GeForce RTX 3060 Laptop GPU",
+    "gpu_count": 1,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce RTX 3060 Laptop GPU",
+            "memory_total": 6442450944
+        }
+    ],
+    "memory": {
+        "total": 15.855525970458984
+    }
+}

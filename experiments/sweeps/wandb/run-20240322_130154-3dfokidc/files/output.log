@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "D:\programowanie\python\projekt zespołowy\struktura\.venv\Lib\site-packages\wandb\sdk\wandb_config.py", line 162, in __getattr__
+    return self.__getitem__(key)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\programowanie\python\projekt zespołowy\struktura\.venv\Lib\site-packages\wandb\sdk\wandb_config.py", line 130, in __getitem__
+    return self._items[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'data_path'
+The above exception was the direct cause of the following exception:
+Traceback (most recent call last):
+  File "D:\programowanie\python\projekt zespołowy\struktura\experiments\sweeps\train.py", line 35, in train_ml
+    df = read_las_file(config.data_path)
+                       ^^^^^^^^^^^^^^^^
+  File "D:\programowanie\python\projekt zespołowy\struktura\.venv\Lib\site-packages\wandb\sdk\wandb_config.py", line 164, in __getattr__
+    raise AttributeError(
+AttributeError: <class 'wandb.sdk.wandb_config.Config'> object has no attribute 'data_path'

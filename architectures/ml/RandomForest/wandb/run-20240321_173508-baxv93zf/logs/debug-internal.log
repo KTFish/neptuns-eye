@@ -1,0 +1,183 @@
+2024-03-21 17:35:08,180 INFO    StreamThr :20796 [internal.py:wandb_internal():86] W&B internal server running at pid: 20796, started at: 2024-03-21 17:35:08.179441
+2024-03-21 17:35:08,181 DEBUG   HandlerThread:20796 [handler.py:handle_request():146] handle_request: status
+2024-03-21 17:35:08,187 INFO    WriterThread:20796 [datastore.py:open_for_write():87] open: D:\programowanie\python\projekt zespo這wy\struktura\architectures\ml\RandomForest\wandb\run-20240321_173508-baxv93zf\run-baxv93zf.wandb
+2024-03-21 17:35:08,187 DEBUG   SenderThread:20796 [sender.py:send():378] send: header
+2024-03-21 17:35:08,192 DEBUG   SenderThread:20796 [sender.py:send():378] send: run
+2024-03-21 17:35:09,090 INFO    SenderThread:20796 [dir_watcher.py:__init__():211] watching files in: D:\programowanie\python\projekt zespo這wy\struktura\architectures\ml\RandomForest\wandb\run-20240321_173508-baxv93zf\files
+2024-03-21 17:35:09,103 INFO    SenderThread:20796 [sender.py:_start_run_threads():1099] run started: baxv93zf with start time 1711038908.181489
+2024-03-21 17:35:09,105 DEBUG   HandlerThread:20796 [handler.py:handle_request():146] handle_request: check_version
+2024-03-21 17:35:09,105 DEBUG   SenderThread:20796 [sender.py:send_request():405] send_request: check_version
+2024-03-21 17:35:09,833 DEBUG   HandlerThread:20796 [handler.py:handle_request():146] handle_request: run_start
+2024-03-21 17:35:09,875 DEBUG   HandlerThread:20796 [system_info.py:__init__():26] System info init
+2024-03-21 17:35:09,875 DEBUG   HandlerThread:20796 [system_info.py:__init__():41] System info init done
+2024-03-21 17:35:09,875 INFO    HandlerThread:20796 [system_monitor.py:start():194] Starting system monitor
+2024-03-21 17:35:09,875 INFO    SystemMonitor:20796 [system_monitor.py:_start():158] Starting system asset monitoring threads
+2024-03-21 17:35:09,877 INFO    HandlerThread:20796 [system_monitor.py:probe():214] Collecting system info
+2024-03-21 17:35:09,880 INFO    SystemMonitor:20796 [interfaces.py:start():190] Started cpu monitoring
+2024-03-21 17:35:09,881 INFO    SystemMonitor:20796 [interfaces.py:start():190] Started disk monitoring
+2024-03-21 17:35:09,882 INFO    SystemMonitor:20796 [interfaces.py:start():190] Started gpu monitoring
+2024-03-21 17:35:09,889 INFO    SystemMonitor:20796 [interfaces.py:start():190] Started memory monitoring
+2024-03-21 17:35:09,900 INFO    SystemMonitor:20796 [interfaces.py:start():190] Started network monitoring
+2024-03-21 17:35:09,912 DEBUG   HandlerThread:20796 [system_info.py:probe():150] Probing system
+2024-03-21 17:35:09,917 DEBUG   HandlerThread:20796 [gitlib.py:_init_repo():56] git repository is invalid
+2024-03-21 17:35:09,918 DEBUG   HandlerThread:20796 [system_info.py:probe():198] Probing system done
+2024-03-21 17:35:09,918 DEBUG   HandlerThread:20796 [system_monitor.py:probe():223] {'os': 'Windows-11-10.0.22621-SP0', 'python': '3.12.2', 'heartbeatAt': '2024-03-21T16:35:09.913989', 'startedAt': '2024-03-21T16:35:08.157600', 'docker': None, 'cuda': None, 'args': (), 'state': 'running', 'program': 'D:\\programowanie\\python\\projekt zespo這wy\\struktura\\architectures\\ml\\RandomForest\\train_RandomForest.py', 'codePathLocal': 'train_RandomForest.py', 'codePath': 'train_RandomForest.py', 'host': 'Kacper', 'username': 'Kacper', 'executable': 'D:\\programowanie\\python\\projekt zespo這wy\\struktura\\.venv\\Scripts\\python.exe', 'cpu_count': 8, 'cpu_count_logical': 16, 'cpu_freq': {'current': 3201.0, 'min': 0.0, 'max': 3201.0}, 'cpu_freq_per_core': [{'current': 3201.0, 'min': 0.0, 'max': 3201.0}], 'disk': {'/': {'total': 931.4960899353027, 'used': 565.8464012145996}}, 'gpu': 'NVIDIA GeForce RTX 3060 Laptop GPU', 'gpu_count': 1, 'gpu_devices': [{'name': 'NVIDIA GeForce RTX 3060 Laptop GPU', 'memory_total': 6442450944}], 'memory': {'total': 15.855525970458984}}
+2024-03-21 17:35:09,918 INFO    HandlerThread:20796 [system_monitor.py:probe():224] Finished collecting system info
+2024-03-21 17:35:09,918 INFO    HandlerThread:20796 [system_monitor.py:probe():227] Publishing system info
+2024-03-21 17:35:09,931 INFO    HandlerThread:20796 [system_monitor.py:probe():229] Finished publishing system info
+2024-03-21 17:35:09,939 DEBUG   SenderThread:20796 [sender.py:send():378] send: files
+2024-03-21 17:35:09,939 INFO    SenderThread:20796 [sender.py:_save_file():1365] saving file wandb-metadata.json with policy now
+2024-03-21 17:35:10,013 DEBUG   HandlerThread:20796 [handler.py:handle_request():146] handle_request: python_packages
+2024-03-21 17:35:10,013 DEBUG   SenderThread:20796 [sender.py:send_request():405] send_request: python_packages
+2024-03-21 17:35:10,013 DEBUG   HandlerThread:20796 [handler.py:handle_request():146] handle_request: stop_status
+2024-03-21 17:35:10,014 DEBUG   SenderThread:20796 [sender.py:send_request():405] send_request: stop_status
+2024-03-21 17:35:10,015 DEBUG   HandlerThread:20796 [handler.py:handle_request():146] handle_request: internal_messages
+2024-03-21 17:35:10,097 INFO    Thread-16 :20796 [dir_watcher.py:_on_file_created():271] file/dir created: D:\programowanie\python\projekt zespo這wy\struktura\architectures\ml\RandomForest\wandb\run-20240321_173508-baxv93zf\files\requirements.txt
+2024-03-21 17:35:10,099 INFO    Thread-16 :20796 [dir_watcher.py:_on_file_created():271] file/dir created: D:\programowanie\python\projekt zespo這wy\struktura\architectures\ml\RandomForest\wandb\run-20240321_173508-baxv93zf\files\wandb-metadata.json
+2024-03-21 17:35:10,746 DEBUG   SenderThread:20796 [sender.py:send():378] send: telemetry
+2024-03-21 17:35:10,875 DEBUG   SenderThread:20796 [sender.py:send():378] send: exit
+2024-03-21 17:35:10,875 INFO    SenderThread:20796 [sender.py:send_exit():585] handling exit code: 1
+2024-03-21 17:35:10,875 INFO    SenderThread:20796 [sender.py:send_exit():587] handling runtime: 1
+2024-03-21 17:35:10,876 INFO    SenderThread:20796 [sender.py:_save_file():1365] saving file wandb-summary.json with policy end
+2024-03-21 17:35:10,876 INFO    SenderThread:20796 [sender.py:send_exit():593] send defer
+2024-03-21 17:35:10,876 DEBUG   HandlerThread:20796 [handler.py:handle_request():146] handle_request: defer
+2024-03-21 17:35:10,877 INFO    HandlerThread:20796 [handler.py:handle_request_defer():172] handle defer: 0
+2024-03-21 17:35:10,877 DEBUG   SenderThread:20796 [sender.py:send_request():405] send_request: defer
+2024-03-21 17:35:10,877 INFO    SenderThread:20796 [sender.py:send_request_defer():609] handle sender defer: 0
+2024-03-21 17:35:10,877 INFO    SenderThread:20796 [sender.py:transition_state():613] send defer: 1
+2024-03-21 17:35:10,877 DEBUG   HandlerThread:20796 [handler.py:handle_request():146] handle_request: defer
+2024-03-21 17:35:10,877 INFO    HandlerThread:20796 [handler.py:handle_request_defer():172] handle defer: 1
+2024-03-21 17:35:10,877 DEBUG   SenderThread:20796 [sender.py:send_request():405] send_request: defer
+2024-03-21 17:35:10,877 INFO    SenderThread:20796 [sender.py:send_request_defer():609] handle sender defer: 1
+2024-03-21 17:35:10,877 INFO    SenderThread:20796 [sender.py:transition_state():613] send defer: 2
+2024-03-21 17:35:10,877 DEBUG   HandlerThread:20796 [handler.py:handle_request():146] handle_request: defer
+2024-03-21 17:35:10,877 INFO    HandlerThread:20796 [handler.py:handle_request_defer():172] handle defer: 2
+2024-03-21 17:35:10,877 INFO    HandlerThread:20796 [system_monitor.py:finish():203] Stopping system monitor
+2024-03-21 17:35:10,878 INFO    HandlerThread:20796 [interfaces.py:finish():202] Joined cpu monitor
+2024-03-21 17:35:10,878 DEBUG   SystemMonitor:20796 [system_monitor.py:_start():172] Starting system metrics aggregation loop
+2024-03-21 17:35:10,885 INFO    HandlerThread:20796 [interfaces.py:finish():202] Joined disk monitor
+2024-03-21 17:35:10,885 DEBUG   SystemMonitor:20796 [system_monitor.py:_start():179] Finished system metrics aggregation loop
+2024-03-21 17:35:10,885 DEBUG   SystemMonitor:20796 [system_monitor.py:_start():183] Publishing last batch of metrics
+2024-03-21 17:35:10,936 INFO    HandlerThread:20796 [interfaces.py:finish():202] Joined gpu monitor
+2024-03-21 17:35:10,936 INFO    HandlerThread:20796 [interfaces.py:finish():202] Joined memory monitor
+2024-03-21 17:35:10,936 INFO    HandlerThread:20796 [interfaces.py:finish():202] Joined network monitor
+2024-03-21 17:35:10,937 DEBUG   SenderThread:20796 [sender.py:send_request():405] send_request: defer
+2024-03-21 17:35:10,937 INFO    SenderThread:20796 [sender.py:send_request_defer():609] handle sender defer: 2
+2024-03-21 17:35:10,937 INFO    SenderThread:20796 [sender.py:transition_state():613] send defer: 3
+2024-03-21 17:35:10,937 DEBUG   SenderThread:20796 [sender.py:send():378] send: stats
+2024-03-21 17:35:10,937 DEBUG   HandlerThread:20796 [handler.py:handle_request():146] handle_request: defer
+2024-03-21 17:35:10,938 INFO    HandlerThread:20796 [handler.py:handle_request_defer():172] handle defer: 3
+2024-03-21 17:35:10,938 DEBUG   SenderThread:20796 [sender.py:send_request():405] send_request: defer
+2024-03-21 17:35:10,938 INFO    SenderThread:20796 [sender.py:send_request_defer():609] handle sender defer: 3
+2024-03-21 17:35:10,938 INFO    SenderThread:20796 [sender.py:transition_state():613] send defer: 4
+2024-03-21 17:35:10,938 DEBUG   HandlerThread:20796 [handler.py:handle_request():146] handle_request: defer
+2024-03-21 17:35:10,938 INFO    HandlerThread:20796 [handler.py:handle_request_defer():172] handle defer: 4
+2024-03-21 17:35:10,938 DEBUG   SenderThread:20796 [sender.py:send_request():405] send_request: defer
+2024-03-21 17:35:10,938 INFO    SenderThread:20796 [sender.py:send_request_defer():609] handle sender defer: 4
+2024-03-21 17:35:10,939 INFO    SenderThread:20796 [sender.py:transition_state():613] send defer: 5
+2024-03-21 17:35:10,939 DEBUG   HandlerThread:20796 [handler.py:handle_request():146] handle_request: defer
+2024-03-21 17:35:10,939 INFO    HandlerThread:20796 [handler.py:handle_request_defer():172] handle defer: 5
+2024-03-21 17:35:10,939 DEBUG   SenderThread:20796 [sender.py:send():378] send: summary
+2024-03-21 17:35:10,939 INFO    SenderThread:20796 [sender.py:_save_file():1365] saving file wandb-summary.json with policy end
+2024-03-21 17:35:10,940 DEBUG   SenderThread:20796 [sender.py:send_request():405] send_request: defer
+2024-03-21 17:35:10,940 INFO    SenderThread:20796 [sender.py:send_request_defer():609] handle sender defer: 5
+2024-03-21 17:35:10,940 INFO    SenderThread:20796 [sender.py:transition_state():613] send defer: 6
+2024-03-21 17:35:10,940 DEBUG   HandlerThread:20796 [handler.py:handle_request():146] handle_request: defer
+2024-03-21 17:35:10,940 INFO    HandlerThread:20796 [handler.py:handle_request_defer():172] handle defer: 6
+2024-03-21 17:35:10,940 DEBUG   SenderThread:20796 [sender.py:send_request():405] send_request: defer
+2024-03-21 17:35:10,940 INFO    SenderThread:20796 [sender.py:send_request_defer():609] handle sender defer: 6
+2024-03-21 17:35:10,942 DEBUG   HandlerThread:20796 [handler.py:handle_request():146] handle_request: status_report
+2024-03-21 17:35:10,991 INFO    wandb-upload_0:20796 [upload_job.py:push():131] Uploaded file C:\Users\games\AppData\Local\Temp\tmp6pvz83_gwandb\xdznraww-wandb-metadata.json
+2024-03-21 17:35:11,103 INFO    Thread-16 :20796 [dir_watcher.py:_on_file_created():271] file/dir created: D:\programowanie\python\projekt zespo這wy\struktura\architectures\ml\RandomForest\wandb\run-20240321_173508-baxv93zf\files\wandb-summary.json
+2024-03-21 17:35:11,104 INFO    Thread-16 :20796 [dir_watcher.py:_on_file_created():271] file/dir created: D:\programowanie\python\projekt zespo這wy\struktura\architectures\ml\RandomForest\wandb\run-20240321_173508-baxv93zf\files\output.log
+2024-03-21 17:35:11,115 INFO    SenderThread:20796 [sender.py:transition_state():613] send defer: 7
+2024-03-21 17:35:11,116 DEBUG   HandlerThread:20796 [handler.py:handle_request():146] handle_request: defer
+2024-03-21 17:35:11,116 INFO    HandlerThread:20796 [handler.py:handle_request_defer():172] handle defer: 7
+2024-03-21 17:35:11,116 DEBUG   SenderThread:20796 [sender.py:send_request():405] send_request: defer
+2024-03-21 17:35:11,116 INFO    SenderThread:20796 [sender.py:send_request_defer():609] handle sender defer: 7
+2024-03-21 17:35:11,877 DEBUG   HandlerThread:20796 [handler.py:handle_request():146] handle_request: poll_exit
+2024-03-21 17:35:12,112 INFO    Thread-16 :20796 [dir_watcher.py:_on_file_modified():288] file/dir modified: D:\programowanie\python\projekt zespo這wy\struktura\architectures\ml\RandomForest\wandb\run-20240321_173508-baxv93zf\files\config.yaml
+2024-03-21 17:35:12,876 INFO    SenderThread:20796 [sender.py:transition_state():613] send defer: 8
+2024-03-21 17:35:12,878 DEBUG   SenderThread:20796 [sender.py:send_request():405] send_request: poll_exit
+2024-03-21 17:35:12,878 DEBUG   HandlerThread:20796 [handler.py:handle_request():146] handle_request: defer
+2024-03-21 17:35:12,878 INFO    HandlerThread:20796 [handler.py:handle_request_defer():172] handle defer: 8
+2024-03-21 17:35:12,878 DEBUG   SenderThread:20796 [sender.py:send_request():405] send_request: defer
+2024-03-21 17:35:12,878 INFO    SenderThread:20796 [sender.py:send_request_defer():609] handle sender defer: 8
+2024-03-21 17:35:12,878 INFO    SenderThread:20796 [job_builder.py:build():298] Attempting to build job artifact
+2024-03-21 17:35:12,880 INFO    SenderThread:20796 [job_builder.py:_get_source_type():439] no source found
+2024-03-21 17:35:12,880 INFO    SenderThread:20796 [sender.py:transition_state():613] send defer: 9
+2024-03-21 17:35:12,880 DEBUG   HandlerThread:20796 [handler.py:handle_request():146] handle_request: defer
+2024-03-21 17:35:12,880 INFO    HandlerThread:20796 [handler.py:handle_request_defer():172] handle defer: 9
+2024-03-21 17:35:12,880 DEBUG   SenderThread:20796 [sender.py:send_request():405] send_request: defer
+2024-03-21 17:35:12,880 INFO    SenderThread:20796 [sender.py:send_request_defer():609] handle sender defer: 9
+2024-03-21 17:35:12,881 INFO    SenderThread:20796 [dir_watcher.py:finish():358] shutting down directory watcher
+2024-03-21 17:35:12,886 DEBUG   HandlerThread:20796 [handler.py:handle_request():146] handle_request: poll_exit
+2024-03-21 17:35:13,120 INFO    SenderThread:20796 [dir_watcher.py:_on_file_modified():288] file/dir modified: D:\programowanie\python\projekt zespo這wy\struktura\architectures\ml\RandomForest\wandb\run-20240321_173508-baxv93zf\files\output.log
+2024-03-21 17:35:13,121 INFO    SenderThread:20796 [dir_watcher.py:finish():388] scan: D:\programowanie\python\projekt zespo這wy\struktura\architectures\ml\RandomForest\wandb\run-20240321_173508-baxv93zf\files
+2024-03-21 17:35:13,121 INFO    SenderThread:20796 [dir_watcher.py:finish():402] scan save: D:\programowanie\python\projekt zespo這wy\struktura\architectures\ml\RandomForest\wandb\run-20240321_173508-baxv93zf\files\config.yaml config.yaml
+2024-03-21 17:35:13,122 INFO    SenderThread:20796 [dir_watcher.py:finish():402] scan save: D:\programowanie\python\projekt zespo這wy\struktura\architectures\ml\RandomForest\wandb\run-20240321_173508-baxv93zf\files\output.log output.log
+2024-03-21 17:35:13,123 INFO    SenderThread:20796 [dir_watcher.py:finish():402] scan save: D:\programowanie\python\projekt zespo這wy\struktura\architectures\ml\RandomForest\wandb\run-20240321_173508-baxv93zf\files\requirements.txt requirements.txt
+2024-03-21 17:35:13,126 INFO    SenderThread:20796 [dir_watcher.py:finish():402] scan save: D:\programowanie\python\projekt zespo這wy\struktura\architectures\ml\RandomForest\wandb\run-20240321_173508-baxv93zf\files\wandb-metadata.json wandb-metadata.json
+2024-03-21 17:35:13,126 INFO    SenderThread:20796 [dir_watcher.py:finish():402] scan save: D:\programowanie\python\projekt zespo這wy\struktura\architectures\ml\RandomForest\wandb\run-20240321_173508-baxv93zf\files\wandb-summary.json wandb-summary.json
+2024-03-21 17:35:13,128 INFO    SenderThread:20796 [sender.py:transition_state():613] send defer: 10
+2024-03-21 17:35:13,128 DEBUG   SenderThread:20796 [sender.py:send_request():405] send_request: poll_exit
+2024-03-21 17:35:13,128 DEBUG   HandlerThread:20796 [handler.py:handle_request():146] handle_request: defer
+2024-03-21 17:35:13,129 INFO    HandlerThread:20796 [handler.py:handle_request_defer():172] handle defer: 10
+2024-03-21 17:35:13,131 DEBUG   SenderThread:20796 [sender.py:send_request():405] send_request: defer
+2024-03-21 17:35:13,131 INFO    SenderThread:20796 [sender.py:send_request_defer():609] handle sender defer: 10
+2024-03-21 17:35:13,131 INFO    SenderThread:20796 [file_pusher.py:finish():172] shutting down file pusher
+2024-03-21 17:35:13,559 INFO    wandb-upload_0:20796 [upload_job.py:push():131] Uploaded file D:\programowanie\python\projekt zespo這wy\struktura\architectures\ml\RandomForest\wandb\run-20240321_173508-baxv93zf\files\config.yaml
+2024-03-21 17:35:13,893 DEBUG   HandlerThread:20796 [handler.py:handle_request():146] handle_request: poll_exit
+2024-03-21 17:35:13,893 DEBUG   SenderThread:20796 [sender.py:send_request():405] send_request: poll_exit
+2024-03-21 17:35:14,059 INFO    wandb-upload_1:20796 [upload_job.py:push():131] Uploaded file D:\programowanie\python\projekt zespo這wy\struktura\architectures\ml\RandomForest\wandb\run-20240321_173508-baxv93zf\files\output.log
+2024-03-21 17:35:14,067 INFO    wandb-upload_3:20796 [upload_job.py:push():131] Uploaded file D:\programowanie\python\projekt zespo這wy\struktura\architectures\ml\RandomForest\wandb\run-20240321_173508-baxv93zf\files\wandb-summary.json
+2024-03-21 17:35:14,487 INFO    wandb-upload_2:20796 [upload_job.py:push():131] Uploaded file D:\programowanie\python\projekt zespo這wy\struktura\architectures\ml\RandomForest\wandb\run-20240321_173508-baxv93zf\files\requirements.txt
+2024-03-21 17:35:14,695 INFO    Thread-15 (_thread_body):20796 [sender.py:transition_state():613] send defer: 11
+2024-03-21 17:35:14,695 DEBUG   HandlerThread:20796 [handler.py:handle_request():146] handle_request: defer
+2024-03-21 17:35:14,695 INFO    HandlerThread:20796 [handler.py:handle_request_defer():172] handle defer: 11
+2024-03-21 17:35:14,696 DEBUG   SenderThread:20796 [sender.py:send_request():405] send_request: defer
+2024-03-21 17:35:14,696 INFO    SenderThread:20796 [sender.py:send_request_defer():609] handle sender defer: 11
+2024-03-21 17:35:14,696 INFO    SenderThread:20796 [file_pusher.py:join():178] waiting for file pusher
+2024-03-21 17:35:14,697 INFO    SenderThread:20796 [sender.py:transition_state():613] send defer: 12
+2024-03-21 17:35:14,697 DEBUG   HandlerThread:20796 [handler.py:handle_request():146] handle_request: defer
+2024-03-21 17:35:14,697 INFO    HandlerThread:20796 [handler.py:handle_request_defer():172] handle defer: 12
+2024-03-21 17:35:14,698 DEBUG   SenderThread:20796 [sender.py:send_request():405] send_request: defer
+2024-03-21 17:35:14,698 INFO    SenderThread:20796 [sender.py:send_request_defer():609] handle sender defer: 12
+2024-03-21 17:35:14,698 INFO    SenderThread:20796 [file_stream.py:finish():595] file stream finish called
+2024-03-21 17:35:14,897 DEBUG   HandlerThread:20796 [handler.py:handle_request():146] handle_request: poll_exit
+2024-03-21 17:35:15,200 INFO    SenderThread:20796 [file_stream.py:finish():599] file stream finish is done
+2024-03-21 17:35:15,201 INFO    SenderThread:20796 [sender.py:transition_state():613] send defer: 13
+2024-03-21 17:35:15,201 DEBUG   SenderThread:20796 [sender.py:send_request():405] send_request: poll_exit
+2024-03-21 17:35:15,201 DEBUG   HandlerThread:20796 [handler.py:handle_request():146] handle_request: defer
+2024-03-21 17:35:15,201 INFO    HandlerThread:20796 [handler.py:handle_request_defer():172] handle defer: 13
+2024-03-21 17:35:15,201 DEBUG   SenderThread:20796 [sender.py:send_request():405] send_request: defer
+2024-03-21 17:35:15,202 INFO    SenderThread:20796 [sender.py:send_request_defer():609] handle sender defer: 13
+2024-03-21 17:35:15,202 INFO    SenderThread:20796 [sender.py:transition_state():613] send defer: 14
+2024-03-21 17:35:15,202 DEBUG   HandlerThread:20796 [handler.py:handle_request():146] handle_request: defer
+2024-03-21 17:35:15,202 DEBUG   SenderThread:20796 [sender.py:send():378] send: final
+2024-03-21 17:35:15,202 INFO    HandlerThread:20796 [handler.py:handle_request_defer():172] handle defer: 14
+2024-03-21 17:35:15,202 DEBUG   SenderThread:20796 [sender.py:send():378] send: footer
+2024-03-21 17:35:15,203 DEBUG   SenderThread:20796 [sender.py:send_request():405] send_request: defer
+2024-03-21 17:35:15,203 INFO    SenderThread:20796 [sender.py:send_request_defer():609] handle sender defer: 14
+2024-03-21 17:35:15,203 DEBUG   HandlerThread:20796 [handler.py:handle_request():146] handle_request: poll_exit
+2024-03-21 17:35:15,203 DEBUG   HandlerThread:20796 [handler.py:handle_request():146] handle_request: poll_exit
+2024-03-21 17:35:15,204 DEBUG   SenderThread:20796 [sender.py:send_request():405] send_request: poll_exit
+2024-03-21 17:35:15,204 DEBUG   HandlerThread:20796 [handler.py:handle_request():146] handle_request: server_info
+2024-03-21 17:35:15,204 DEBUG   HandlerThread:20796 [handler.py:handle_request():146] handle_request: get_summary
+2024-03-21 17:35:15,204 DEBUG   SenderThread:20796 [sender.py:send_request():405] send_request: poll_exit
+2024-03-21 17:35:15,204 DEBUG   HandlerThread:20796 [handler.py:handle_request():146] handle_request: sampled_history
+2024-03-21 17:35:15,205 DEBUG   SenderThread:20796 [sender.py:send_request():405] send_request: server_info
+2024-03-21 17:35:15,205 DEBUG   HandlerThread:20796 [handler.py:handle_request():146] handle_request: internal_messages
+2024-03-21 17:35:15,206 DEBUG   HandlerThread:20796 [handler.py:handle_request():146] handle_request: job_info
+2024-03-21 17:35:20,240 DEBUG   HandlerThread:20796 [handler.py:handle_request():146] handle_request: keepalive
+2024-03-21 17:35:20,657 DEBUG   SenderThread:20796 [sender.py:send_request():405] send_request: job_info
+2024-03-21 17:35:20,658 DEBUG   HandlerThread:20796 [handler.py:handle_request():146] handle_request: status_report
+2024-03-21 17:35:20,658 INFO    MainThread:20796 [wandb_run.py:_footer_history_summary_info():3851] rendering history
+2024-03-21 17:35:20,658 INFO    MainThread:20796 [wandb_run.py:_footer_history_summary_info():3883] rendering summary
+2024-03-21 17:35:20,658 INFO    MainThread:20796 [wandb_run.py:_footer_sync_info():3810] logging synced files
+2024-03-21 17:35:20,658 DEBUG   HandlerThread:20796 [handler.py:handle_request():146] handle_request: shutdown
+2024-03-21 17:35:20,658 INFO    HandlerThread:20796 [handler.py:finish():869] shutting down handler
+2024-03-21 17:35:21,669 INFO    WriterThread:20796 [datastore.py:close():296] close: D:\programowanie\python\projekt zespo這wy\struktura\architectures\ml\RandomForest\wandb\run-20240321_173508-baxv93zf\run-baxv93zf.wandb
+2024-03-21 17:35:21,669 INFO    SenderThread:20796 [sender.py:finish():1521] shutting down sender
+2024-03-21 17:35:21,669 INFO    SenderThread:20796 [file_pusher.py:finish():172] shutting down file pusher
+2024-03-21 17:35:21,669 INFO    SenderThread:20796 [file_pusher.py:join():178] waiting for file pusher
