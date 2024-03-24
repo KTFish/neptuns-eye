@@ -1,0 +1,35 @@
+2024-03-23 16:20:36,668 INFO    Thread-13 (_run_job):13448 [wandb_setup.py:_flush():76] Current SDK version is 0.16.3
+2024-03-23 16:20:36,668 INFO    Thread-13 (_run_job):13448 [wandb_setup.py:_flush():76] Configure stats pid to 13448
+2024-03-23 16:20:36,668 INFO    Thread-13 (_run_job):13448 [wandb_setup.py:_flush():76] Loading settings from C:\Users\games\.config\wandb\settings
+2024-03-23 16:20:36,668 INFO    Thread-13 (_run_job):13448 [wandb_setup.py:_flush():76] Loading settings from D:\programowanie\python\projekt zespo這wy\oko_neptuna\architectures\ml\RandomForest\wandb\settings
+2024-03-23 16:20:36,668 INFO    Thread-13 (_run_job):13448 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'project': 'RandomForest_aha41', 'entity': 'czarna-magia', 'root_dir': 'D:\\programowanie\\python\\projekt zespo這wy\\oko_neptuna\\architectures\\ml\\RandomForest', 'run_id': '5dakhfja', 'sweep_param_path': 'D:\\programowanie\\python\\projekt zespo這wy\\oko_neptuna\\architectures\\ml\\RandomForest\\wandb\\sweep-86im2pc1\\config-5dakhfja.yaml', 'sweep_id': '86im2pc1'}
+2024-03-23 16:20:36,668 INFO    Thread-13 (_run_job):13448 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-03-23 16:20:36,668 INFO    Thread-13 (_run_job):13448 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'train.py', 'program_abspath': 'D:\\programowanie\\python\\projekt zespo這wy\\oko_neptuna\\architectures\\ml\\RandomForest\\train.py', 'program': 'D:\\programowanie\\python\\projekt zespo這wy\\oko_neptuna\\architectures\\ml\\RandomForest\\train.py'}
+2024-03-23 16:20:36,668 INFO    Thread-13 (_run_job):13448 [wandb_init.py:_log_setup():526] Logging user logs to D:\programowanie\python\projekt zespo這wy\oko_neptuna\architectures\ml\RandomForest\wandb\run-20240323_162036-5dakhfja\logs\debug.log
+2024-03-23 16:20:36,669 INFO    Thread-13 (_run_job):13448 [wandb_init.py:_log_setup():527] Logging internal logs to D:\programowanie\python\projekt zespo這wy\oko_neptuna\architectures\ml\RandomForest\wandb\run-20240323_162036-5dakhfja\logs\debug-internal.log
+2024-03-23 16:20:36,669 INFO    Thread-13 (_run_job):13448 [wandb_init.py:init():566] calling init triggers
+2024-03-23 16:20:36,669 INFO    Thread-13 (_run_job):13448 [wandb_init.py:init():573] wandb.init called with sweep_config: {'max_depth': 8, 'min_samples_leaf': 4, 'min_samples_split': 2, 'n_estimators': 12}
+config: {}
+2024-03-23 16:20:36,669 INFO    Thread-13 (_run_job):13448 [wandb_init.py:init():616] starting backend
+2024-03-23 16:20:36,669 INFO    Thread-13 (_run_job):13448 [wandb_init.py:init():620] setting up manager
+2024-03-23 16:20:36,677 INFO    Thread-13 (_run_job):13448 [backend.py:_multiprocessing_setup():105] multiprocessing start_methods=spawn, using: spawn
+2024-03-23 16:20:36,678 INFO    Thread-13 (_run_job):13448 [wandb_init.py:init():628] backend started and connected
+2024-03-23 16:20:36,693 INFO    Thread-13 (_run_job):13448 [wandb_run.py:_config_callback():1343] config_cb None None {'max_depth': 8, 'min_samples_leaf': 4, 'min_samples_split': 2, 'n_estimators': 12}
+2024-03-23 16:20:36,693 INFO    Thread-13 (_run_job):13448 [wandb_init.py:init():720] updated telemetry
+2024-03-23 16:20:36,699 INFO    Thread-13 (_run_job):13448 [wandb_init.py:init():753] communicating run to backend with 90.0 second timeout
+2024-03-23 16:20:37,476 INFO    Thread-13 (_run_job):13448 [wandb_run.py:_on_init():2262] communicating current version
+2024-03-23 16:20:38,139 INFO    Thread-13 (_run_job):13448 [wandb_run.py:_on_init():2271] got version response upgrade_message: "wandb version 0.16.4 is available!  To upgrade, please run:\n $ pip install wandb --upgrade"
+
+2024-03-23 16:20:38,139 INFO    Thread-13 (_run_job):13448 [wandb_init.py:init():804] starting run threads in backend
+2024-03-23 16:20:40,441 INFO    Thread-13 (_run_job):13448 [wandb_run.py:_console_start():2241] atexit reg
+2024-03-23 16:20:40,441 INFO    Thread-13 (_run_job):13448 [wandb_run.py:_redirect():2096] redirect: wrap_raw
+2024-03-23 16:20:40,442 INFO    Thread-13 (_run_job):13448 [wandb_run.py:_redirect():2161] Wrapping output streams.
+2024-03-23 16:20:40,442 INFO    Thread-13 (_run_job):13448 [wandb_run.py:_redirect():2186] Redirects installed.
+2024-03-23 16:20:40,443 INFO    Thread-13 (_run_job):13448 [wandb_init.py:init():847] run started, returning control to user process
+2024-03-23 16:20:41,632 INFO    Thread-13 (_run_job):13448 [wandb_run.py:_finish():1970] finishing run czarna-magia/RandomForest_aha41/5dakhfja
+2024-03-23 16:20:41,632 INFO    Thread-13 (_run_job):13448 [wandb_run.py:_atexit_cleanup():2210] got exitcode: 1
+2024-03-23 16:20:41,633 INFO    Thread-13 (_run_job):13448 [wandb_run.py:_restore():2193] restore
+2024-03-23 16:20:41,633 INFO    Thread-13 (_run_job):13448 [wandb_run.py:_restore():2199] restore done
+2024-03-23 16:20:47,540 INFO    Thread-13 (_run_job):13448 [wandb_run.py:_footer_history_summary_info():3866] rendering history
+2024-03-23 16:20:47,540 INFO    Thread-13 (_run_job):13448 [wandb_run.py:_footer_history_summary_info():3898] rendering summary
+2024-03-23 16:20:47,545 INFO    Thread-13 (_run_job):13448 [wandb_run.py:_footer_sync_info():3825] logging synced files

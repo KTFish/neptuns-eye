@@ -1,0 +1,10 @@
+wandb_version: 1
+
+max_depth:
+  value: 10
+min_samples_leaf:
+  value: 3
+min_samples_split:
+  value: 4
+n_estimators:
+  value: 16

@@ -1,5 +1,5 @@
 from preprocess.preprocess import prepare_data_training
-from storage.save import save_model
+from storage.save import save_joblib
 from sklearn.metrics import accuracy_score
 import pandas as pd
 import wandb
@@ -29,7 +29,7 @@ def train_ml(df: pd.DataFrame,
         print(f"\nTest accuracy: {accuracy:.2f}%")
 
     if save_path is not None:
-        save_model(clf, save_path)
+        save_joblib(clf, save_path)
     print("Training done!")
 
     return clf, y_pred
