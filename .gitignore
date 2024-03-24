@@ -2,5 +2,6 @@
 .venv
 
 wandb
+config.cpython-312.pyc
 *.las
 *.joblib
