@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "D:\programowanie\python\projekt zespołowy\oko_neptuna\architectures\ml\RandomForest\train.py", line 48, in train
+    train_path = config['train']
+                 ~~~~~~^^^^^^^^^
+TypeError: 'NoneType' object is not subscriptable

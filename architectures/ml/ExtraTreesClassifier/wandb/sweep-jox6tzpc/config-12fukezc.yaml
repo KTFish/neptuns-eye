@@ -1,0 +1,12 @@
+wandb_version: 1
+
+criterion:
+  value: gini
+max_depth:
+  value: 13
+min_samples_leaf:
+  value: 8
+min_samples_split:
+  value: 4
+n_estimators:
+  value: 18

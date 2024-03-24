@@ -1,0 +1,14 @@
+wandb_version: 1
+
+max_depth:
+  value: 13
+max_features:
+  value: 0.3792683703179698
+min_impurity_decrease:
+  value: 0.04152168651448321
+min_samples_leaf:
+  value: 4
+min_samples_split:
+  value: 4
+n_estimators:
+  value: 11

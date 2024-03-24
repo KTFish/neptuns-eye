@@ -1,0 +1,1 @@
+{"criterion": "gini", "_timestamp": 1711297270.9418857, "_runtime": 15.291365623474121, "_step": 5, "max_depth": 21, "min_samples_leaf": 9, "min_samples_split": 7, "n_estimators": 20, "accuracy": 0.6650276661780772, "_wandb": {"runtime": 13}}

@@ -1,0 +1,16 @@
+wandb_version: 1
+
+C:
+  value: 8.557534919830799
+class_weight:
+  value: balanced
+fit_intercept:
+  value: true
+intercept_scaling:
+  value: 2
+max_iter:
+  value: 6045
+penalty:
+  value: l2
+tol:
+  value: 0.03895296269732932

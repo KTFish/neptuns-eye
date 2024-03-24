@@ -1,0 +1,45 @@
+wandb_version: 1
+
+_wandb:
+  desc: null
+  value:
+    python_version: 3.11.8
+    cli_version: 0.16.3
+    framework: sklearn
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    start_time: 1711291889.707675
+    t:
+      1:
+      - 5
+      - 53
+      - 55
+      2:
+      - 5
+      - 53
+      - 55
+      3:
+      - 2
+      - 23
+      - 37
+      4: 3.11.8
+      5: 0.16.3
+      8:
+      - 3
+      - 5
+      13: windows-amd64
+algorithm:
+  desc: null
+  value: brute
+leaf_size:
+  desc: null
+  value: 22
+n_neighbors:
+  desc: null
+  value: 8
+p:
+  desc: null
+  value: 2
+weights:
+  desc: null
+  value: uniform

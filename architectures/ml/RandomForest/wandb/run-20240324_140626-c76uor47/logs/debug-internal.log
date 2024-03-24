@@ -1,0 +1,181 @@
+2024-03-24 14:06:26,639 INFO    StreamThr :19548 [internal.py:wandb_internal():86] W&B internal server running at pid: 19548, started at: 2024-03-24 14:06:26.639441
+2024-03-24 14:06:26,641 DEBUG   HandlerThread:19548 [handler.py:handle_request():146] handle_request: status
+2024-03-24 14:06:26,653 INFO    WriterThread:19548 [datastore.py:open_for_write():87] open: D:\programowanie\python\projekt zespo這wy\oko_neptuna\architectures\ml\RandomForest\wandb\run-20240324_140626-c76uor47\run-c76uor47.wandb
+2024-03-24 14:06:26,653 DEBUG   SenderThread:19548 [sender.py:send():382] send: header
+2024-03-24 14:06:26,658 DEBUG   SenderThread:19548 [sender.py:send():382] send: run
+2024-03-24 14:06:27,380 INFO    SenderThread:19548 [dir_watcher.py:__init__():211] watching files in: D:\programowanie\python\projekt zespo這wy\oko_neptuna\architectures\ml\RandomForest\wandb\run-20240324_140626-c76uor47\files
+2024-03-24 14:06:27,391 INFO    SenderThread:19548 [sender.py:_start_run_threads():1136] run started: c76uor47 with start time 1711285586.638284
+2024-03-24 14:06:27,394 DEBUG   HandlerThread:19548 [handler.py:handle_request():146] handle_request: check_version
+2024-03-24 14:06:27,394 DEBUG   SenderThread:19548 [sender.py:send_request():409] send_request: check_version
+2024-03-24 14:06:28,029 DEBUG   HandlerThread:19548 [handler.py:handle_request():146] handle_request: run_start
+2024-03-24 14:06:28,057 DEBUG   HandlerThread:19548 [system_info.py:__init__():27] System info init
+2024-03-24 14:06:28,057 DEBUG   HandlerThread:19548 [system_info.py:__init__():42] System info init done
+2024-03-24 14:06:28,058 INFO    HandlerThread:19548 [system_monitor.py:start():194] Starting system monitor
+2024-03-24 14:06:28,058 INFO    SystemMonitor:19548 [system_monitor.py:_start():158] Starting system asset monitoring threads
+2024-03-24 14:06:28,058 INFO    HandlerThread:19548 [system_monitor.py:probe():214] Collecting system info
+2024-03-24 14:06:28,063 INFO    SystemMonitor:19548 [interfaces.py:start():190] Started cpu monitoring
+2024-03-24 14:06:28,063 INFO    SystemMonitor:19548 [interfaces.py:start():190] Started disk monitoring
+2024-03-24 14:06:28,064 INFO    SystemMonitor:19548 [interfaces.py:start():190] Started gpu monitoring
+2024-03-24 14:06:28,071 INFO    SystemMonitor:19548 [interfaces.py:start():190] Started memory monitoring
+2024-03-24 14:06:28,085 INFO    SystemMonitor:19548 [interfaces.py:start():190] Started network monitoring
+2024-03-24 14:06:28,088 DEBUG   HandlerThread:19548 [system_info.py:probe():151] Probing system
+2024-03-24 14:06:28,093 DEBUG   HandlerThread:19548 [gitlib.py:_init_repo():56] git repository is invalid
+2024-03-24 14:06:28,093 DEBUG   HandlerThread:19548 [system_info.py:probe():199] Probing system done
+2024-03-24 14:06:28,093 DEBUG   HandlerThread:19548 [system_monitor.py:probe():223] {'os': 'Windows-10-10.0.22621-SP0', 'python': '3.11.8', 'heartbeatAt': '2024-03-24T13:06:28.089456', 'startedAt': '2024-03-24T13:06:26.612872', 'docker': None, 'cuda': None, 'args': (), 'state': 'running', 'program': 'D:\\programowanie\\python\\projekt zespo這wy\\oko_neptuna\\architectures\\ml\\RandomForest\\train.py', 'codePathLocal': 'train.py', 'codePath': 'train.py', 'host': 'Kacper', 'username': 'Kacper', 'executable': 'C:\\Users\\games\\anaconda3\\envs\\oko_neptuna\\python.exe', 'cpu_count': 8, 'cpu_count_logical': 16, 'cpu_freq': {'current': 3201.0, 'min': 0.0, 'max': 3201.0}, 'cpu_freq_per_core': [{'current': 3201.0, 'min': 0.0, 'max': 3201.0}], 'disk': {'/': {'total': 931.4960899353027, 'used': 569.4446449279785}}, 'gpu': 'NVIDIA GeForce RTX 3060 Laptop GPU', 'gpu_count': 1, 'gpu_devices': [{'name': 'NVIDIA GeForce RTX 3060 Laptop GPU', 'memory_total': 6442450944}], 'memory': {'total': 15.855525970458984}}
+2024-03-24 14:06:28,093 INFO    HandlerThread:19548 [system_monitor.py:probe():224] Finished collecting system info
+2024-03-24 14:06:28,093 INFO    HandlerThread:19548 [system_monitor.py:probe():227] Publishing system info
+2024-03-24 14:06:28,094 DEBUG   HandlerThread:19548 [system_info.py:_save_conda():208] Saving list of conda packages installed into the current environment
+2024-03-24 14:06:28,385 INFO    Thread-16 :19548 [dir_watcher.py:_on_file_created():271] file/dir created: D:\programowanie\python\projekt zespo這wy\oko_neptuna\architectures\ml\RandomForest\wandb\run-20240324_140626-c76uor47\files\conda-environment.yaml
+2024-03-24 14:06:29,920 DEBUG   HandlerThread:19548 [system_info.py:_save_conda():220] Saving conda packages done
+2024-03-24 14:06:29,921 INFO    HandlerThread:19548 [system_monitor.py:probe():229] Finished publishing system info
+2024-03-24 14:06:29,927 DEBUG   SenderThread:19548 [sender.py:send():382] send: files
+2024-03-24 14:06:29,927 INFO    SenderThread:19548 [sender.py:_save_file():1403] saving file wandb-metadata.json with policy now
+2024-03-24 14:06:29,937 DEBUG   HandlerThread:19548 [handler.py:handle_request():146] handle_request: python_packages
+2024-03-24 14:06:29,937 DEBUG   HandlerThread:19548 [handler.py:handle_request():146] handle_request: stop_status
+2024-03-24 14:06:29,938 DEBUG   HandlerThread:19548 [handler.py:handle_request():146] handle_request: internal_messages
+2024-03-24 14:06:29,938 DEBUG   SenderThread:19548 [sender.py:send_request():409] send_request: python_packages
+2024-03-24 14:06:29,941 DEBUG   SenderThread:19548 [sender.py:send_request():409] send_request: stop_status
+2024-03-24 14:06:30,406 INFO    Thread-16 :19548 [dir_watcher.py:_on_file_modified():288] file/dir modified: D:\programowanie\python\projekt zespo這wy\oko_neptuna\architectures\ml\RandomForest\wandb\run-20240324_140626-c76uor47\files\conda-environment.yaml
+2024-03-24 14:06:30,407 INFO    Thread-16 :19548 [dir_watcher.py:_on_file_created():271] file/dir created: D:\programowanie\python\projekt zespo這wy\oko_neptuna\architectures\ml\RandomForest\wandb\run-20240324_140626-c76uor47\files\wandb-metadata.json
+2024-03-24 14:06:30,407 INFO    Thread-16 :19548 [dir_watcher.py:_on_file_created():271] file/dir created: D:\programowanie\python\projekt zespo這wy\oko_neptuna\architectures\ml\RandomForest\wandb\run-20240324_140626-c76uor47\files\requirements.txt
+2024-03-24 14:06:30,560 DEBUG   SenderThread:19548 [sender.py:send():382] send: telemetry
+2024-03-24 14:06:30,563 DEBUG   SenderThread:19548 [sender.py:send():382] send: telemetry
+2024-03-24 14:06:30,563 DEBUG   SenderThread:19548 [sender.py:send():382] send: exit
+2024-03-24 14:06:30,563 INFO    SenderThread:19548 [sender.py:send_exit():589] handling exit code: 1
+2024-03-24 14:06:30,563 INFO    SenderThread:19548 [sender.py:send_exit():591] handling runtime: 1
+2024-03-24 14:06:30,565 INFO    SenderThread:19548 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-24 14:06:30,565 INFO    SenderThread:19548 [sender.py:send_exit():597] send defer
+2024-03-24 14:06:30,566 DEBUG   HandlerThread:19548 [handler.py:handle_request():146] handle_request: defer
+2024-03-24 14:06:30,566 INFO    HandlerThread:19548 [handler.py:handle_request_defer():172] handle defer: 0
+2024-03-24 14:06:30,566 DEBUG   SenderThread:19548 [sender.py:send_request():409] send_request: defer
+2024-03-24 14:06:30,566 INFO    SenderThread:19548 [sender.py:send_request_defer():613] handle sender defer: 0
+2024-03-24 14:06:30,566 INFO    SenderThread:19548 [sender.py:transition_state():617] send defer: 1
+2024-03-24 14:06:30,566 DEBUG   HandlerThread:19548 [handler.py:handle_request():146] handle_request: defer
+2024-03-24 14:06:30,566 INFO    HandlerThread:19548 [handler.py:handle_request_defer():172] handle defer: 1
+2024-03-24 14:06:30,567 DEBUG   SenderThread:19548 [sender.py:send_request():409] send_request: defer
+2024-03-24 14:06:30,567 INFO    SenderThread:19548 [sender.py:send_request_defer():613] handle sender defer: 1
+2024-03-24 14:06:30,567 INFO    SenderThread:19548 [sender.py:transition_state():617] send defer: 2
+2024-03-24 14:06:30,567 DEBUG   HandlerThread:19548 [handler.py:handle_request():146] handle_request: defer
+2024-03-24 14:06:30,567 INFO    HandlerThread:19548 [handler.py:handle_request_defer():172] handle defer: 2
+2024-03-24 14:06:30,567 INFO    HandlerThread:19548 [system_monitor.py:finish():203] Stopping system monitor
+2024-03-24 14:06:30,567 DEBUG   SystemMonitor:19548 [system_monitor.py:_start():172] Starting system metrics aggregation loop
+2024-03-24 14:06:30,575 INFO    HandlerThread:19548 [interfaces.py:finish():202] Joined cpu monitor
+2024-03-24 14:06:30,575 DEBUG   SystemMonitor:19548 [system_monitor.py:_start():179] Finished system metrics aggregation loop
+2024-03-24 14:06:30,575 INFO    HandlerThread:19548 [interfaces.py:finish():202] Joined disk monitor
+2024-03-24 14:06:30,575 DEBUG   SystemMonitor:19548 [system_monitor.py:_start():183] Publishing last batch of metrics
+2024-03-24 14:06:30,631 INFO    HandlerThread:19548 [interfaces.py:finish():202] Joined gpu monitor
+2024-03-24 14:06:30,631 INFO    HandlerThread:19548 [interfaces.py:finish():202] Joined memory monitor
+2024-03-24 14:06:30,631 INFO    HandlerThread:19548 [interfaces.py:finish():202] Joined network monitor
+2024-03-24 14:06:30,632 DEBUG   SenderThread:19548 [sender.py:send_request():409] send_request: defer
+2024-03-24 14:06:30,632 INFO    SenderThread:19548 [sender.py:send_request_defer():613] handle sender defer: 2
+2024-03-24 14:06:30,632 INFO    SenderThread:19548 [sender.py:transition_state():617] send defer: 3
+2024-03-24 14:06:30,632 DEBUG   SenderThread:19548 [sender.py:send():382] send: stats
+2024-03-24 14:06:30,632 DEBUG   HandlerThread:19548 [handler.py:handle_request():146] handle_request: defer
+2024-03-24 14:06:30,632 INFO    HandlerThread:19548 [handler.py:handle_request_defer():172] handle defer: 3
+2024-03-24 14:06:30,632 DEBUG   SenderThread:19548 [sender.py:send_request():409] send_request: defer
+2024-03-24 14:06:30,632 INFO    SenderThread:19548 [sender.py:send_request_defer():613] handle sender defer: 3
+2024-03-24 14:06:30,632 INFO    SenderThread:19548 [sender.py:transition_state():617] send defer: 4
+2024-03-24 14:06:30,633 DEBUG   HandlerThread:19548 [handler.py:handle_request():146] handle_request: defer
+2024-03-24 14:06:30,633 INFO    HandlerThread:19548 [handler.py:handle_request_defer():172] handle defer: 4
+2024-03-24 14:06:30,633 DEBUG   SenderThread:19548 [sender.py:send_request():409] send_request: defer
+2024-03-24 14:06:30,633 INFO    SenderThread:19548 [sender.py:send_request_defer():613] handle sender defer: 4
+2024-03-24 14:06:30,633 INFO    SenderThread:19548 [sender.py:transition_state():617] send defer: 5
+2024-03-24 14:06:30,633 DEBUG   HandlerThread:19548 [handler.py:handle_request():146] handle_request: defer
+2024-03-24 14:06:30,633 INFO    HandlerThread:19548 [handler.py:handle_request_defer():172] handle defer: 5
+2024-03-24 14:06:30,633 DEBUG   SenderThread:19548 [sender.py:send():382] send: summary
+2024-03-24 14:06:30,634 INFO    SenderThread:19548 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-24 14:06:30,634 DEBUG   SenderThread:19548 [sender.py:send_request():409] send_request: defer
+2024-03-24 14:06:30,634 INFO    SenderThread:19548 [sender.py:send_request_defer():613] handle sender defer: 5
+2024-03-24 14:06:30,634 INFO    SenderThread:19548 [sender.py:transition_state():617] send defer: 6
+2024-03-24 14:06:30,635 DEBUG   HandlerThread:19548 [handler.py:handle_request():146] handle_request: defer
+2024-03-24 14:06:30,635 INFO    HandlerThread:19548 [handler.py:handle_request_defer():172] handle defer: 6
+2024-03-24 14:06:30,635 DEBUG   SenderThread:19548 [sender.py:send_request():409] send_request: defer
+2024-03-24 14:06:30,635 INFO    SenderThread:19548 [sender.py:send_request_defer():613] handle sender defer: 6
+2024-03-24 14:06:30,638 DEBUG   HandlerThread:19548 [handler.py:handle_request():146] handle_request: status_report
+2024-03-24 14:06:30,814 INFO    SenderThread:19548 [sender.py:transition_state():617] send defer: 7
+2024-03-24 14:06:30,814 DEBUG   HandlerThread:19548 [handler.py:handle_request():146] handle_request: defer
+2024-03-24 14:06:30,814 INFO    HandlerThread:19548 [handler.py:handle_request_defer():172] handle defer: 7
+2024-03-24 14:06:30,814 DEBUG   SenderThread:19548 [sender.py:send_request():409] send_request: defer
+2024-03-24 14:06:30,814 INFO    SenderThread:19548 [sender.py:send_request_defer():613] handle sender defer: 7
+2024-03-24 14:06:30,898 INFO    wandb-upload_0:19548 [upload_job.py:push():131] Uploaded file C:\Users\games\AppData\Local\Temp\tmp4z58d49vwandb\aeth9tn1-wandb-metadata.json
+2024-03-24 14:06:30,947 DEBUG   HandlerThread:19548 [handler.py:handle_request():146] handle_request: poll_exit
+2024-03-24 14:06:31,416 INFO    Thread-16 :19548 [dir_watcher.py:_on_file_modified():288] file/dir modified: D:\programowanie\python\projekt zespo這wy\oko_neptuna\architectures\ml\RandomForest\wandb\run-20240324_140626-c76uor47\files\config.yaml
+2024-03-24 14:06:31,416 INFO    Thread-16 :19548 [dir_watcher.py:_on_file_created():271] file/dir created: D:\programowanie\python\projekt zespo這wy\oko_neptuna\architectures\ml\RandomForest\wandb\run-20240324_140626-c76uor47\files\wandb-summary.json
+2024-03-24 14:06:31,417 INFO    Thread-16 :19548 [dir_watcher.py:_on_file_created():271] file/dir created: D:\programowanie\python\projekt zespo這wy\oko_neptuna\architectures\ml\RandomForest\wandb\run-20240324_140626-c76uor47\files\output.log
+2024-03-24 14:06:32,565 INFO    SenderThread:19548 [sender.py:transition_state():617] send defer: 8
+2024-03-24 14:06:32,565 DEBUG   SenderThread:19548 [sender.py:send_request():409] send_request: poll_exit
+2024-03-24 14:06:32,565 DEBUG   HandlerThread:19548 [handler.py:handle_request():146] handle_request: defer
+2024-03-24 14:06:32,567 INFO    HandlerThread:19548 [handler.py:handle_request_defer():172] handle defer: 8
+2024-03-24 14:06:32,567 DEBUG   SenderThread:19548 [sender.py:send_request():409] send_request: defer
+2024-03-24 14:06:32,567 INFO    SenderThread:19548 [sender.py:send_request_defer():613] handle sender defer: 8
+2024-03-24 14:06:32,567 INFO    SenderThread:19548 [sender.py:transition_state():617] send defer: 9
+2024-03-24 14:06:32,567 DEBUG   HandlerThread:19548 [handler.py:handle_request():146] handle_request: defer
+2024-03-24 14:06:32,567 INFO    HandlerThread:19548 [handler.py:handle_request_defer():172] handle defer: 9
+2024-03-24 14:06:32,567 DEBUG   SenderThread:19548 [sender.py:send_request():409] send_request: defer
+2024-03-24 14:06:32,567 INFO    SenderThread:19548 [sender.py:send_request_defer():613] handle sender defer: 9
+2024-03-24 14:06:32,567 INFO    SenderThread:19548 [dir_watcher.py:finish():358] shutting down directory watcher
+2024-03-24 14:06:32,970 DEBUG   HandlerThread:19548 [handler.py:handle_request():146] handle_request: poll_exit
+2024-03-24 14:06:33,438 INFO    SenderThread:19548 [dir_watcher.py:_on_file_modified():288] file/dir modified: D:\programowanie\python\projekt zespo這wy\oko_neptuna\architectures\ml\RandomForest\wandb\run-20240324_140626-c76uor47\files\output.log
+2024-03-24 14:06:33,438 INFO    SenderThread:19548 [dir_watcher.py:finish():388] scan: D:\programowanie\python\projekt zespo這wy\oko_neptuna\architectures\ml\RandomForest\wandb\run-20240324_140626-c76uor47\files
+2024-03-24 14:06:33,439 INFO    SenderThread:19548 [dir_watcher.py:finish():402] scan save: D:\programowanie\python\projekt zespo這wy\oko_neptuna\architectures\ml\RandomForest\wandb\run-20240324_140626-c76uor47\files\conda-environment.yaml conda-environment.yaml
+2024-03-24 14:06:33,439 INFO    SenderThread:19548 [dir_watcher.py:finish():402] scan save: D:\programowanie\python\projekt zespo這wy\oko_neptuna\architectures\ml\RandomForest\wandb\run-20240324_140626-c76uor47\files\config.yaml config.yaml
+2024-03-24 14:06:33,442 INFO    SenderThread:19548 [dir_watcher.py:finish():402] scan save: D:\programowanie\python\projekt zespo這wy\oko_neptuna\architectures\ml\RandomForest\wandb\run-20240324_140626-c76uor47\files\output.log output.log
+2024-03-24 14:06:33,444 INFO    SenderThread:19548 [dir_watcher.py:finish():402] scan save: D:\programowanie\python\projekt zespo這wy\oko_neptuna\architectures\ml\RandomForest\wandb\run-20240324_140626-c76uor47\files\requirements.txt requirements.txt
+2024-03-24 14:06:33,447 INFO    SenderThread:19548 [dir_watcher.py:finish():402] scan save: D:\programowanie\python\projekt zespo這wy\oko_neptuna\architectures\ml\RandomForest\wandb\run-20240324_140626-c76uor47\files\wandb-metadata.json wandb-metadata.json
+2024-03-24 14:06:33,447 INFO    SenderThread:19548 [dir_watcher.py:finish():402] scan save: D:\programowanie\python\projekt zespo這wy\oko_neptuna\architectures\ml\RandomForest\wandb\run-20240324_140626-c76uor47\files\wandb-summary.json wandb-summary.json
+2024-03-24 14:06:33,451 INFO    SenderThread:19548 [sender.py:transition_state():617] send defer: 10
+2024-03-24 14:06:33,451 DEBUG   SenderThread:19548 [sender.py:send_request():409] send_request: poll_exit
+2024-03-24 14:06:33,451 DEBUG   HandlerThread:19548 [handler.py:handle_request():146] handle_request: defer
+2024-03-24 14:06:33,452 INFO    HandlerThread:19548 [handler.py:handle_request_defer():172] handle defer: 10
+2024-03-24 14:06:33,454 DEBUG   SenderThread:19548 [sender.py:send_request():409] send_request: defer
+2024-03-24 14:06:33,454 INFO    SenderThread:19548 [sender.py:send_request_defer():613] handle sender defer: 10
+2024-03-24 14:06:33,454 INFO    SenderThread:19548 [file_pusher.py:finish():172] shutting down file pusher
+2024-03-24 14:06:33,870 INFO    wandb-upload_0:19548 [upload_job.py:push():131] Uploaded file D:\programowanie\python\projekt zespo這wy\oko_neptuna\architectures\ml\RandomForest\wandb\run-20240324_140626-c76uor47\files\conda-environment.yaml
+2024-03-24 14:06:33,981 DEBUG   HandlerThread:19548 [handler.py:handle_request():146] handle_request: poll_exit
+2024-03-24 14:06:33,982 DEBUG   SenderThread:19548 [sender.py:send_request():409] send_request: poll_exit
+2024-03-24 14:06:34,373 INFO    wandb-upload_1:19548 [upload_job.py:push():131] Uploaded file D:\programowanie\python\projekt zespo這wy\oko_neptuna\architectures\ml\RandomForest\wandb\run-20240324_140626-c76uor47\files\config.yaml
+2024-03-24 14:06:34,406 INFO    wandb-upload_3:19548 [upload_job.py:push():131] Uploaded file D:\programowanie\python\projekt zespo這wy\oko_neptuna\architectures\ml\RandomForest\wandb\run-20240324_140626-c76uor47\files\requirements.txt
+2024-03-24 14:06:34,864 INFO    wandb-upload_4:19548 [upload_job.py:push():131] Uploaded file D:\programowanie\python\projekt zespo這wy\oko_neptuna\architectures\ml\RandomForest\wandb\run-20240324_140626-c76uor47\files\wandb-summary.json
+2024-03-24 14:06:34,879 INFO    wandb-upload_2:19548 [upload_job.py:push():131] Uploaded file D:\programowanie\python\projekt zespo這wy\oko_neptuna\architectures\ml\RandomForest\wandb\run-20240324_140626-c76uor47\files\output.log
+2024-03-24 14:06:34,989 DEBUG   HandlerThread:19548 [handler.py:handle_request():146] handle_request: poll_exit
+2024-03-24 14:06:34,990 DEBUG   SenderThread:19548 [sender.py:send_request():409] send_request: poll_exit
+2024-03-24 14:06:35,081 INFO    Thread-15 (_thread_body):19548 [sender.py:transition_state():617] send defer: 11
+2024-03-24 14:06:35,081 DEBUG   HandlerThread:19548 [handler.py:handle_request():146] handle_request: defer
+2024-03-24 14:06:35,081 INFO    HandlerThread:19548 [handler.py:handle_request_defer():172] handle defer: 11
+2024-03-24 14:06:35,081 DEBUG   SenderThread:19548 [sender.py:send_request():409] send_request: defer
+2024-03-24 14:06:35,081 INFO    SenderThread:19548 [sender.py:send_request_defer():613] handle sender defer: 11
+2024-03-24 14:06:35,083 INFO    SenderThread:19548 [file_pusher.py:join():178] waiting for file pusher
+2024-03-24 14:06:35,083 INFO    SenderThread:19548 [sender.py:transition_state():617] send defer: 12
+2024-03-24 14:06:35,083 DEBUG   HandlerThread:19548 [handler.py:handle_request():146] handle_request: defer
+2024-03-24 14:06:35,083 INFO    HandlerThread:19548 [handler.py:handle_request_defer():172] handle defer: 12
+2024-03-24 14:06:35,083 DEBUG   SenderThread:19548 [sender.py:send_request():409] send_request: defer
+2024-03-24 14:06:35,083 INFO    SenderThread:19548 [sender.py:send_request_defer():613] handle sender defer: 12
+2024-03-24 14:06:35,083 INFO    SenderThread:19548 [file_stream.py:finish():595] file stream finish called
+2024-03-24 14:06:35,245 INFO    SenderThread:19548 [file_stream.py:finish():599] file stream finish is done
+2024-03-24 14:06:35,245 INFO    SenderThread:19548 [sender.py:transition_state():617] send defer: 13
+2024-03-24 14:06:35,246 DEBUG   HandlerThread:19548 [handler.py:handle_request():146] handle_request: defer
+2024-03-24 14:06:35,246 INFO    HandlerThread:19548 [handler.py:handle_request_defer():172] handle defer: 13
+2024-03-24 14:06:35,246 DEBUG   SenderThread:19548 [sender.py:send_request():409] send_request: defer
+2024-03-24 14:06:35,246 INFO    SenderThread:19548 [sender.py:send_request_defer():613] handle sender defer: 13
+2024-03-24 14:06:35,246 INFO    SenderThread:19548 [sender.py:transition_state():617] send defer: 14
+2024-03-24 14:06:35,246 DEBUG   HandlerThread:19548 [handler.py:handle_request():146] handle_request: defer
+2024-03-24 14:06:35,246 DEBUG   SenderThread:19548 [sender.py:send():382] send: final
+2024-03-24 14:06:35,247 INFO    HandlerThread:19548 [handler.py:handle_request_defer():172] handle defer: 14
+2024-03-24 14:06:35,247 DEBUG   SenderThread:19548 [sender.py:send():382] send: footer
+2024-03-24 14:06:35,247 DEBUG   SenderThread:19548 [sender.py:send_request():409] send_request: defer
+2024-03-24 14:06:35,247 INFO    SenderThread:19548 [sender.py:send_request_defer():613] handle sender defer: 14
+2024-03-24 14:06:35,248 DEBUG   HandlerThread:19548 [handler.py:handle_request():146] handle_request: poll_exit
+2024-03-24 14:06:35,248 DEBUG   SenderThread:19548 [sender.py:send_request():409] send_request: poll_exit
+2024-03-24 14:06:35,248 DEBUG   HandlerThread:19548 [handler.py:handle_request():146] handle_request: internal_messages
+2024-03-24 14:06:35,250 DEBUG   HandlerThread:19548 [handler.py:handle_request():146] handle_request: server_info
+2024-03-24 14:06:35,250 DEBUG   HandlerThread:19548 [handler.py:handle_request():146] handle_request: get_summary
+2024-03-24 14:06:35,250 DEBUG   SenderThread:19548 [sender.py:send_request():409] send_request: server_info
+2024-03-24 14:06:35,250 DEBUG   HandlerThread:19548 [handler.py:handle_request():146] handle_request: sampled_history
+2024-03-24 14:06:35,252 DEBUG   HandlerThread:19548 [handler.py:handle_request():146] handle_request: job_info
+2024-03-24 14:06:35,420 DEBUG   SenderThread:19548 [sender.py:send_request():409] send_request: job_info
+2024-03-24 14:06:35,420 DEBUG   HandlerThread:19548 [handler.py:handle_request():146] handle_request: shutdown
+2024-03-24 14:06:35,422 INFO    HandlerThread:19548 [handler.py:finish():869] shutting down handler
+2024-03-24 14:06:36,255 INFO    WriterThread:19548 [datastore.py:close():296] close: D:\programowanie\python\projekt zespo這wy\oko_neptuna\architectures\ml\RandomForest\wandb\run-20240324_140626-c76uor47\run-c76uor47.wandb
+2024-03-24 14:06:36,426 INFO    SenderThread:19548 [sender.py:finish():1572] shutting down sender
+2024-03-24 14:06:36,426 INFO    SenderThread:19548 [file_pusher.py:finish():172] shutting down file pusher
+2024-03-24 14:06:36,426 INFO    SenderThread:19548 [file_pusher.py:join():178] waiting for file pusher

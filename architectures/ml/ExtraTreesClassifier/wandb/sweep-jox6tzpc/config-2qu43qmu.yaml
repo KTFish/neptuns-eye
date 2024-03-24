@@ -1,0 +1,12 @@
+wandb_version: 1
+
+criterion:
+  value: entropy
+max_depth:
+  value: 9
+min_samples_leaf:
+  value: 5
+min_samples_split:
+  value: 4
+n_estimators:
+  value: 15

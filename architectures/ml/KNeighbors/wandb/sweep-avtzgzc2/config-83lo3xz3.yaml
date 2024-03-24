@@ -1,0 +1,12 @@
+wandb_version: 1
+
+algorithm:
+  value: brute
+leaf_size:
+  value: 22
+n_neighbors:
+  value: 8
+p:
+  value: 2
+weights:
+  value: uniform

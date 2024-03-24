@@ -1,0 +1,16 @@
+wandb_version: 1
+
+l2_regularization:
+  value: 0.6080952168431198
+learning_rate:
+  value: 0.018447162557469664
+max_bins:
+  value: 134
+max_depth:
+  value: 16
+max_iter:
+  value: 413
+max_leaf_nodes:
+  value: 63
+min_samples_leaf:
+  value: 38

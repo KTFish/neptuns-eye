@@ -1,0 +1,1 @@
+{"max_depth": 7, "_timestamp": 1711291657.2501884, "_runtime": 16.040650367736816, "_step": 6, "max_features": 0.7783474092341152, "min_impurity_decrease": 0.07881955182039269, "min_samples_leaf": 2, "min_samples_split": 8, "n_estimators": 15, "accuracy": 0.6349657370594851, "_wandb": {"runtime": 14}}

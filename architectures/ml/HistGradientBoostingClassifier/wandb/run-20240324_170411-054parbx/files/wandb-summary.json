@@ -1,0 +1,1 @@
+{"l2_regularization": 0.46774472373153686, "_timestamp": 1711296295.2683852, "_runtime": 43.55224013328552, "_step": 7, "learning_rate": 0.21432541805304064, "max_bins": 127, "max_depth": 22, "max_iter": 255, "max_leaf_nodes": 68, "min_samples_leaf": 83, "accuracy": 0.549434689638417, "_wandb": {"runtime": 41}}

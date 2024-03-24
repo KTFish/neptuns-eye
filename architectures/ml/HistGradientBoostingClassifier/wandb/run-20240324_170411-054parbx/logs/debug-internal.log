@@ -1,0 +1,220 @@
+2024-03-24 17:04:11,717 INFO    StreamThr :4612 [internal.py:wandb_internal():86] W&B internal server running at pid: 4612, started at: 2024-03-24 17:04:11.716145
+2024-03-24 17:04:11,718 DEBUG   HandlerThread:4612 [handler.py:handle_request():146] handle_request: status
+2024-03-24 17:04:11,731 INFO    WriterThread:4612 [datastore.py:open_for_write():87] open: D:\programowanie\python\projekt zespo這wy\oko_neptuna\architectures\ml\HistGradientBoostingClassifier\wandb\run-20240324_170411-054parbx\run-054parbx.wandb
+2024-03-24 17:04:11,732 DEBUG   SenderThread:4612 [sender.py:send():382] send: header
+2024-03-24 17:04:11,737 DEBUG   SenderThread:4612 [sender.py:send():382] send: run
+2024-03-24 17:04:12,623 INFO    SenderThread:4612 [dir_watcher.py:__init__():211] watching files in: D:\programowanie\python\projekt zespo這wy\oko_neptuna\architectures\ml\HistGradientBoostingClassifier\wandb\run-20240324_170411-054parbx\files
+2024-03-24 17:04:12,635 INFO    SenderThread:4612 [sender.py:_start_run_threads():1136] run started: 054parbx with start time 1711296251.716145
+2024-03-24 17:04:12,638 DEBUG   HandlerThread:4612 [handler.py:handle_request():146] handle_request: check_version
+2024-03-24 17:04:12,639 DEBUG   SenderThread:4612 [sender.py:send_request():409] send_request: check_version
+2024-03-24 17:04:13,328 DEBUG   HandlerThread:4612 [handler.py:handle_request():146] handle_request: run_start
+2024-03-24 17:04:13,360 DEBUG   HandlerThread:4612 [system_info.py:__init__():27] System info init
+2024-03-24 17:04:13,360 DEBUG   HandlerThread:4612 [system_info.py:__init__():42] System info init done
+2024-03-24 17:04:13,360 INFO    HandlerThread:4612 [system_monitor.py:start():194] Starting system monitor
+2024-03-24 17:04:13,360 INFO    SystemMonitor:4612 [system_monitor.py:_start():158] Starting system asset monitoring threads
+2024-03-24 17:04:13,360 INFO    HandlerThread:4612 [system_monitor.py:probe():214] Collecting system info
+2024-03-24 17:04:13,365 INFO    SystemMonitor:4612 [interfaces.py:start():190] Started cpu monitoring
+2024-03-24 17:04:13,365 INFO    SystemMonitor:4612 [interfaces.py:start():190] Started disk monitoring
+2024-03-24 17:04:13,366 INFO    SystemMonitor:4612 [interfaces.py:start():190] Started gpu monitoring
+2024-03-24 17:04:13,373 INFO    SystemMonitor:4612 [interfaces.py:start():190] Started memory monitoring
+2024-03-24 17:04:13,389 INFO    SystemMonitor:4612 [interfaces.py:start():190] Started network monitoring
+2024-03-24 17:04:13,393 DEBUG   HandlerThread:4612 [system_info.py:probe():151] Probing system
+2024-03-24 17:04:13,398 DEBUG   HandlerThread:4612 [gitlib.py:_init_repo():56] git repository is invalid
+2024-03-24 17:04:13,398 DEBUG   HandlerThread:4612 [system_info.py:probe():199] Probing system done
+2024-03-24 17:04:13,398 DEBUG   HandlerThread:4612 [system_monitor.py:probe():223] {'os': 'Windows-10-10.0.22621-SP0', 'python': '3.11.8', 'heartbeatAt': '2024-03-24T16:04:13.393538', 'startedAt': '2024-03-24T16:04:11.689120', 'docker': None, 'cuda': None, 'args': (), 'state': 'running', 'program': 'D:\\programowanie\\python\\projekt zespo這wy\\oko_neptuna\\architectures\\ml\\HistGradientBoostingClassifier\\train.py', 'codePathLocal': 'train.py', 'codePath': 'train.py', 'host': 'Kacper', 'username': 'Kacper', 'executable': 'C:\\Users\\games\\anaconda3\\envs\\oko_neptuna\\python.exe', 'cpu_count': 8, 'cpu_count_logical': 16, 'cpu_freq': {'current': 3201.0, 'min': 0.0, 'max': 3201.0}, 'cpu_freq_per_core': [{'current': 3201.0, 'min': 0.0, 'max': 3201.0}], 'disk': {'/': {'total': 931.4960899353027, 'used': 569.4492454528809}}, 'gpu': 'NVIDIA GeForce RTX 3060 Laptop GPU', 'gpu_count': 1, 'gpu_devices': [{'name': 'NVIDIA GeForce RTX 3060 Laptop GPU', 'memory_total': 6442450944}], 'memory': {'total': 15.855525970458984}}
+2024-03-24 17:04:13,398 INFO    HandlerThread:4612 [system_monitor.py:probe():224] Finished collecting system info
+2024-03-24 17:04:13,398 INFO    HandlerThread:4612 [system_monitor.py:probe():227] Publishing system info
+2024-03-24 17:04:13,398 DEBUG   HandlerThread:4612 [system_info.py:_save_conda():208] Saving list of conda packages installed into the current environment
+2024-03-24 17:04:13,628 INFO    Thread-16 :4612 [dir_watcher.py:_on_file_created():271] file/dir created: D:\programowanie\python\projekt zespo這wy\oko_neptuna\architectures\ml\HistGradientBoostingClassifier\wandb\run-20240324_170411-054parbx\files\conda-environment.yaml
+2024-03-24 17:04:15,541 DEBUG   HandlerThread:4612 [system_info.py:_save_conda():220] Saving conda packages done
+2024-03-24 17:04:15,542 INFO    HandlerThread:4612 [system_monitor.py:probe():229] Finished publishing system info
+2024-03-24 17:04:15,550 DEBUG   SenderThread:4612 [sender.py:send():382] send: files
+2024-03-24 17:04:15,550 INFO    SenderThread:4612 [sender.py:_save_file():1403] saving file wandb-metadata.json with policy now
+2024-03-24 17:04:15,563 DEBUG   HandlerThread:4612 [handler.py:handle_request():146] handle_request: python_packages
+2024-03-24 17:04:15,563 DEBUG   HandlerThread:4612 [handler.py:handle_request():146] handle_request: stop_status
+2024-03-24 17:04:15,564 DEBUG   SenderThread:4612 [sender.py:send_request():409] send_request: python_packages
+2024-03-24 17:04:15,564 DEBUG   HandlerThread:4612 [handler.py:handle_request():146] handle_request: internal_messages
+2024-03-24 17:04:15,566 DEBUG   SenderThread:4612 [sender.py:send_request():409] send_request: stop_status
+2024-03-24 17:04:15,653 INFO    Thread-16 :4612 [dir_watcher.py:_on_file_modified():288] file/dir modified: D:\programowanie\python\projekt zespo這wy\oko_neptuna\architectures\ml\HistGradientBoostingClassifier\wandb\run-20240324_170411-054parbx\files\conda-environment.yaml
+2024-03-24 17:04:15,653 INFO    Thread-16 :4612 [dir_watcher.py:_on_file_created():271] file/dir created: D:\programowanie\python\projekt zespo這wy\oko_neptuna\architectures\ml\HistGradientBoostingClassifier\wandb\run-20240324_170411-054parbx\files\requirements.txt
+2024-03-24 17:04:15,653 INFO    Thread-16 :4612 [dir_watcher.py:_on_file_created():271] file/dir created: D:\programowanie\python\projekt zespo這wy\oko_neptuna\architectures\ml\HistGradientBoostingClassifier\wandb\run-20240324_170411-054parbx\files\wandb-metadata.json
+2024-03-24 17:04:16,223 DEBUG   SenderThread:4612 [sender.py:send():382] send: telemetry
+2024-03-24 17:04:16,558 INFO    wandb-upload_0:4612 [upload_job.py:push():131] Uploaded file C:\Users\games\AppData\Local\Temp\tmpeoywn9fawandb\cmz8iof6-wandb-metadata.json
+2024-03-24 17:04:17,238 DEBUG   HandlerThread:4612 [handler.py:handle_request():146] handle_request: status_report
+2024-03-24 17:04:22,280 DEBUG   HandlerThread:4612 [handler.py:handle_request():146] handle_request: status_report
+2024-03-24 17:04:27,332 DEBUG   HandlerThread:4612 [handler.py:handle_request():146] handle_request: status_report
+2024-03-24 17:04:30,568 DEBUG   HandlerThread:4612 [handler.py:handle_request():146] handle_request: internal_messages
+2024-03-24 17:04:30,581 DEBUG   HandlerThread:4612 [handler.py:handle_request():146] handle_request: stop_status
+2024-03-24 17:04:30,582 DEBUG   SenderThread:4612 [sender.py:send_request():409] send_request: stop_status
+2024-03-24 17:04:32,874 DEBUG   HandlerThread:4612 [handler.py:handle_request():146] handle_request: status_report
+2024-03-24 17:04:37,918 DEBUG   HandlerThread:4612 [handler.py:handle_request():146] handle_request: status_report
+2024-03-24 17:04:42,970 DEBUG   HandlerThread:4612 [handler.py:handle_request():146] handle_request: status_report
+2024-03-24 17:04:43,927 INFO    Thread-16 :4612 [dir_watcher.py:_on_file_modified():288] file/dir modified: D:\programowanie\python\projekt zespo這wy\oko_neptuna\architectures\ml\HistGradientBoostingClassifier\wandb\run-20240324_170411-054parbx\files\config.yaml
+2024-03-24 17:04:45,575 DEBUG   HandlerThread:4612 [handler.py:handle_request():146] handle_request: internal_messages
+2024-03-24 17:04:45,597 DEBUG   HandlerThread:4612 [handler.py:handle_request():146] handle_request: stop_status
+2024-03-24 17:04:45,598 DEBUG   SenderThread:4612 [sender.py:send_request():409] send_request: stop_status
+2024-03-24 17:04:48,827 DEBUG   HandlerThread:4612 [handler.py:handle_request():146] handle_request: status_report
+2024-03-24 17:04:53,870 DEBUG   HandlerThread:4612 [handler.py:handle_request():146] handle_request: status_report
+2024-03-24 17:04:55,268 DEBUG   HandlerThread:4612 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-24 17:04:55,269 DEBUG   HandlerThread:4612 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-24 17:04:55,270 DEBUG   HandlerThread:4612 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-24 17:04:55,270 DEBUG   HandlerThread:4612 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-24 17:04:55,271 DEBUG   SenderThread:4612 [sender.py:send():382] send: history
+2024-03-24 17:04:55,271 DEBUG   HandlerThread:4612 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-24 17:04:55,271 DEBUG   SenderThread:4612 [sender.py:send_request():409] send_request: summary_record
+2024-03-24 17:04:55,272 DEBUG   HandlerThread:4612 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-24 17:04:55,273 DEBUG   HandlerThread:4612 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-24 17:04:55,273 DEBUG   HandlerThread:4612 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-24 17:04:55,274 INFO    SenderThread:4612 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-24 17:04:55,275 DEBUG   SenderThread:4612 [sender.py:send():382] send: history
+2024-03-24 17:04:55,275 DEBUG   SenderThread:4612 [sender.py:send_request():409] send_request: summary_record
+2024-03-24 17:04:55,276 INFO    SenderThread:4612 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-24 17:04:55,276 DEBUG   SenderThread:4612 [sender.py:send():382] send: history
+2024-03-24 17:04:55,277 DEBUG   SenderThread:4612 [sender.py:send_request():409] send_request: summary_record
+2024-03-24 17:04:55,277 INFO    SenderThread:4612 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-24 17:04:55,277 DEBUG   SenderThread:4612 [sender.py:send():382] send: history
+2024-03-24 17:04:55,277 DEBUG   SenderThread:4612 [sender.py:send_request():409] send_request: summary_record
+2024-03-24 17:04:55,278 INFO    SenderThread:4612 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-24 17:04:55,278 DEBUG   SenderThread:4612 [sender.py:send():382] send: history
+2024-03-24 17:04:55,278 DEBUG   SenderThread:4612 [sender.py:send_request():409] send_request: summary_record
+2024-03-24 17:04:55,279 INFO    SenderThread:4612 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-24 17:04:55,279 DEBUG   SenderThread:4612 [sender.py:send():382] send: history
+2024-03-24 17:04:55,279 DEBUG   SenderThread:4612 [sender.py:send_request():409] send_request: summary_record
+2024-03-24 17:04:55,280 INFO    SenderThread:4612 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-24 17:04:55,280 DEBUG   SenderThread:4612 [sender.py:send():382] send: history
+2024-03-24 17:04:55,280 DEBUG   SenderThread:4612 [sender.py:send_request():409] send_request: summary_record
+2024-03-24 17:04:55,280 INFO    SenderThread:4612 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-24 17:04:55,281 DEBUG   SenderThread:4612 [sender.py:send():382] send: history
+2024-03-24 17:04:55,281 DEBUG   SenderThread:4612 [sender.py:send_request():409] send_request: summary_record
+2024-03-24 17:04:55,281 INFO    SenderThread:4612 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-24 17:04:55,282 DEBUG   SenderThread:4612 [sender.py:send():382] send: telemetry
+2024-03-24 17:04:55,282 DEBUG   SenderThread:4612 [sender.py:send():382] send: exit
+2024-03-24 17:04:55,282 INFO    SenderThread:4612 [sender.py:send_exit():589] handling exit code: 0
+2024-03-24 17:04:55,282 INFO    SenderThread:4612 [sender.py:send_exit():591] handling runtime: 41
+2024-03-24 17:04:55,282 INFO    SenderThread:4612 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-24 17:04:55,282 INFO    SenderThread:4612 [sender.py:send_exit():597] send defer
+2024-03-24 17:04:55,283 DEBUG   HandlerThread:4612 [handler.py:handle_request():146] handle_request: defer
+2024-03-24 17:04:55,283 INFO    HandlerThread:4612 [handler.py:handle_request_defer():172] handle defer: 0
+2024-03-24 17:04:55,283 DEBUG   SenderThread:4612 [sender.py:send_request():409] send_request: defer
+2024-03-24 17:04:55,283 INFO    SenderThread:4612 [sender.py:send_request_defer():613] handle sender defer: 0
+2024-03-24 17:04:55,283 INFO    SenderThread:4612 [sender.py:transition_state():617] send defer: 1
+2024-03-24 17:04:55,283 DEBUG   HandlerThread:4612 [handler.py:handle_request():146] handle_request: defer
+2024-03-24 17:04:55,283 INFO    HandlerThread:4612 [handler.py:handle_request_defer():172] handle defer: 1
+2024-03-24 17:04:55,284 DEBUG   SenderThread:4612 [sender.py:send_request():409] send_request: defer
+2024-03-24 17:04:55,284 INFO    SenderThread:4612 [sender.py:send_request_defer():613] handle sender defer: 1
+2024-03-24 17:04:55,284 INFO    SenderThread:4612 [sender.py:transition_state():617] send defer: 2
+2024-03-24 17:04:55,284 DEBUG   HandlerThread:4612 [handler.py:handle_request():146] handle_request: defer
+2024-03-24 17:04:55,285 INFO    HandlerThread:4612 [handler.py:handle_request_defer():172] handle defer: 2
+2024-03-24 17:04:55,285 INFO    HandlerThread:4612 [system_monitor.py:finish():203] Stopping system monitor
+2024-03-24 17:04:55,285 DEBUG   SystemMonitor:4612 [system_monitor.py:_start():172] Starting system metrics aggregation loop
+2024-03-24 17:04:55,291 DEBUG   SystemMonitor:4612 [system_monitor.py:_start():179] Finished system metrics aggregation loop
+2024-03-24 17:04:55,291 INFO    HandlerThread:4612 [interfaces.py:finish():202] Joined cpu monitor
+2024-03-24 17:04:55,291 DEBUG   SystemMonitor:4612 [system_monitor.py:_start():183] Publishing last batch of metrics
+2024-03-24 17:04:55,291 INFO    HandlerThread:4612 [interfaces.py:finish():202] Joined disk monitor
+2024-03-24 17:04:55,332 INFO    HandlerThread:4612 [interfaces.py:finish():202] Joined gpu monitor
+2024-03-24 17:04:55,333 INFO    HandlerThread:4612 [interfaces.py:finish():202] Joined memory monitor
+2024-03-24 17:04:55,333 INFO    HandlerThread:4612 [interfaces.py:finish():202] Joined network monitor
+2024-03-24 17:04:55,334 DEBUG   SenderThread:4612 [sender.py:send_request():409] send_request: defer
+2024-03-24 17:04:55,334 INFO    SenderThread:4612 [sender.py:send_request_defer():613] handle sender defer: 2
+2024-03-24 17:04:55,334 INFO    SenderThread:4612 [sender.py:transition_state():617] send defer: 3
+2024-03-24 17:04:55,334 DEBUG   SenderThread:4612 [sender.py:send():382] send: stats
+2024-03-24 17:04:55,334 DEBUG   HandlerThread:4612 [handler.py:handle_request():146] handle_request: defer
+2024-03-24 17:04:55,335 INFO    HandlerThread:4612 [handler.py:handle_request_defer():172] handle defer: 3
+2024-03-24 17:04:55,335 DEBUG   SenderThread:4612 [sender.py:send_request():409] send_request: defer
+2024-03-24 17:04:55,335 INFO    SenderThread:4612 [sender.py:send_request_defer():613] handle sender defer: 3
+2024-03-24 17:04:55,335 INFO    SenderThread:4612 [sender.py:transition_state():617] send defer: 4
+2024-03-24 17:04:55,335 DEBUG   HandlerThread:4612 [handler.py:handle_request():146] handle_request: defer
+2024-03-24 17:04:55,335 INFO    HandlerThread:4612 [handler.py:handle_request_defer():172] handle defer: 4
+2024-03-24 17:04:55,336 DEBUG   SenderThread:4612 [sender.py:send_request():409] send_request: defer
+2024-03-24 17:04:55,336 INFO    SenderThread:4612 [sender.py:send_request_defer():613] handle sender defer: 4
+2024-03-24 17:04:55,336 INFO    SenderThread:4612 [sender.py:transition_state():617] send defer: 5
+2024-03-24 17:04:55,336 DEBUG   HandlerThread:4612 [handler.py:handle_request():146] handle_request: defer
+2024-03-24 17:04:55,336 INFO    HandlerThread:4612 [handler.py:handle_request_defer():172] handle defer: 5
+2024-03-24 17:04:55,336 DEBUG   SenderThread:4612 [sender.py:send():382] send: summary
+2024-03-24 17:04:55,337 INFO    SenderThread:4612 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-24 17:04:55,337 DEBUG   SenderThread:4612 [sender.py:send_request():409] send_request: defer
+2024-03-24 17:04:55,337 INFO    SenderThread:4612 [sender.py:send_request_defer():613] handle sender defer: 5
+2024-03-24 17:04:55,337 INFO    SenderThread:4612 [sender.py:transition_state():617] send defer: 6
+2024-03-24 17:04:55,338 DEBUG   HandlerThread:4612 [handler.py:handle_request():146] handle_request: defer
+2024-03-24 17:04:55,338 INFO    HandlerThread:4612 [handler.py:handle_request_defer():172] handle defer: 6
+2024-03-24 17:04:55,338 DEBUG   SenderThread:4612 [sender.py:send_request():409] send_request: defer
+2024-03-24 17:04:55,338 INFO    SenderThread:4612 [sender.py:send_request_defer():613] handle sender defer: 6
+2024-03-24 17:04:55,341 DEBUG   HandlerThread:4612 [handler.py:handle_request():146] handle_request: status_report
+2024-03-24 17:04:55,523 INFO    SenderThread:4612 [sender.py:transition_state():617] send defer: 7
+2024-03-24 17:04:55,523 DEBUG   HandlerThread:4612 [handler.py:handle_request():146] handle_request: defer
+2024-03-24 17:04:55,524 INFO    HandlerThread:4612 [handler.py:handle_request_defer():172] handle defer: 7
+2024-03-24 17:04:55,524 DEBUG   SenderThread:4612 [sender.py:send_request():409] send_request: defer
+2024-03-24 17:04:55,524 INFO    SenderThread:4612 [sender.py:send_request_defer():613] handle sender defer: 7
+2024-03-24 17:04:55,524 INFO    SenderThread:4612 [sender.py:transition_state():617] send defer: 8
+2024-03-24 17:04:55,525 DEBUG   HandlerThread:4612 [handler.py:handle_request():146] handle_request: defer
+2024-03-24 17:04:55,525 INFO    HandlerThread:4612 [handler.py:handle_request_defer():172] handle defer: 8
+2024-03-24 17:04:55,525 DEBUG   SenderThread:4612 [sender.py:send_request():409] send_request: defer
+2024-03-24 17:04:55,525 INFO    SenderThread:4612 [sender.py:send_request_defer():613] handle sender defer: 8
+2024-03-24 17:04:55,525 INFO    SenderThread:4612 [sender.py:transition_state():617] send defer: 9
+2024-03-24 17:04:55,525 DEBUG   HandlerThread:4612 [handler.py:handle_request():146] handle_request: defer
+2024-03-24 17:04:55,525 INFO    HandlerThread:4612 [handler.py:handle_request_defer():172] handle defer: 9
+2024-03-24 17:04:55,525 DEBUG   SenderThread:4612 [sender.py:send_request():409] send_request: defer
+2024-03-24 17:04:55,526 INFO    SenderThread:4612 [sender.py:send_request_defer():613] handle sender defer: 9
+2024-03-24 17:04:55,526 INFO    SenderThread:4612 [dir_watcher.py:finish():358] shutting down directory watcher
+2024-03-24 17:04:56,003 INFO    SenderThread:4612 [dir_watcher.py:_on_file_modified():288] file/dir modified: D:\programowanie\python\projekt zespo這wy\oko_neptuna\architectures\ml\HistGradientBoostingClassifier\wandb\run-20240324_170411-054parbx\files\config.yaml
+2024-03-24 17:04:56,004 INFO    SenderThread:4612 [dir_watcher.py:_on_file_created():271] file/dir created: D:\programowanie\python\projekt zespo這wy\oko_neptuna\architectures\ml\HistGradientBoostingClassifier\wandb\run-20240324_170411-054parbx\files\wandb-summary.json
+2024-03-24 17:04:56,004 INFO    SenderThread:4612 [dir_watcher.py:finish():388] scan: D:\programowanie\python\projekt zespo這wy\oko_neptuna\architectures\ml\HistGradientBoostingClassifier\wandb\run-20240324_170411-054parbx\files
+2024-03-24 17:04:56,004 INFO    SenderThread:4612 [dir_watcher.py:finish():402] scan save: D:\programowanie\python\projekt zespo這wy\oko_neptuna\architectures\ml\HistGradientBoostingClassifier\wandb\run-20240324_170411-054parbx\files\conda-environment.yaml conda-environment.yaml
+2024-03-24 17:04:56,005 INFO    SenderThread:4612 [dir_watcher.py:finish():402] scan save: D:\programowanie\python\projekt zespo這wy\oko_neptuna\architectures\ml\HistGradientBoostingClassifier\wandb\run-20240324_170411-054parbx\files\config.yaml config.yaml
+2024-03-24 17:04:56,007 INFO    SenderThread:4612 [dir_watcher.py:finish():402] scan save: D:\programowanie\python\projekt zespo這wy\oko_neptuna\architectures\ml\HistGradientBoostingClassifier\wandb\run-20240324_170411-054parbx\files\requirements.txt requirements.txt
+2024-03-24 17:04:56,011 INFO    SenderThread:4612 [dir_watcher.py:finish():402] scan save: D:\programowanie\python\projekt zespo這wy\oko_neptuna\architectures\ml\HistGradientBoostingClassifier\wandb\run-20240324_170411-054parbx\files\wandb-metadata.json wandb-metadata.json
+2024-03-24 17:04:56,011 INFO    SenderThread:4612 [dir_watcher.py:finish():402] scan save: D:\programowanie\python\projekt zespo這wy\oko_neptuna\architectures\ml\HistGradientBoostingClassifier\wandb\run-20240324_170411-054parbx\files\wandb-summary.json wandb-summary.json
+2024-03-24 17:04:56,014 INFO    SenderThread:4612 [sender.py:transition_state():617] send defer: 10
+2024-03-24 17:04:56,015 DEBUG   HandlerThread:4612 [handler.py:handle_request():146] handle_request: defer
+2024-03-24 17:04:56,015 INFO    HandlerThread:4612 [handler.py:handle_request_defer():172] handle defer: 10
+2024-03-24 17:04:56,016 DEBUG   SenderThread:4612 [sender.py:send_request():409] send_request: defer
+2024-03-24 17:04:56,016 INFO    SenderThread:4612 [sender.py:send_request_defer():613] handle sender defer: 10
+2024-03-24 17:04:56,016 INFO    SenderThread:4612 [file_pusher.py:finish():172] shutting down file pusher
+2024-03-24 17:04:56,283 DEBUG   HandlerThread:4612 [handler.py:handle_request():146] handle_request: poll_exit
+2024-03-24 17:04:56,284 DEBUG   SenderThread:4612 [sender.py:send_request():409] send_request: poll_exit
+2024-03-24 17:04:56,426 INFO    wandb-upload_0:4612 [upload_job.py:push():131] Uploaded file D:\programowanie\python\projekt zespo這wy\oko_neptuna\architectures\ml\HistGradientBoostingClassifier\wandb\run-20240324_170411-054parbx\files\conda-environment.yaml
+2024-03-24 17:04:56,906 INFO    wandb-upload_2:4612 [upload_job.py:push():131] Uploaded file D:\programowanie\python\projekt zespo這wy\oko_neptuna\architectures\ml\HistGradientBoostingClassifier\wandb\run-20240324_170411-054parbx\files\requirements.txt
+2024-03-24 17:04:57,292 DEBUG   HandlerThread:4612 [handler.py:handle_request():146] handle_request: poll_exit
+2024-03-24 17:04:57,292 INFO    wandb-upload_3:4612 [upload_job.py:push():131] Uploaded file D:\programowanie\python\projekt zespo這wy\oko_neptuna\architectures\ml\HistGradientBoostingClassifier\wandb\run-20240324_170411-054parbx\files\wandb-summary.json
+2024-03-24 17:04:57,303 DEBUG   SenderThread:4612 [sender.py:send_request():409] send_request: poll_exit
+2024-03-24 17:04:57,456 INFO    wandb-upload_1:4612 [upload_job.py:push():131] Uploaded file D:\programowanie\python\projekt zespo這wy\oko_neptuna\architectures\ml\HistGradientBoostingClassifier\wandb\run-20240324_170411-054parbx\files\config.yaml
+2024-03-24 17:04:57,667 INFO    Thread-15 (_thread_body):4612 [sender.py:transition_state():617] send defer: 11
+2024-03-24 17:04:57,667 DEBUG   HandlerThread:4612 [handler.py:handle_request():146] handle_request: defer
+2024-03-24 17:04:57,667 INFO    HandlerThread:4612 [handler.py:handle_request_defer():172] handle defer: 11
+2024-03-24 17:04:57,669 DEBUG   SenderThread:4612 [sender.py:send_request():409] send_request: defer
+2024-03-24 17:04:57,669 INFO    SenderThread:4612 [sender.py:send_request_defer():613] handle sender defer: 11
+2024-03-24 17:04:57,669 INFO    SenderThread:4612 [file_pusher.py:join():178] waiting for file pusher
+2024-03-24 17:04:57,669 INFO    SenderThread:4612 [sender.py:transition_state():617] send defer: 12
+2024-03-24 17:04:57,670 DEBUG   HandlerThread:4612 [handler.py:handle_request():146] handle_request: defer
+2024-03-24 17:04:57,670 INFO    HandlerThread:4612 [handler.py:handle_request_defer():172] handle defer: 12
+2024-03-24 17:04:57,670 DEBUG   SenderThread:4612 [sender.py:send_request():409] send_request: defer
+2024-03-24 17:04:57,670 INFO    SenderThread:4612 [sender.py:send_request_defer():613] handle sender defer: 12
+2024-03-24 17:04:57,670 INFO    SenderThread:4612 [file_stream.py:finish():595] file stream finish called
+2024-03-24 17:04:57,842 INFO    SenderThread:4612 [file_stream.py:finish():599] file stream finish is done
+2024-03-24 17:04:57,842 INFO    SenderThread:4612 [sender.py:transition_state():617] send defer: 13
+2024-03-24 17:04:57,843 DEBUG   HandlerThread:4612 [handler.py:handle_request():146] handle_request: defer
+2024-03-24 17:04:57,843 INFO    HandlerThread:4612 [handler.py:handle_request_defer():172] handle defer: 13
+2024-03-24 17:04:57,843 DEBUG   SenderThread:4612 [sender.py:send_request():409] send_request: defer
+2024-03-24 17:04:57,843 INFO    SenderThread:4612 [sender.py:send_request_defer():613] handle sender defer: 13
+2024-03-24 17:04:57,843 INFO    SenderThread:4612 [sender.py:transition_state():617] send defer: 14
+2024-03-24 17:04:57,843 DEBUG   HandlerThread:4612 [handler.py:handle_request():146] handle_request: defer
+2024-03-24 17:04:57,844 INFO    HandlerThread:4612 [handler.py:handle_request_defer():172] handle defer: 14
+2024-03-24 17:04:57,844 DEBUG   SenderThread:4612 [sender.py:send():382] send: final
+2024-03-24 17:04:57,844 DEBUG   SenderThread:4612 [sender.py:send():382] send: footer
+2024-03-24 17:04:57,844 DEBUG   SenderThread:4612 [sender.py:send_request():409] send_request: defer
+2024-03-24 17:04:57,844 INFO    SenderThread:4612 [sender.py:send_request_defer():613] handle sender defer: 14
+2024-03-24 17:04:57,845 DEBUG   HandlerThread:4612 [handler.py:handle_request():146] handle_request: poll_exit
+2024-03-24 17:04:57,845 DEBUG   SenderThread:4612 [sender.py:send_request():409] send_request: poll_exit
+2024-03-24 17:04:57,846 DEBUG   HandlerThread:4612 [handler.py:handle_request():146] handle_request: internal_messages
+2024-03-24 17:04:57,846 DEBUG   HandlerThread:4612 [handler.py:handle_request():146] handle_request: server_info
+2024-03-24 17:04:57,846 DEBUG   HandlerThread:4612 [handler.py:handle_request():146] handle_request: get_summary
+2024-03-24 17:04:57,846 DEBUG   SenderThread:4612 [sender.py:send_request():409] send_request: server_info
+2024-03-24 17:04:57,847 DEBUG   HandlerThread:4612 [handler.py:handle_request():146] handle_request: sampled_history
+2024-03-24 17:04:57,849 DEBUG   HandlerThread:4612 [handler.py:handle_request():146] handle_request: job_info
+2024-03-24 17:04:57,999 DEBUG   SenderThread:4612 [sender.py:send_request():409] send_request: job_info
+2024-03-24 17:04:58,000 DEBUG   HandlerThread:4612 [handler.py:handle_request():146] handle_request: shutdown
+2024-03-24 17:04:58,000 INFO    HandlerThread:4612 [handler.py:finish():869] shutting down handler
+2024-03-24 17:04:58,853 INFO    WriterThread:4612 [datastore.py:close():296] close: D:\programowanie\python\projekt zespo這wy\oko_neptuna\architectures\ml\HistGradientBoostingClassifier\wandb\run-20240324_170411-054parbx\run-054parbx.wandb
+2024-03-24 17:04:59,009 INFO    SenderThread:4612 [sender.py:finish():1572] shutting down sender
+2024-03-24 17:04:59,009 INFO    SenderThread:4612 [file_pusher.py:finish():172] shutting down file pusher
+2024-03-24 17:04:59,009 INFO    SenderThread:4612 [file_pusher.py:join():178] waiting for file pusher

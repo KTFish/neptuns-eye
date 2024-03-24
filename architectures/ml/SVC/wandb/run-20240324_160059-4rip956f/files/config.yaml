@@ -1,0 +1,53 @@
+wandb_version: 1
+
+_wandb:
+  desc: null
+  value:
+    python_version: 3.11.8
+    cli_version: 0.16.3
+    framework: sklearn
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    start_time: 1711292459.184616
+    t:
+      1:
+      - 5
+      - 53
+      - 55
+      2:
+      - 5
+      - 53
+      - 55
+      3:
+      - 23
+      - 37
+      4: 3.11.8
+      5: 0.16.3
+      8:
+      - 3
+      - 5
+      13: windows-amd64
+C:
+  desc: null
+  value: 10
+class_weight:
+  desc: null
+  value: balanced
+coef0:
+  desc: null
+  value: 4.395526802110866
+degree:
+  desc: null
+  value: 3
+gamma:
+  desc: null
+  value: 0.1
+kernel:
+  desc: null
+  value: poly
+shrinking:
+  desc: null
+  value: false
+tol:
+  desc: null
+  value: 0.05527316596248397

@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "D:\programowanie\python\projekt zespołowy\oko_neptuna\experiments\sweeps\train.py", line 28, in train
+    y_pred = clf.predict(test_features)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\games\anaconda3\envs\oko_neptuna\Lib\site-packages\sklearn\neighbors\_classification.py", line 246, in predict
+    if self._fit_method == "brute" and ArgKminClassMode.is_usable_for(
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\games\anaconda3\envs\oko_neptuna\Lib\site-packages\sklearn\metrics\_pairwise_distances_reduction\_dispatcher.py", line 471, in is_usable_for
+    ArgKmin.is_usable_for(X, Y, metric)
+  File "C:\Users\games\anaconda3\envs\oko_neptuna\Lib\site-packages\sklearn\metrics\_pairwise_distances_reduction\_dispatcher.py", line 115, in is_usable_for
+    and (is_numpy_c_ordered(X) or is_valid_sparse_matrix(X))
+         ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\games\anaconda3\envs\oko_neptuna\Lib\site-packages\sklearn\metrics\_pairwise_distances_reduction\_dispatcher.py", line 99, in is_numpy_c_ordered
+    return hasattr(X, "flags") and X.flags.c_contiguous
+                                   ^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Flags' object has no attribute 'c_contiguous'

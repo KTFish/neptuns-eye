@@ -1,0 +1,8 @@
+wandb_version: 1
+
+leaf_size:
+  value: 36
+n_neighbors:
+  value: 4
+p:
+  value: 2

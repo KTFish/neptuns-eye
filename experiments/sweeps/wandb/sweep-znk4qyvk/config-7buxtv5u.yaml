@@ -1,0 +1,18 @@
+wandb_version: 1
+
+l2_regularization:
+  value: 0.14558285673485283
+learning_rate:
+  value: 0.2032579151056559
+loss:
+  value: binary_crossentropy
+max_bins:
+  value: 221
+max_depth:
+  value: 22
+max_iter:
+  value: 326
+max_leaf_nodes:
+  value: 123
+min_samples_leaf:
+  value: 26

@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "D:\programowanie\python\projekt zespołowy\oko_neptuna\experiments\sweeps\train.py", line 26, in train
+    clf.fit(X_train, y_train)
+  File "C:\Users\games\anaconda3\envs\oko_neptuna\Lib\site-packages\sklearn\base.py", line 1144, in wrapper
+    estimator._validate_params()
+  File "C:\Users\games\anaconda3\envs\oko_neptuna\Lib\site-packages\sklearn\base.py", line 637, in _validate_params
+    validate_parameter_constraints(
+  File "C:\Users\games\anaconda3\envs\oko_neptuna\Lib\site-packages\sklearn\utils\_param_validation.py", line 95, in validate_parameter_constraints
+    raise InvalidParameterError(
+sklearn.utils._param_validation.InvalidParameterError: The 'loss' parameter of HistGradientBoostingClassifier must be a str among {'log_loss'} or an instance of 'sklearn._loss.loss.BaseLoss'. Got 'mean_squared_error' instead.

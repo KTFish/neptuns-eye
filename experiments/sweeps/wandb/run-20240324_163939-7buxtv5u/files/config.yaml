@@ -1,0 +1,54 @@
+wandb_version: 1
+
+_wandb:
+  desc: null
+  value:
+    python_version: 3.11.8
+    cli_version: 0.16.3
+    framework: sklearn
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    start_time: 1711294779.942629
+    t:
+      1:
+      - 5
+      - 53
+      - 55
+      2:
+      - 5
+      - 53
+      - 55
+      3:
+      - 2
+      - 23
+      - 37
+      4: 3.11.8
+      5: 0.16.3
+      8:
+      - 3
+      - 5
+      13: windows-amd64
+l2_regularization:
+  desc: null
+  value: 0.14558285673485283
+learning_rate:
+  desc: null
+  value: 0.2032579151056559
+loss:
+  desc: null
+  value: binary_crossentropy
+max_bins:
+  desc: null
+  value: 221
+max_depth:
+  desc: null
+  value: 22
+max_iter:
+  desc: null
+  value: 326
+max_leaf_nodes:
+  desc: null
+  value: 123
+min_samples_leaf:
+  desc: null
+  value: 26

@@ -1,0 +1,35 @@
+2024-03-24 17:14:01,688 INFO    Thread-10 (_run_job):19276 [wandb_setup.py:_flush():76] Current SDK version is 0.16.3
+2024-03-24 17:14:01,688 INFO    Thread-10 (_run_job):19276 [wandb_setup.py:_flush():76] Configure stats pid to 19276
+2024-03-24 17:14:01,688 INFO    Thread-10 (_run_job):19276 [wandb_setup.py:_flush():76] Loading settings from C:\Users\games\.config\wandb\settings
+2024-03-24 17:14:01,688 INFO    Thread-10 (_run_job):19276 [wandb_setup.py:_flush():76] Loading settings from D:\programowanie\python\projekt zespo這wy\oko_neptuna\architectures\ml\ExtraTreesClassifier\wandb\settings
+2024-03-24 17:14:01,688 INFO    Thread-10 (_run_job):19276 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'project': 'ExtraTreesClassifier', 'entity': 'czarna-magia', 'root_dir': 'D:\\programowanie\\python\\projekt zespo這wy\\oko_neptuna\\architectures\\ml\\ExtraTreesClassifier', 'run_id': 'jn9j47zb', 'sweep_param_path': 'D:\\programowanie\\python\\projekt zespo這wy\\oko_neptuna\\architectures\\ml\\ExtraTreesClassifier\\wandb\\sweep-jox6tzpc\\config-jn9j47zb.yaml', 'sweep_id': 'jox6tzpc'}
+2024-03-24 17:14:01,701 INFO    Thread-10 (_run_job):19276 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-03-24 17:14:01,701 INFO    Thread-10 (_run_job):19276 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'train.py', 'program_abspath': 'D:\\programowanie\\python\\projekt zespo這wy\\oko_neptuna\\architectures\\ml\\ExtraTreesClassifier\\train.py', 'program': 'D:\\programowanie\\python\\projekt zespo這wy\\oko_neptuna\\architectures\\ml\\ExtraTreesClassifier\\train.py'}
+2024-03-24 17:14:01,701 INFO    Thread-10 (_run_job):19276 [wandb_init.py:_log_setup():526] Logging user logs to D:\programowanie\python\projekt zespo這wy\oko_neptuna\architectures\ml\ExtraTreesClassifier\wandb\run-20240324_171401-jn9j47zb\logs\debug.log
+2024-03-24 17:14:01,701 INFO    Thread-10 (_run_job):19276 [wandb_init.py:_log_setup():527] Logging internal logs to D:\programowanie\python\projekt zespo這wy\oko_neptuna\architectures\ml\ExtraTreesClassifier\wandb\run-20240324_171401-jn9j47zb\logs\debug-internal.log
+2024-03-24 17:14:01,702 INFO    Thread-10 (_run_job):19276 [wandb_init.py:init():566] calling init triggers
+2024-03-24 17:14:01,702 INFO    Thread-10 (_run_job):19276 [wandb_init.py:init():573] wandb.init called with sweep_config: {'criterion': 'gini', 'max_depth': 4, 'min_samples_leaf': 6, 'min_samples_split': 6, 'n_estimators': 17}
+config: {}
+2024-03-24 17:14:01,702 INFO    Thread-10 (_run_job):19276 [wandb_init.py:init():616] starting backend
+2024-03-24 17:14:01,702 INFO    Thread-10 (_run_job):19276 [wandb_init.py:init():620] setting up manager
+2024-03-24 17:14:01,710 INFO    Thread-10 (_run_job):19276 [backend.py:_multiprocessing_setup():105] multiprocessing start_methods=spawn, using: spawn
+2024-03-24 17:14:01,710 INFO    Thread-10 (_run_job):19276 [wandb_init.py:init():628] backend started and connected
+2024-03-24 17:14:01,725 INFO    Thread-10 (_run_job):19276 [wandb_run.py:_config_callback():1343] config_cb None None {'criterion': 'gini', 'max_depth': 4, 'min_samples_leaf': 6, 'min_samples_split': 6, 'n_estimators': 17}
+2024-03-24 17:14:01,726 INFO    Thread-10 (_run_job):19276 [wandb_init.py:init():720] updated telemetry
+2024-03-24 17:14:01,730 INFO    Thread-10 (_run_job):19276 [wandb_init.py:init():753] communicating run to backend with 90.0 second timeout
+2024-03-24 17:14:02,512 INFO    Thread-10 (_run_job):19276 [wandb_run.py:_on_init():2262] communicating current version
+2024-03-24 17:14:03,193 INFO    Thread-10 (_run_job):19276 [wandb_run.py:_on_init():2271] got version response upgrade_message: "wandb version 0.16.4 is available!  To upgrade, please run:\n $ pip install wandb --upgrade"
+
+2024-03-24 17:14:03,193 INFO    Thread-10 (_run_job):19276 [wandb_init.py:init():804] starting run threads in backend
+2024-03-24 17:14:05,708 INFO    Thread-10 (_run_job):19276 [wandb_run.py:_console_start():2241] atexit reg
+2024-03-24 17:14:05,708 INFO    Thread-10 (_run_job):19276 [wandb_run.py:_redirect():2096] redirect: wrap_raw
+2024-03-24 17:14:05,708 INFO    Thread-10 (_run_job):19276 [wandb_run.py:_redirect():2161] Wrapping output streams.
+2024-03-24 17:14:05,708 INFO    Thread-10 (_run_job):19276 [wandb_run.py:_redirect():2186] Redirects installed.
+2024-03-24 17:14:05,709 INFO    Thread-10 (_run_job):19276 [wandb_init.py:init():847] run started, returning control to user process
+2024-03-24 17:14:10,374 INFO    Thread-10 (_run_job):19276 [wandb_run.py:_finish():1970] finishing run czarna-magia/ExtraTreesClassifier/jn9j47zb
+2024-03-24 17:14:10,374 INFO    Thread-10 (_run_job):19276 [wandb_run.py:_atexit_cleanup():2210] got exitcode: 0
+2024-03-24 17:14:10,375 INFO    Thread-10 (_run_job):19276 [wandb_run.py:_restore():2193] restore
+2024-03-24 17:14:10,375 INFO    Thread-10 (_run_job):19276 [wandb_run.py:_restore():2199] restore done
+2024-03-24 17:14:14,588 INFO    Thread-10 (_run_job):19276 [wandb_run.py:_footer_history_summary_info():3866] rendering history
+2024-03-24 17:14:14,588 INFO    Thread-10 (_run_job):19276 [wandb_run.py:_footer_history_summary_info():3898] rendering summary
+2024-03-24 17:14:14,594 INFO    Thread-10 (_run_job):19276 [wandb_run.py:_footer_sync_info():3825] logging synced files

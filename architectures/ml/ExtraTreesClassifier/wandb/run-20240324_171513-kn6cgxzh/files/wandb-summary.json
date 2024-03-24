@@ -1,0 +1,1 @@
+{"criterion": "entropy", "_timestamp": 1711296925.3499546, "_runtime": 12.148305654525757, "_step": 5, "max_depth": 23, "min_samples_leaf": 1, "min_samples_split": 10, "n_estimators": 10, "accuracy": 0.6368916698980076, "_wandb": {"runtime": 10}}

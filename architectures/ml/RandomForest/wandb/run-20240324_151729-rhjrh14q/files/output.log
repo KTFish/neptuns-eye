@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "D:\programowanie\python\projekt zespołowy\oko_neptuna\architectures\ml\RandomForest\train.py", line 68, in train
+    clf.fit(X_train, y_train)
+  File "C:\Users\games\anaconda3\envs\oko_neptuna\Lib\site-packages\sklearn\base.py", line 1144, in wrapper
+    estimator._validate_params()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\games\anaconda3\envs\oko_neptuna\Lib\site-packages\pandas\core\generic.py", line 6296, in __getattr__
+    return object.__getattribute__(self, name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'DataFrame' object has no attribute '_validate_params'
