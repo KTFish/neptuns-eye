@@ -1,5 +1,0 @@
-Traceback (most recent call last):
-  File "D:\programowanie\python\projekt zespołowy\oko_neptuna\architectures\ml\RandomForest\train.py", line 64, in train
-    clf = model(**config)
-          ^^^^^^^^^^^^^^^
-TypeError: 'RandomForestClassifier' object is not callable

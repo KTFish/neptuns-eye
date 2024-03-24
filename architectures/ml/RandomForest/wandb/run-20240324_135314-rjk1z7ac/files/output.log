@@ -1,8 +1,0 @@
-Traceback (most recent call last):
-  File "D:\programowanie\python\projekt zespołowy\oko_neptuna\architectures\ml\RandomForest\train.py", line 51, in train
-    X_train, X_test, y_train, y_test = prepare_data_training(train)
-                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\programowanie\python\projekt zespołowy\oko_neptuna\preprocess\preprocess.py", line 6, in prepare_data_training
-    df = df.drop(columns=columns_to_delete)
-         ^^^^^^^
-AttributeError: 'function' object has no attribute 'drop'

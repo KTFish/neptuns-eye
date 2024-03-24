@@ -1,5 +1,0 @@
-Traceback (most recent call last):
-  File "D:\programowanie\python\projekt zespołowy\oko_neptuna\experiments\sweeps\train.py", line 23, in train
-    clf = model(**config)
-          ^^^^^^^^^^^^^^^
-TypeError: HistGradientBoostingClassifier.__init__() got an unexpected keyword argument 'min_gain_to_split'

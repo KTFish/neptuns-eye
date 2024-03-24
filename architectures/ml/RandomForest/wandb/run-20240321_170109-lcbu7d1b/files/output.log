@@ -1,5 +1,0 @@
-Create sweep with ID: mdesezvw
-Sweep URL: https://wandb.ai/czarna-magia/randomowy_las_sweep_test_essa_niska/sweeps/mdesezvw
-[INFO] Training with RandomForestClassifier:
-Training done!
-wandb: WARNING Calling wandb.login() after wandb.init() has no effect.

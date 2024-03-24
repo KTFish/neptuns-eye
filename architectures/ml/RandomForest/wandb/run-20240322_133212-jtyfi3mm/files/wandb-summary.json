@@ -1,1 +1,0 @@
-{"accuracy": 0.9752731094084525, "n_estimators": 17, "max_depth": 14, "min_samples_split": 9, "min_samples_leaf": 1, "_timestamp": 1711110754.565933, "_runtime": 22.09614396095276, "_step": 0, "_wandb": {"runtime": 20}}

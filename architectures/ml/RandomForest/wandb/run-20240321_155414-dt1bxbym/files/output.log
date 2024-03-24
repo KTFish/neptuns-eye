@@ -1,9 +1,0 @@
-Create sweep with ID: m7c5mzgg
-Sweep URL: https://wandb.ai/czarna-magia/forest_test_1/sweeps/m7c5mzgg
-Traceback (most recent call last):
-  File "D:\programowanie\python\projekt zespołowy\struktura\architectures\ml\RandomForest\train_RandomForest.py", line 14, in <module>
-    wandb.agent(sweep_id, function=train_ml())
-                                   ^^^^^^^^^^
-TypeError: train_ml() missing 2 required positional arguments: 'df' and 'clf'
-Create sweep with ID: 5fcuwsx8
-Sweep URL: https://wandb.ai/czarna-magia/forest_test_1/sweeps/5fcuwsx8

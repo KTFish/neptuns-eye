@@ -1,8 +1,0 @@
-Create sweep with ID: 4dxgvp5j
-Sweep URL: https://wandb.ai/czarna-magia/your-project-name/sweeps/4dxgvp5j
-Traceback (most recent call last):
-  File "D:\programowanie\python\projekt zespołowy\struktura\architectures\ml\RandomForest\train_RandomForest.py", line 14, in <module>
-    train_ml_sweep(wmii, clf, sweep_config=sweep_config)
-  File "D:\programowanie\python\projekt zespołowy\struktura\architectures\ml\train.py", line 65, in train_ml_sweep
-    clf.set_params(**parameters)
-TypeError: sklearn.base.BaseEstimator.set_params() argument after ** must be a mapping, not str
