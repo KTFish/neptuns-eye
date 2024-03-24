@@ -1,8 +1,9 @@
-import wandb
-from experiments.sweeps.ExtraTreesClassifier_config import sweep_config
-from sklearn.ensemble import ExtraTreesClassifier
+"""Sweeps for ExtraTreesClassifier"""
 from experiments.sweeps.train import train
+from experiments.sweeps.ExtraTreesClassifier_config import sweep_config
 from storage.load import read_las_file
+from sklearn.ensemble import ExtraTreesClassifier
+import wandb
 
 
 def test():

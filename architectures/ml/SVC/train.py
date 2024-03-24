@@ -1,9 +1,9 @@
-from sklearn.svm import LinearSVC
-from storage.load import read_las_file
-import wandb
 from experiments.sweeps.train import train
 from experiments.sweeps.SVC_config import sweep_config
+from storage.load import read_las_file
+from sklearn.svm import LinearSVC
 from sklearn.metrics import accuracy_score
+import wandb
 
 
 # def svc_classification(x_train, x_test, y_train, y_test, kernel='linear', c=1.0):

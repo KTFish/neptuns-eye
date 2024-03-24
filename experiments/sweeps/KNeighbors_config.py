@@ -1,14 +1,14 @@
 parameters = {
     'n_neighbors': {
         'min': 3,
-        'max': 20
-    },
-    'leaf_size': {
-        'min': 10,
         'max': 50
     },
+    'leaf_size': {
+        'min': 7,
+        'max': 100
+    },
     'p': {
-        'values': [1, 2]
+        'values': [1]
     }
 }
 

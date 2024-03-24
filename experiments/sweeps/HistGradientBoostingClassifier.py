@@ -21,7 +21,7 @@ parameters = {
     },
     'max_bins': {
         'min': 50,
-        'max': 255  # Wartość maksymalna to 255
+        'max': 255
     },
     'max_leaf_nodes': {
         'min': 31,

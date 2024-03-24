@@ -1,8 +1,9 @@
-import wandb
-from experiments.sweeps.HistGradientBoostingClassifier import sweep_config
-from sklearn.ensemble import HistGradientBoostingClassifier
+"""Sweeps for HISTGradientBoostingClassifier"""
 from experiments.sweeps.train import train
+from experiments.sweeps.HistGradientBoostingClassifier import sweep_config
 from storage.load import read_las_file
+from sklearn.ensemble import HistGradientBoostingClassifier
+import wandb
 
 
 def test():

@@ -1,5 +1,6 @@
 .idea
 .venv
+__pycache__
 
 wandb
 config.cpython-312.pyc
