@@ -13,7 +13,7 @@ class ClassificationFrame(customtkinter.CTkFrame):
 
         self.__las_handler = las_handler
 
-        self.frame_label = customtkinter.CTkLabel(self, text="This will be a frame with classification options")
+        self.frame_lb = customtkinter.CTkLabel(self, text="This will be a frame with classification options")
 
         # Positioning
-        self.frame_label.grid(row=0, column=0)
+        self.frame_lb.grid(row=0, column=0, padx=10, pady=10)
