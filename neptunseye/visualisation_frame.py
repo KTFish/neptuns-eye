@@ -120,7 +120,7 @@ class VisualisationFrame(customtkinter.CTkFrame):
         self.batch_ckb.grid(row=2, column=1)
         self.stride_lb.grid(row=3, column=0, columnspan=2, padx=10, sticky="ew")
         self.stride_sld.grid(row=4, column=0, columnspan=2, padx=10, sticky="ew")
-        self.generated_points_count_lb.grid(row=5, column=0, columnspan=2, padx=10, sticky="w")
+        self.generated_points_count_lb.grid(row=5, column=0, columnspan=2, padx=20, sticky="w")
         self.stride_ebox.grid(row=4, column=2, padx=10, sticky="w")
         self.render_btn.grid(row=9, column=3)
         self.plotting_progress_lb.grid(row=9, column=1)

@@ -28,6 +28,7 @@ class FileFrame(customtkinter.CTkFrame):
         super().__init__(master, **kwargs)
 
         self.las_handler = las_handler
+        self.__master = master
 
         self.set_frame_grid(10, 7)
 
@@ -197,6 +198,8 @@ class FileFrame(customtkinter.CTkFrame):
             self.desc_classes_count_val_lb.configure(text="Not classified")
         else:
             self.desc_classes_count_val_lb.configure(text=unique_classes_count)
+
+        self.__master.invoke_update_loaded_points_count_lb()
 
     @property
     def las_handler(self) -> LasHandler:
