@@ -33,7 +33,6 @@ def render_pptk(csv_path) -> None:
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print("Usage: python script.py <csv_file>")
         sys.exit(1)
 
     csv_path = sys.argv[1]

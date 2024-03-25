@@ -303,9 +303,11 @@ class VisualisationFrame(customtkinter.CTkFrame):
         self.plotting_progress_lb.configure(text="Done!", text_color="green")
 
     def render_pptk(self):
-        python37_path = "C:/Users/Nikodem/AppData/Local/Programs/Python/Python37/python.exe"  # ścieżka do pliku wykonawczego pytrhona 3.7
-        script_path = "script_pptk.py"  # ścieżka do pliku .py w projekcie na pythonie 3.7
-        dataframe_temp_file_path = ".$tempdf.csv"
+        local_app_data_path = os.environ.get("LOCALAPPDATA", "")
+        python37_path = local_app_data_path + "\\Programs\\Python\\python37\\python.exe"
+        print(python37_path)
+        script_path = "script_pptk.py"
+        dataframe_temp_file_path = ".tempdf.csv"
 
         self.save_selected_columns_to_csv(['X', 'Y', 'Z', 'red', 'green', 'blue'])
 
@@ -324,7 +326,7 @@ class VisualisationFrame(customtkinter.CTkFrame):
             None
         """
 
-        df_stride = self.__las_handler.data_frame.iloc[::self.rendering_stride].copy()
+        df_stride = self.las_handler.data_frame.iloc[::self.rendering_stride].copy()
         selected_df = df_stride[selected_columns]
         selected_df.to_csv(filename, index=False)
 
