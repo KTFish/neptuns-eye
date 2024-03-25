@@ -24,10 +24,15 @@ class VisualisationFrame(customtkinter.CTkFrame):
     stride_lb: customtkinter.CTkLabel
     rendering_progress_lb: customtkinter.CTkLabel
     generated_points_count_lb: customtkinter.CTkLabel
+    batches_count_lb: customtkinter.CTkLabel
+    batching_lb: customtkinter.CTkLabel
+    rendered_batch_lb: customtkinter.CTkLabel
     render_btn: customtkinter.CTkButton
     method_cbox: customtkinter.CTkComboBox
+    rendered_batch_cbox: customtkinter.CTkComboBox
     stride_sld: customtkinter.CTkSlider
     stride_ebox: customtkinter.CTkEntry
+    batches_count_ebox: customtkinter.CTkEntry
     batch_ckb: customtkinter.CTkCheckBox
 
     def __init__(self, master, las_handler: LasHandler, **kwargs):
@@ -55,41 +60,6 @@ class VisualisationFrame(customtkinter.CTkFrame):
 
         self.set_widgets_positioning()
 
-    def initialize_widgets(self):
-        """Initializes all the widgets used in the GUI.
-
-        This function creates instances of various CustomTkinter widgets
-        and configures their basic properties. These widgets represent the
-        user interface elements for interacting with the application.
-
-        Returns:
-            None
-        """
-        self.frame_lb = customtkinter.CTkLabel(self, text="Visualisation options",
-                                               font=FONT_HELV_MEDIUM_B,
-                                               anchor='center',
-                                               justify='center')
-        self.render_btn = customtkinter.CTkButton(self, text="Render visualisation",
-                                                  command=self.render_event)
-        self.method_lb = customtkinter.CTkLabel(self, text="Rendering tool")
-        self.method_cbox = customtkinter.CTkComboBox(self, values=list(self.rendering_methods_limits.keys()),
-                                                     command=self.update_rendering_method_event)
-        self.stride_lb = customtkinter.CTkLabel(self, text="Rendering stride")
-        self.stride_sld = customtkinter.CTkSlider(self, from_=1,
-                                                  to=100,
-                                                  number_of_steps=100,
-                                                  progress_color='#3a7ebf',
-                                                  command=self.update_rendering_stride_event)
-        self.stride_ebox = customtkinter.CTkEntry(self, width=50,
-                                                  height=10,
-                                                  textvariable=customtkinter.StringVar(
-                                                      value=str(self.rendering_stride)))
-        self.rendering_progress_lb = customtkinter.CTkLabel(self, text=" ")
-
-        self.batch_ckb = customtkinter.CTkCheckBox(self, text="Batching",
-                                                   variable=self.batch_variable)
-        self.generated_points_count_lb = customtkinter.CTkLabel(self, text="")
-
     def set_frame_grid(self, num_columns: int, num_rows: int) -> None:
         """Sets up the grid layout for the GUI frame.
 
@@ -110,6 +80,47 @@ class VisualisationFrame(customtkinter.CTkFrame):
         for i in range(num_rows):
             self.grid_rowconfigure(i, weight=1)
 
+    def initialize_widgets(self):
+        """Initializes all the widgets used in the GUI.
+
+        This function creates instances of various CustomTkinter widgets
+        and configures their basic properties. These widgets represent the
+        user interface elements for interacting with the application.
+
+        Returns:
+            None
+        """
+        self.frame_lb = customtkinter.CTkLabel(self, text="Visualisation options",
+                                               font=FONT_HELV_MEDIUM_B,
+                                               anchor='center',
+                                               justify='center')
+        self.render_btn = customtkinter.CTkButton(self, text="Render visualisation",
+                                                  command=self.render_event)
+        self.method_lb = customtkinter.CTkLabel(self, text="Rendering tool", font=FONT_HELV_SMALL_B)
+        self.method_cbox = customtkinter.CTkComboBox(self, values=list(self.rendering_methods_limits.keys()),
+                                                     command=self.update_rendering_method_event)
+        self.stride_lb = customtkinter.CTkLabel(self, text="Rendering stride")
+        self.stride_sld = customtkinter.CTkSlider(self, from_=1,
+                                                  to=100,
+                                                  number_of_steps=100,
+                                                  progress_color='#3a7ebf',
+                                                  command=self.update_rendering_stride_event)
+        self.stride_ebox = customtkinter.CTkEntry(self, width=50,
+                                                  height=28,
+                                                  textvariable=customtkinter.StringVar(
+                                                      value=str(self.rendering_stride)))
+        self.rendering_progress_lb = customtkinter.CTkLabel(self, text=" ")
+
+        self.batch_ckb = customtkinter.CTkCheckBox(self, text="Enable",
+                                                   variable=self.batch_variable)
+        self.generated_points_count_lb = customtkinter.CTkLabel(self, text="")
+        self.batching_lb = customtkinter.CTkLabel(self, text="Batching", font=FONT_HELV_SMALL_B)
+        self.batches_count_lb = customtkinter.CTkLabel(self, text="Number of batches")
+        self.batches_count_ebox = customtkinter.CTkEntry(self, width=50, height=28,
+                                                         textvariable=customtkinter.StringVar(value=str(1)))
+        self.rendered_batch_lb = customtkinter.CTkLabel(self, text="Rendered batch #:")
+        self.rendered_batch_cbox = customtkinter.CTkComboBox(self, width=100, values=[str(1), str(2), str(3)])
+
     def set_widgets_positioning(self) -> None:
         """
         Sets the grid positioning for all the widgets in the GUI.
@@ -120,16 +131,21 @@ class VisualisationFrame(customtkinter.CTkFrame):
         Returns:
             None
         """
-        self.frame_lb.grid(row=0, column=0, columnspan=9, sticky="ew")
-        self.method_lb.grid(row=1, column=0, padx=10, sticky="ew")
-        self.method_cbox.grid(row=2, column=0, padx=10, sticky="ew")
-        self.batch_ckb.grid(row=2, column=1)
-        self.stride_lb.grid(row=3, column=0, columnspan=2, padx=10, sticky="ew")
-        self.stride_sld.grid(row=4, column=0, columnspan=2, padx=10, sticky="ew")
+        self.frame_lb.grid(row=0, column=0, columnspan=10, sticky="nsew")
+        self.method_lb.grid(row=1, column=0, padx=15, sticky="w")
+        self.method_cbox.grid(row=2, column=0, padx=15, sticky="ew")
+        self.stride_lb.grid(row=3, column=0, columnspan=2, padx=15, sticky="w")
+        self.stride_sld.grid(row=4, column=0, columnspan=2, padx=15, sticky="ew")
         self.generated_points_count_lb.grid(row=5, column=0, columnspan=2, padx=20, sticky="w")
-        self.stride_ebox.grid(row=4, column=2, padx=10, sticky="w")
-        self.render_btn.grid(row=9, column=3)
-        self.rendering_progress_lb.grid(row=9, column=1)
+        self.stride_ebox.grid(row=4, column=2, padx=15, sticky="w")
+        self.render_btn.grid(row=9, column=9, padx=10, pady=10, sticky="e")
+        self.rendering_progress_lb.grid(row=9, column=7, columnspan=2, sticky="w")
+        self.batching_lb.grid(row=1, column=3, sticky="w")
+        self.batch_ckb.grid(row=2, column=3, sticky="w")
+        self.batches_count_lb.grid(row=3, column=3, sticky="w")
+        self.batches_count_ebox.grid(row=4, column=3, sticky="w")
+        self.rendered_batch_lb.grid(row=3, column=4, sticky="w")
+        self.rendered_batch_cbox.grid(row=4, column=4, sticky="w")
 
     def set_widgets_default_configuration(self) -> None:
         """
@@ -146,7 +162,6 @@ class VisualisationFrame(customtkinter.CTkFrame):
         self.stride_ebox.bind("<KeyRelease>", lambda event: self.stride_entry_event(self.stride_ebox))
         self.method_cbox.configure(state="readonly")
         self.stride_sld.set(self.rendering_stride)
-        self.batch_ckb.configure(state="disabled")
 
     @staticmethod
     def stride_entry_validate(text: str) -> bool:
@@ -300,13 +315,16 @@ class VisualisationFrame(customtkinter.CTkFrame):
         return True
 
     def update_rendering_method_event(self, rendering_method: str) -> None:
-        # TODO: TO BE REMOVED
+        """
+        Update the rendering method used for visualizing the data.
+
+        Args:
+            rendering_method (str): The new rendering method to be used.
+
+        Returns:
+            None
+        """
         self.rendering_method = rendering_method
-        if rendering_method == "matplotlib":
-            self.batch_ckb.configure(state="normal")
-        else:
-            self.batch_ckb.deselect()
-            self.batch_ckb.configure(state="disabled")
 
     def render_plotly(self) -> None:
         """

@@ -51,7 +51,7 @@ class App(customtkinter.CTk):
             None
         """
         self.grid_rowconfigure((0, 1), weight=1)
-        self.grid_columnconfigure((0,1), weight=1)
+        self.grid_columnconfigure((0, 1), weight=1)
 
         self.file_frame = FileFrame(master=self, las_handler=self.__las_handler)
         self.file_frame.grid(row=0, column=0, padx=20, pady=20, sticky="nsew")

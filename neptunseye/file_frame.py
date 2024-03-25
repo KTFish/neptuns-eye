@@ -30,7 +30,7 @@ class FileFrame(customtkinter.CTkFrame):
         self.las_handler = las_handler
         self.__master = master
 
-        self.set_frame_grid(10, 7)
+        self.set_frame_grid(10, 8)
 
         self.initialize_widgets()
 
@@ -71,11 +71,11 @@ class FileFrame(customtkinter.CTkFrame):
         self.file_description_lb = customtkinter.CTkLabel(self, text="Loaded point cloud information", anchor="center",
                                                           justify="center",
                                                           font=FONT_HELV_MEDIUM_B)
-        self.desc_points_count_lb = customtkinter.CTkLabel(self, text="> " + "Loaded points: ", anchor="w",
+        self.desc_points_count_lb = customtkinter.CTkLabel(self, text="Loaded points: ", anchor="w",
                                                            font=FONT_HELV_SMALL_B)
-        self.desc_file_created_lb = customtkinter.CTkLabel(self, text="> " + "File creation date: ", anchor="w",
+        self.desc_file_created_lb = customtkinter.CTkLabel(self, text="File creation date: ", anchor="w",
                                                            font=FONT_HELV_SMALL_B)
-        self.desc_classes_count_lb = customtkinter.CTkLabel(self, text="> " + "Number of classes: ", anchor="w",
+        self.desc_classes_count_lb = customtkinter.CTkLabel(self, text="Number of classes: ", anchor="w",
                                                             font=FONT_HELV_SMALL_B)
         self.desc_points_count_val_lb = customtkinter.CTkLabel(self, text="-", anchor="w",
                                                                font=FONT_HELV_SMALL)
@@ -102,7 +102,7 @@ class FileFrame(customtkinter.CTkFrame):
         self.file_path_tbox.grid(row=1, column=0, columnspan=4, padx=10, sticky="ew")
         self.import_file_btn.grid(row=1, column=4, padx=5, sticky="w")
 
-        self.file_description_lb.grid(row=2, column=0, padx=20, pady=15)
+        self.file_description_lb.grid(row=2, column=0, padx=20, pady=10)
         self.desc_points_count_lb.grid(row=3, column=0, sticky="w", padx=10)
         self.desc_file_created_lb.grid(row=4, column=0, sticky="w", padx=10)
         self.desc_classes_count_lb.grid(row=5, column=0, sticky="w", padx=10)
