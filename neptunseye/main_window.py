@@ -1,7 +1,8 @@
+import json
 from typing import Dict, Any
 
 from classification_frame import *
-from import_file_frame import *
+from file_frame import *
 from las_handler import *
 from locales import locales
 from visualisation_frame import *
@@ -16,6 +17,10 @@ class App(customtkinter.CTk):
     __localization_file: Dict
     __file_path: str
     __las_handler: LasHandler
+
+    visualisation_frame: VisualisationFrame
+    classification_frame: ClassificationFrame
+    file_frame: FileFrame
 
     APP_ICON_PATH = "resources\\neptuns-eye-logo.ico"
 
@@ -33,20 +38,29 @@ class App(customtkinter.CTk):
         self.minsize(1280, 720)
         self.after(201, lambda: self.iconbitmap(self.APP_ICON_PATH))
 
-        # Frames setup
-        self.grid_rowconfigure(0, weight=1)
-        self.grid_columnconfigure(0, weight=1)
-        self.grid_rowconfigure(1, weight=1)
-        self.grid_columnconfigure(1, weight=1)
+        self.initialize_frames()
 
-        self.my_frame = ImportFileFrame(master=self, las_handler=self.__las_handler)
-        self.my_frame.grid(row=0, column=0, padx=20, pady=20, sticky="nsew")
+    def initialize_frames(self) -> None:
+        """
+        Initialize frames within the application window.
 
-        self.my_frame = VisualisationFrame(master=self, las_handler=self.__las_handler)
-        self.my_frame.grid(row=1, column=1, padx=20, pady=20, sticky="nsew")
+        Configures grid row and column weights to allow frames to resize properly.
+        Creates and places three frames within the application window.
 
-        self.my_frame = ClassificationFrame(master=self, las_handler=self.__las_handler)
-        self.my_frame.grid(row=0, column=1, padx=20, pady=20, sticky="nsew")
+        Returns:
+            None
+        """
+        self.grid_rowconfigure((0, 1), weight=1)
+        self.grid_columnconfigure((0,1), weight=1)
+
+        self.file_frame = FileFrame(master=self, las_handler=self.__las_handler)
+        self.file_frame.grid(row=0, column=0, padx=20, pady=20, sticky="nsew")
+
+        self.visualisation_frame = VisualisationFrame(master=self, las_handler=self.__las_handler)
+        self.visualisation_frame.grid(row=1, column=0, columnspan=2, padx=20, pady=20, sticky="nsew")
+
+        self.classification_frame = ClassificationFrame(master=self, las_handler=self.__las_handler)
+        self.classification_frame.grid(row=0, column=1, padx=20, pady=20, sticky="nsew")
 
     def load_localization_file(self) -> None:
         """Loads and sets the localization."""
