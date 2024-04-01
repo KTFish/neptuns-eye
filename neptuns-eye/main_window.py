@@ -1,6 +1,8 @@
 import json
 from typing import Dict, Any
 
+import customtkinter
+
 from classification_frame import *
 from file_frame import *
 from las_handler import *

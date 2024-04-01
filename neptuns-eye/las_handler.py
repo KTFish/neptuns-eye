@@ -103,8 +103,6 @@ class LasHandler(object):
 
             plt.show()
 
-
-
     def __get_unique_classes(self) -> List[int]:
         return self.data_frame['classification'].unique().tolist()
 

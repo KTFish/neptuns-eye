@@ -18,7 +18,6 @@ class VisualisationFrame(customtkinter.CTkFrame):
     __too_many_points: bool
 
     # Widgets definitions
-    # TODO: Comment every widgets' placement and function
     frame_lb: customtkinter.CTkLabel
     method_lb: customtkinter.CTkLabel
     stride_lb: customtkinter.CTkLabel
@@ -90,36 +89,53 @@ class VisualisationFrame(customtkinter.CTkFrame):
         Returns:
             None
         """
-        self.frame_lb = customtkinter.CTkLabel(self, text="Visualisation options",
+        self.frame_lb = customtkinter.CTkLabel(self,
+                                               text="Visualisation options",
                                                font=FONT_HELV_MEDIUM_B,
                                                anchor='center',
                                                justify='center')
-        self.render_btn = customtkinter.CTkButton(self, text="Render visualisation",
+        self.render_btn = customtkinter.CTkButton(self,
+                                                  text="Render visualisation",
                                                   command=self.render_event)
-        self.method_lb = customtkinter.CTkLabel(self, text="Rendering tool", font=FONT_HELV_SMALL_B)
-        self.method_cbox = customtkinter.CTkComboBox(self, values=list(self.rendering_methods_limits.keys()),
+        self.method_lb = customtkinter.CTkLabel(self,
+                                                text="Rendering tool",
+                                                font=FONT_HELV_SMALL_B)
+        self.method_cbox = customtkinter.CTkComboBox(self,
+                                                     values=list(self.rendering_methods_limits.keys()),
                                                      command=self.update_rendering_method_event)
-        self.stride_lb = customtkinter.CTkLabel(self, text="Rendering stride")
-        self.stride_sld = customtkinter.CTkSlider(self, from_=1,
+        self.stride_lb = customtkinter.CTkLabel(self,
+                                                text="Rendering stride")
+        self.stride_sld = customtkinter.CTkSlider(self,
+                                                  from_=1,
                                                   to=100,
                                                   number_of_steps=100,
                                                   progress_color='#3a7ebf',
                                                   command=self.update_rendering_stride_event)
-        self.stride_ebox = customtkinter.CTkEntry(self, width=50,
+        self.stride_ebox = customtkinter.CTkEntry(self,
+                                                  width=50,
                                                   height=28,
                                                   textvariable=customtkinter.StringVar(
                                                       value=str(self.rendering_stride)))
-        self.rendering_progress_lb = customtkinter.CTkLabel(self, text=" ")
-
-        self.batch_ckb = customtkinter.CTkCheckBox(self, text="Enable",
+        self.rendering_progress_lb = customtkinter.CTkLabel(self,
+                                                            text=" ")
+        self.batch_ckb = customtkinter.CTkCheckBox(self,
+                                                   text="Enable",
                                                    variable=self.batch_variable)
         self.generated_points_count_lb = customtkinter.CTkLabel(self, text="")
-        self.batching_lb = customtkinter.CTkLabel(self, text="Batching", font=FONT_HELV_SMALL_B)
-        self.batches_count_lb = customtkinter.CTkLabel(self, text="Number of batches")
-        self.batches_count_ebox = customtkinter.CTkEntry(self, width=50, height=28,
+        self.batching_lb = customtkinter.CTkLabel(self,
+                                                  text="Batching",
+                                                  font=FONT_HELV_SMALL_B)
+        self.batches_count_lb = customtkinter.CTkLabel(self,
+                                                       text="Number of batches")
+        self.batches_count_ebox = customtkinter.CTkEntry(self,
+                                                         width=50,
+                                                         height=28,
                                                          textvariable=customtkinter.StringVar(value=str(1)))
-        self.rendered_batch_lb = customtkinter.CTkLabel(self, text="Rendered batch #:")
-        self.rendered_batch_cbox = customtkinter.CTkComboBox(self, width=100, values=[str(1), str(2), str(3)])
+        self.rendered_batch_lb = customtkinter.CTkLabel(self,
+                                                        text="Rendered batch #:")
+        self.rendered_batch_cbox = customtkinter.CTkComboBox(self,
+                                                             width=100,
+                                                             values=[str(1), str(2), str(3)])
 
     def set_widgets_positioning(self) -> None:
         """
