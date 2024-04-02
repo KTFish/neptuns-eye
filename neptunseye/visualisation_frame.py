@@ -54,9 +54,7 @@ class VisualisationFrame(customtkinter.CTkFrame):
         self.batch_variable = customtkinter.BooleanVar(value=False)
 
         self.initialize_widgets()
-
         self.set_widgets_default_configuration()
-
         self.set_widgets_positioning()
 
     def set_frame_grid(self, num_columns: int, num_rows: int) -> None:
@@ -316,7 +314,7 @@ class VisualisationFrame(customtkinter.CTkFrame):
             self.generated_points_count = round(self.las_handler.las.header.point_count / self.rendering_stride)
             formatted_generated_points_count = f"{self.generated_points_count:,}".replace(',', ' ')
             self.generated_points_count_lb.configure(text=f"{formatted_generated_points_count} points will"
-                                                          f" be generated.")
+                                                          f" be rendered.")
         if not self.check_rendering_method_limit(self.generated_points_count):
             self.generated_points_count_lb.configure(text_color="orange")
             self.too_many_points = True
@@ -381,7 +379,7 @@ class VisualisationFrame(customtkinter.CTkFrame):
         script_path = "script_pptk.py"
         dataframe_temp_file_path = ".tempdf.csv"
 
-        self.save_selected_columns_to_csv(['X', 'Y', 'Z', 'red', 'green', 'blue'])
+        self.save_selected_columns_to_csv(['X', 'Y', 'Z', 'red', 'green', 'blue', 'classification'])
 
         os.environ.copy()
         subprocess.run([python37_path, script_path, dataframe_temp_file_path], check=True, text=True)
