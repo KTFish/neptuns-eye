@@ -1,4 +1,7 @@
+import threading
+
 import customtkinter
+from CTkMessagebox import CTkMessagebox
 
 from las_handler import *
 from resources.fonts import *
@@ -22,6 +25,7 @@ class ClassificationFrame(customtkinter.CTkFrame):
         self.selected_model = "ExtraTreesClassifier"
 
         self.__las_handler = las_handler
+        self.__master = master
 
         self.set_frame_grid(6, 10)
 
@@ -87,14 +91,38 @@ class ClassificationFrame(customtkinter.CTkFrame):
         self.model_cbox.grid(row=2, column=0, padx=15, sticky="ew")
         self.classification_btn.grid(row=9, column=5)
 
-    def classification_event(self) -> None:
+    def classification_event(self) -> bool:
+
+        if not self.__las_handler.file_loaded:
+            CTkMessagebox(title="File not loaded", message="Whoops!\n"
+                                                           "Load .las file first.", icon="cancel")
+            return False
+
+        try:
+            CTkMessagebox(title="Classificaiton in progress...",
+                          message="Working on it!\n"
+                          "Please be patient! Classificaiton can take a while depending on"
+                          " the number of points and the speed of your computer.\n\n",
+                          icon="info")
+
+            self.classification_btn.configure(state=customtkinter.DISABLED)
+            threading.Thread(target=self.run_classification).start()
+        except Exception as e:
+            self.classification_btn.configure(state=customtkinter.NORMAL)
+            pass
+        return True
+
+    def run_classification(self):
         model = ClassificationUtils.load_joblib(self.MODELS[self.selected_model])
 
         X, _ = ClassificationUtils.prepare_data_prediction(self.las_handler.data_frame)
         prediction = model.predict(X)
-
         self.las_handler.data_frame["classification"] = prediction
-        print("Success!")
+
+        self.classification_btn.configure(state=customtkinter.NORMAL)
+        CTkMessagebox(title="Classification completed", message=f"All done!\n\n Classification completed.",
+                      icon="check", option_1="OK")
+        self.__master.invoke_update_file_description()
 
     @property
     def las_handler(self) -> LasHandler:

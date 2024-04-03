@@ -72,6 +72,9 @@ class App(customtkinter.CTk):
     def invoke_update_loaded_points_count_lb(self):
         self.visualisation_frame.update_generated_points_count_lb()
 
+    def invoke_update_file_description(self):
+        self.file_frame.update_file_description(after_classification=True)
+
     @property
     def localization_file(self) -> Dict:
         return self.__localization_file

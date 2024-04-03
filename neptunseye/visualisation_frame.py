@@ -1,6 +1,7 @@
 import os
 import subprocess
 import threading
+import json
 
 import customtkinter
 from CTkMessagebox import CTkMessagebox
@@ -251,12 +252,13 @@ class VisualisationFrame(customtkinter.CTkFrame):
                                                                  f" points smoothly.\n"
                                                                  f"Consider using another method or display just a "
                                                                  f"part of the file using batching.\n\n"
-                                                                 "Do you want to cancel rendering?",
+                                                                 "Do you want to continue?",
                                 icon="warning", options=["Yes", "No"])
-            if msg.get() == "Yes":
+            if msg.get() == "No":
                 return False
 
         try:
+            self.render_btn.configure(state=customtkinter.DISABLED)
             if self.rendering_method == 'plotly':
                 CTkMessagebox(title="Rendering...", message="Working on it!\n"
                                                             "Please be patient! Rendering can take a while depending on"
@@ -281,6 +283,7 @@ class VisualisationFrame(customtkinter.CTkFrame):
                 threading.Thread(target=self.render_pptk).start()
         except Exception as e:
             CTkMessagebox(title="Error", message=str(e), icon="cancel")
+            self.render_btn.configure(state=customtkinter.NORMAL)
             return False
 
         return True
