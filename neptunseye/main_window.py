@@ -69,11 +69,14 @@ class App(customtkinter.CTk):
         with open(f"localization_{self.language}.json", 'r', encoding='utf-8') as file:
             self.localization_file = json.load(file)
 
-    def invoke_update_loaded_points_count_lb(self):
+    def invoke_update_loaded_points_count_lb(self) -> None:
         self.visualisation_frame.update_generated_points_count_lb()
 
-    def invoke_update_file_description(self):
+    def invoke_update_file_description(self) -> None:
         self.file_frame.update_file_description(after_classification=True)
+
+    def get_stride(self) -> int:
+        return self.visualisation_frame.rendering_stride
 
     @property
     def localization_file(self) -> Dict:

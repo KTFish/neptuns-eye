@@ -11,21 +11,26 @@ from classification_utils import ClassificationUtils
 class ClassificationFrame(customtkinter.CTkFrame):
     __file_path: str
     __las_handler: LasHandler
+    __classification_stride: int
 
     frame_lb: customtkinter.CTkLabel
     model_lb: customtkinter.CTkLabel
     model_cbox: customtkinter.CTkComboBox
+    stride_ckb: customtkinter.CTkCheckBox
     classification_btn: customtkinter.CTkButton
 
     def __init__(self, master, las_handler: LasHandler, **kwargs):
         super().__init__(master, **kwargs)
 
-        self.MODELS = {"ExtraTreesClassifier": "resources\\models\\aha41.joblib"}
+        self.MODELS = {
+            "ExtraTreesClassifier": "resources\\models\\aha41.joblib"
+        }
 
         self.selected_model = "ExtraTreesClassifier"
 
         self.__las_handler = las_handler
         self.__master = master
+        self.use_stride = customtkinter.BooleanVar(value=False)
 
         self.set_frame_grid(6, 10)
 
@@ -75,6 +80,7 @@ class ClassificationFrame(customtkinter.CTkFrame):
                                                font=FONT_HELV_SMALL_B)
         self.model_cbox = customtkinter.CTkComboBox(self,
                                                     values=list(self.MODELS.keys()))
+        self.stride_ckb = customtkinter.CTkCheckBox(self, text="Use stride", variable=self.use_stride)
 
     def set_widgets_positioning(self) -> None:
         """
@@ -90,6 +96,7 @@ class ClassificationFrame(customtkinter.CTkFrame):
         self.model_lb.grid(row=1, column=0, padx=15, sticky="w")
         self.model_cbox.grid(row=2, column=0, padx=15, sticky="ew")
         self.classification_btn.grid(row=9, column=5)
+        self.stride_ckb.grid(row=9, column=4)
 
     def classification_event(self) -> bool:
 
@@ -115,14 +122,37 @@ class ClassificationFrame(customtkinter.CTkFrame):
     def run_classification(self):
         model = ClassificationUtils.load_joblib(self.MODELS[self.selected_model])
 
-        X, _ = ClassificationUtils.prepare_data_prediction(self.las_handler.data_frame)
-        prediction = model.predict(X)
-        self.las_handler.data_frame["classification"] = prediction
+        if self.use_stride:
+            self.classification_stride = self.get_classification_stride()
+            print("Classification stride is ", self.classification_stride)
+            X, _ = ClassificationUtils.prepare_data_prediction(self.las_handler.data_frame[::self.classification_stride])
+            prediction = model.predict(X)
+            prediction_fixed = ClassificationFrame.fix_prediction(prediction, self.classification_stride)
+            if len(prediction_fixed) != len(self.las_handler.data_frame['classification']):
+                prediction_fixed = prediction_fixed[:len(self.las_handler.data_frame['classification'])]
+            self.las_handler.data_frame['classification'] = prediction_fixed
+
+        else:
+            X, _ = ClassificationUtils.prepare_data_prediction(self.las_handler.data_frame)
+            prediction = model.predict(X)
+            self.las_handler.data_frame['classification'] = prediction
 
         self.classification_btn.configure(state=customtkinter.NORMAL)
         CTkMessagebox(title="Classification completed", message=f"All done!\n\n Classification completed.",
                       icon="check", option_1="OK")
         self.__master.invoke_update_file_description()
+        print(self.las_handler.data_frame["classification"])
+
+    def get_classification_stride(self) -> int:
+        return self.__master.get_stride()
+
+    @staticmethod
+    def fix_prediction(prediction, stride):
+        new_values = [0] * (len(prediction) * stride)
+        for i, val in enumerate(prediction):
+            new_index = i * stride
+            new_values[new_index] = val
+        return new_values
 
     @property
     def las_handler(self) -> LasHandler:
@@ -132,3 +162,10 @@ class ClassificationFrame(customtkinter.CTkFrame):
     def las_handler(self, value: LasHandler) -> None:
         self.__las_handler = value
 
+    @property
+    def classification_stride(self) -> int:
+        return self.__classification_stride
+
+    @classification_stride.setter
+    def classification_stride(self, value: int) -> None:
+        self.__classification_stride = value

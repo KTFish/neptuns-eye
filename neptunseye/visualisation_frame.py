@@ -44,11 +44,11 @@ class VisualisationFrame(customtkinter.CTkFrame):
         self.rendering_stride = 15
         self.generated_points_count = 0
 
-        self.rendering_methods_limits = {"pptk": 10000000,
+        self.rendering_methods_limits = {"PPTools": 10000000,
                                          "plotly": 600000,
                                          "matplotlib": 200000}
 
-        self.rendering_method = "pptk"
+        self.rendering_method = list(self.rendering_methods_limits.keys())[0]
 
         self.set_frame_grid(10, 10)
 
@@ -259,14 +259,14 @@ class VisualisationFrame(customtkinter.CTkFrame):
 
         try:
             self.render_btn.configure(state=customtkinter.DISABLED)
-            if self.rendering_method == 'plotly':
+            if self.rendering_method == list(self.rendering_methods_limits.keys())[1]:
                 CTkMessagebox(title="Rendering...", message="Working on it!\n"
                                                             "Please be patient! Rendering can take a while depending on"
                                                             " the number of points and the speed of your computer.\n\n"
                                                             "The result should pop up in your main browser!",
                               icon="info")
                 threading.Thread(target=self.render_plotly).start()
-            elif self.rendering_method == 'matplotlib':
+            elif self.rendering_method == list(self.rendering_methods_limits.keys())[2]:
                 CTkMessagebox(title="Rendering...", message="Working on it!\n"
                                                             "Please be patient! Rendering can take a while depending on"
                                                             " the number of points and the speed of your computer.\n"
@@ -274,7 +274,7 @@ class VisualisationFrame(customtkinter.CTkFrame):
                                                             "The result should pop up in a separate window!",
                               icon="info")
                 threading.Thread(target=self.render_matplotlib).start()
-            elif self.rendering_method == 'pptk':
+            elif self.rendering_method == list(self.rendering_methods_limits.keys())[0]:
                 CTkMessagebox(title="Rendering...", message="Working on it!\n"
                                                             "Please be patient! Rendering can take a while depending on"
                                                             " the number of points and the speed of your computer.\n\n"
@@ -353,6 +353,7 @@ class VisualisationFrame(customtkinter.CTkFrame):
         self.rendering_progress_lb.configure(text="Please wait. Rendering in progress...", text_color="red")
         self.las_handler.visualize_las_2d_plotly(self.rendering_stride)
         self.rendering_progress_lb.configure(text="Done!", text_color="green")
+        self.render_btn.configure(state="normal")
 
     def render_matplotlib(self) -> None:
         """
@@ -366,6 +367,7 @@ class VisualisationFrame(customtkinter.CTkFrame):
                                                      batch_size=5000,
                                                      pause_interval=0.05)
         self.rendering_progress_lb.configure(text="Done!", text_color="green")
+        self.render_btn.configure(state="normal")
 
     def render_pptk(self) -> None:
         """
@@ -387,6 +389,7 @@ class VisualisationFrame(customtkinter.CTkFrame):
         os.environ.copy()
         subprocess.run([python37_path, script_path, dataframe_temp_file_path], check=True, text=True)
         self.rendering_progress_lb.configure(text="Done!", text_color="green")
+        self.render_btn.configure(state="normal")
 
     def save_selected_columns_to_csv(self, selected_columns, filename=".tempdf.csv") -> None:
         """
