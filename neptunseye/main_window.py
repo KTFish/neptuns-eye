@@ -25,6 +25,7 @@ class App(customtkinter.CTk):
     file_frame: FileFrame
 
     APP_ICON_PATH = "resources\\neptuns-eye-logo.ico"
+    APP_VERSION = "0.1.0"
 
     def __init__(self) -> None:
         super().__init__()
@@ -33,7 +34,7 @@ class App(customtkinter.CTk):
         self.__las_handler = LasHandler()
 
         # Window setup
-        self.title("Neptun's Eye v0.1")
+        self.title(f"Neptun's Eye v{self.APP_VERSION}")
         self.width = int(self.winfo_screenwidth() / 2.5)
         self.height = int(self.winfo_screenheight() / 2)
         self.geometry(f"{self.width}x{self.height}")

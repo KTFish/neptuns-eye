@@ -122,7 +122,7 @@ class ClassificationFrame(customtkinter.CTkFrame):
     def run_classification(self):
         model = ClassificationUtils.load_joblib(self.MODELS[self.selected_model])
 
-        if self.use_stride:
+        if self.use_stride.get():
             self.classification_stride = self.get_classification_stride()
             print("Classification stride is ", self.classification_stride)
             X, _ = ClassificationUtils.prepare_data_prediction(self.las_handler.data_frame[::self.classification_stride])
