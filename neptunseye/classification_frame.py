@@ -23,10 +23,11 @@ class ClassificationFrame(customtkinter.CTkFrame):
         super().__init__(master, **kwargs)
 
         self.MODELS = {
-            "ExtraTreesClassifier": "resources\\models\\aha41.joblib"
+            "ExtraTreesClassifier": "resources\\models\\aha41.joblib",
+            "ExtraTreesClassifier851": "resources\\models\\ExtraTreesClassifier851.joblib"
         }
 
-        self.selected_model = "ExtraTreesClassifier"
+        self.selected_model = customtkinter.StringVar(value="ExtraTreesClassifier")
 
         self.__las_handler = las_handler
         self.__master = master
@@ -79,8 +80,11 @@ class ClassificationFrame(customtkinter.CTkFrame):
                                                text="Select model",
                                                font=FONT_HELV_SMALL_B)
         self.model_cbox = customtkinter.CTkComboBox(self,
-                                                    values=list(self.MODELS.keys()))
-        self.stride_ckb = customtkinter.CTkCheckBox(self, text="Use stride", variable=self.use_stride)
+                                                    values=list(self.MODELS.keys()),
+                                                    variable=self.selected_model)
+        self.stride_ckb = customtkinter.CTkCheckBox(self,
+                                                    text="Use stride",
+                                                    variable=self.use_stride)
 
     def set_widgets_positioning(self) -> None:
         """
@@ -94,7 +98,7 @@ class ClassificationFrame(customtkinter.CTkFrame):
         """
         self.frame_lb.grid(row=0, column=0, columnspan=7, pady=0, sticky="ew")
         self.model_lb.grid(row=1, column=0, padx=15, sticky="w")
-        self.model_cbox.grid(row=2, column=0, padx=15, sticky="ew")
+        self.model_cbox.grid(row=2, column=0, columnspan=4, padx=15, sticky="ew")
         self.classification_btn.grid(row=9, column=5)
         self.stride_ckb.grid(row=9, column=4)
 
@@ -120,7 +124,8 @@ class ClassificationFrame(customtkinter.CTkFrame):
         return True
 
     def run_classification(self):
-        model = ClassificationUtils.load_joblib(self.MODELS[self.selected_model])
+        print("Loading model from", self.MODELS[self.selected_model.get()])
+        model = ClassificationUtils.load_joblib(self.MODELS[self.selected_model.get()])
 
         if self.use_stride.get():
             self.classification_stride = self.get_classification_stride()
@@ -141,7 +146,6 @@ class ClassificationFrame(customtkinter.CTkFrame):
         CTkMessagebox(title="Classification completed", message=f"All done!\n\n Classification completed.",
                       icon="check", option_1="OK")
         self.__master.invoke_update_file_description()
-        print(self.las_handler.data_frame["classification"])
 
     def get_classification_stride(self) -> int:
         return self.__master.get_stride()

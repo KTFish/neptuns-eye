@@ -350,7 +350,6 @@ class VisualisationFrame(customtkinter.CTkFrame):
     @staticmethod
     def select_dataframe_batch(p: int, q: int, dataframe: pd.DataFrame) -> pd.DataFrame:
         batch_size = len(dataframe) // q
-        print(p, q)
 
         start_index = (p - 1) * batch_size
         end_index = p * batch_size if p < q else None

@@ -138,7 +138,6 @@ class LasHandler(object):
         columns = [dimension.name for dimension in self.las.point_format.dimensions]
         data = np.vstack([getattr(self.las, dimension) for dimension in columns]).transpose()
         df = pd.DataFrame(data, columns=columns)
-        print(df)
         return df
 
     @property
