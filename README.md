@@ -30,7 +30,7 @@ artificial intelligence.
 - Install `poetry`. Check if it is installed correctly by running `poetry --vesion`.
 - Install dependencies using `poetry`.
 
-### Details
+### Installation Details
 
 Create virtual environment:
 
@@ -50,6 +50,12 @@ and directly install dependencies from `pyproject.toml` file. This is left here 
 ```commandline
 poetry add $(cat requirements.txt)
 ```
+
+### Run
+```commandline
+poetry run python ./neptunseye/main.py
+```
+
 
 ### Reference materials
 
