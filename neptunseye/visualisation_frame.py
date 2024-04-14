@@ -1,6 +1,7 @@
 import os
 import subprocess
 import threading
+import json
 
 import customtkinter
 from CTkMessagebox import CTkMessagebox
@@ -15,18 +16,23 @@ class VisualisationFrame(customtkinter.CTkFrame):
     __rendering_stride: int
     __rendering_method: str
     __generated_points_count: int
+    __too_many_points: bool
 
     # Widgets definitions
-    # TODO: Comment every widgets' placement and function
     frame_lb: customtkinter.CTkLabel
     method_lb: customtkinter.CTkLabel
     stride_lb: customtkinter.CTkLabel
-    plotting_progress_lb: customtkinter.CTkLabel
+    rendering_progress_lb: customtkinter.CTkLabel
     generated_points_count_lb: customtkinter.CTkLabel
+    batches_count_lb: customtkinter.CTkLabel
+    batching_lb: customtkinter.CTkLabel
+    rendered_batch_lb: customtkinter.CTkLabel
     render_btn: customtkinter.CTkButton
     method_cbox: customtkinter.CTkComboBox
+    rendered_batch_cbox: customtkinter.CTkComboBox
     stride_sld: customtkinter.CTkSlider
     stride_ebox: customtkinter.CTkEntry
+    batches_count_sld: customtkinter.CTkSlider
     batch_ckb: customtkinter.CTkCheckBox
 
     def __init__(self, master, las_handler: LasHandler, **kwargs):
@@ -37,52 +43,23 @@ class VisualisationFrame(customtkinter.CTkFrame):
 
         self.rendering_stride = 15
         self.generated_points_count = 0
-        self.rendering_method = "plotly"
+        self.number_of_batches = 2
+        self.selected_batch = 1
+
+        self.rendering_methods_limits = {"PPTools": 10000000,
+                                         "plotly": 600000,
+                                         "matplotlib": 200000}
+
+        self.rendering_method = list(self.rendering_methods_limits.keys())[0]
 
         self.set_frame_grid(10, 10)
 
-        self.batch_variable = customtkinter.BooleanVar(value=False)
+        self.batching_enabled_variable = customtkinter.BooleanVar(value=False)
+        self.selected_batch_variable = customtkinter.StringVar(value=str(self.selected_batch))
 
         self.initialize_widgets()
-
         self.set_widgets_default_configuration()
-
         self.set_widgets_positioning()
-
-    def initialize_widgets(self):
-        """Initializes all the widgets used in the GUI.
-
-        This function creates instances of various CustomTkinter widgets
-        and configures their basic properties. These widgets represent the
-        user interface elements for interacting with the application.
-
-        Returns:
-            None
-        """
-        self.frame_lb = customtkinter.CTkLabel(self, text="Visualisation options",
-                                               font=FONT_HELV_MEDIUM_B,
-                                               anchor='center',
-                                               justify='center')
-        self.render_btn = customtkinter.CTkButton(self, text="Render visualisation",
-                                                  command=self.render_event)
-        self.method_lb = customtkinter.CTkLabel(self, text="Rendering tool")
-        self.method_cbox = customtkinter.CTkComboBox(self, values=["plotly", "matplotlib", "pptk"],
-                                                     command=self.update_rendering_method_event)
-        self.stride_lb = customtkinter.CTkLabel(self, text="Rendering stride")
-        self.stride_sld = customtkinter.CTkSlider(self, from_=1,
-                                                  to=100,
-                                                  number_of_steps=100,
-                                                  progress_color='#3a7ebf',
-                                                  command=self.update_rendering_stride_event)
-        self.stride_ebox = customtkinter.CTkEntry(self, width=50,
-                                                  height=10,
-                                                  textvariable=customtkinter.StringVar(
-                                                      value=str(self.rendering_stride)))
-        self.plotting_progress_lb = customtkinter.CTkLabel(self, text=" ")
-
-        self.batch_ckb = customtkinter.CTkCheckBox(self, text="Batching",
-                                                   variable=self.batch_variable)
-        self.generated_points_count_lb = customtkinter.CTkLabel(self, text="")
 
     def set_frame_grid(self, num_columns: int, num_rows: int) -> None:
         """Sets up the grid layout for the GUI frame.
@@ -104,6 +81,69 @@ class VisualisationFrame(customtkinter.CTkFrame):
         for i in range(num_rows):
             self.grid_rowconfigure(i, weight=1)
 
+    def initialize_widgets(self):
+        """Initializes all the widgets used in the GUI.
+
+        This function creates instances of various CustomTkinter widgets
+        and configures their basic properties. These widgets represent the
+        user interface elements for interacting with the application.
+
+        Returns:
+            None
+        """
+        self.frame_lb = customtkinter.CTkLabel(self,
+                                               text="Visualisation options",
+                                               font=FONT_HELV_MEDIUM_B,
+                                               anchor='center',
+                                               justify='center')
+        self.render_btn = customtkinter.CTkButton(self,
+                                                  text="Render visualisation",
+                                                  command=self.render_event)
+        self.method_lb = customtkinter.CTkLabel(self,
+                                                text="Rendering tool",
+                                                font=FONT_HELV_SMALL_B)
+        self.method_cbox = customtkinter.CTkComboBox(self,
+                                                     values=list(self.rendering_methods_limits.keys()),
+                                                     command=self.update_rendering_method_event)
+        self.stride_lb = customtkinter.CTkLabel(self,
+                                                text="Rendering stride")
+        self.stride_sld = customtkinter.CTkSlider(self,
+                                                  from_=1,
+                                                  to=100,
+                                                  number_of_steps=100,
+                                                  progress_color='#3a7ebf',
+                                                  command=self.update_rendering_stride_event)
+        self.stride_ebox = customtkinter.CTkEntry(self,
+                                                  width=50,
+                                                  height=28,
+                                                  textvariable=customtkinter.StringVar(
+                                                      value=str(self.rendering_stride)))
+        self.rendering_progress_lb = customtkinter.CTkLabel(self,
+                                                            text=" ")
+        self.batch_ckb = customtkinter.CTkCheckBox(self,
+                                                   text="Enable",
+                                                   variable=self.batching_enabled_variable,
+                                                   command=self.batching_changed_state_event)
+        self.generated_points_count_lb = customtkinter.CTkLabel(self, text="")
+        self.batching_lb = customtkinter.CTkLabel(self,
+                                                  text="Batching",
+                                                  font=FONT_HELV_SMALL_B)
+        self.batches_count_lb = customtkinter.CTkLabel(self,
+                                                       text="Number of batches")
+        self.batches_count_sld = customtkinter.CTkSlider(self,
+                                                         from_=1,
+                                                         to=10,
+                                                         number_of_steps=10,
+                                                         progress_color='#3a7ebf',
+                                                         command=self.update_batches_count_event)
+        self.rendered_batch_lb = customtkinter.CTkLabel(self,
+                                                        text="Rendered batch #:")
+        self.rendered_batch_cbox = customtkinter.CTkComboBox(self,
+                                                             width=100,
+                                                             values=[str(i) for i in
+                                                                     range(1, self.number_of_batches + 1)],
+                                                             variable=self.selected_batch_variable)
+
     def set_widgets_positioning(self) -> None:
         """
         Sets the grid positioning for all the widgets in the GUI.
@@ -114,16 +154,21 @@ class VisualisationFrame(customtkinter.CTkFrame):
         Returns:
             None
         """
-        self.frame_lb.grid(row=0, column=0, columnspan=9, sticky="ew")
-        self.method_lb.grid(row=1, column=0, padx=10, sticky="ew")
-        self.method_cbox.grid(row=2, column=0, padx=10, sticky="ew")
-        self.batch_ckb.grid(row=2, column=1)
-        self.stride_lb.grid(row=3, column=0, columnspan=2, padx=10, sticky="ew")
-        self.stride_sld.grid(row=4, column=0, columnspan=2, padx=10, sticky="ew")
-        self.generated_points_count_lb.grid(row=5, column=0, columnspan=2, padx=10, sticky="w")
-        self.stride_ebox.grid(row=4, column=2, padx=10, sticky="w")
-        self.render_btn.grid(row=9, column=3)
-        self.plotting_progress_lb.grid(row=9, column=1)
+        self.frame_lb.grid(row=0, column=0, columnspan=10, sticky="nsew")
+        self.method_lb.grid(row=1, column=0, padx=15, sticky="w")
+        self.method_cbox.grid(row=2, column=0, padx=15, sticky="ew")
+        self.stride_lb.grid(row=3, column=0, columnspan=2, padx=15, sticky="w")
+        self.stride_sld.grid(row=4, column=0, columnspan=2, padx=15, sticky="ew")
+        self.generated_points_count_lb.grid(row=5, column=0, columnspan=2, padx=20, sticky="w")
+        self.stride_ebox.grid(row=4, column=2, padx=15, sticky="w")
+        self.render_btn.grid(row=9, column=9, padx=10, pady=10, sticky="e")
+        self.rendering_progress_lb.grid(row=9, column=7, columnspan=2, sticky="w")
+        self.batching_lb.grid(row=1, column=3, sticky="w")
+        self.batch_ckb.grid(row=2, column=3, sticky="w")
+        self.batches_count_lb.grid(row=3, column=3, sticky="w")
+        self.batches_count_sld.grid(row=4, column=3, sticky="w")
+        self.rendered_batch_lb.grid(row=3, column=4, sticky="w")
+        self.rendered_batch_cbox.grid(row=4, column=4, sticky="w")
 
     def set_widgets_default_configuration(self) -> None:
         """
@@ -140,7 +185,9 @@ class VisualisationFrame(customtkinter.CTkFrame):
         self.stride_ebox.bind("<KeyRelease>", lambda event: self.stride_entry_event(self.stride_ebox))
         self.method_cbox.configure(state="readonly")
         self.stride_sld.set(self.rendering_stride)
-        self.batch_ckb.configure(state="disabled")
+        self.batches_count_sld.set(self.number_of_batches)
+        self.batches_count_sld.configure(state="disabled")
+        self.rendered_batch_cbox.configure(state="disabled")
 
     @staticmethod
     def stride_entry_validate(text: str) -> bool:
@@ -207,31 +254,47 @@ class VisualisationFrame(customtkinter.CTkFrame):
                                                            "Load .las file first.", icon="cancel")
             return False
 
+        if self.too_many_points:
+            msg = CTkMessagebox(title="Too many points", message="Woah!\n"
+                                                                 "That's a lot of points!\n"
+                                                                 f"Selected rendering method ({self.rendering_method}) "
+                                                                 f"can only render around "
+                                                                 f"{self.rendering_methods_limits[self.rendering_method]}"
+                                                                 f" points smoothly.\n"
+                                                                 f"Consider using another method or display just a "
+                                                                 f"part of the file using batching.\n\n"
+                                                                 "Do you want to continue?",
+                                icon="warning", options=["Yes", "No"])
+            if msg.get() == "No":
+                return False
+
         try:
-            if self.rendering_method == 'plotly':
+            self.render_btn.configure(state=customtkinter.DISABLED)
+            if self.rendering_method == list(self.rendering_methods_limits.keys())[1]:
                 CTkMessagebox(title="Rendering...", message="Working on it!\n"
                                                             "Please be patient! Rendering can take a while depending on"
                                                             " the number of points and the speed of your computer.\n\n"
                                                             "The result should pop up in your main browser!",
                               icon="info")
-                threading.Thread(target=self.render_plotly_async).start()
-            elif self.rendering_method == 'matplotlib':
+                threading.Thread(target=self.render_plotly).start()
+            elif self.rendering_method == list(self.rendering_methods_limits.keys())[2]:
                 CTkMessagebox(title="Rendering...", message="Working on it!\n"
                                                             "Please be patient! Rendering can take a while depending on"
                                                             " the number of points and the speed of your computer.\n"
                                                             "Take note that matplotlib is slow with large data sets.\n\n"
                                                             "The result should pop up in a separate window!",
                               icon="info")
-                threading.Thread(target=self.render_matplotlib_async).start()
-            elif self.rendering_method == 'pptk':
+                threading.Thread(target=self.render_matplotlib).start()
+            elif self.rendering_method == list(self.rendering_methods_limits.keys())[0]:
                 CTkMessagebox(title="Rendering...", message="Working on it!\n"
                                                             "Please be patient! Rendering can take a while depending on"
                                                             " the number of points and the speed of your computer.\n\n"
                                                             "The result should pop up in a separate window!",
                               icon="info")
-                self.render_pptk()
+                threading.Thread(target=self.render_pptk).start()
         except Exception as e:
             CTkMessagebox(title="Error", message=str(e), icon="cancel")
+            self.render_btn.configure(state=customtkinter.NORMAL)
             return False
 
         return True
@@ -251,7 +314,12 @@ class VisualisationFrame(customtkinter.CTkFrame):
         self.stride_ebox.delete(0, "end")
         self.stride_ebox.insert(0, self.rendering_stride)
 
-    def update_generated_points_count_lb(self, color=None):
+    def update_batches_count_event(self, slider_value: float) -> None:
+        if self.batching_enabled_variable:
+            self.number_of_batches = round(slider_value)
+        self.rendered_batch_cbox.configure(values=[str(i) for i in range(1, self.number_of_batches + 1)])
+
+    def update_generated_points_count_lb(self):
         """
         Update the label showing the count of generated points.
 
@@ -262,57 +330,113 @@ class VisualisationFrame(customtkinter.CTkFrame):
             None
         """
         if self.__las_handler.file_loaded:
-            self.generated_points_count = round(self.__las_handler.las.header.point_count / self.rendering_stride)
+            self.generated_points_count = round(self.las_handler.las.header.point_count / self.rendering_stride)
             formatted_generated_points_count = f"{self.generated_points_count:,}".replace(',', ' ')
             self.generated_points_count_lb.configure(text=f"{formatted_generated_points_count} points will"
-                                                          f" be generated.")
-        if color is not None:
-            self.generated_points_count_lb.configure(text_color=color)
+                                                          f" be rendered.")
+        if not self.check_rendering_method_limit(self.generated_points_count):
+            self.generated_points_count_lb.configure(text_color="orange")
+            self.too_many_points = True
+        else:
+            # TODO: FIX
+            self.generated_points_count_lb.configure(text_color="white")
+            self.too_many_points = False
+
+    def check_rendering_method_limit(self, point_count: int) -> bool:
+        if point_count > self.rendering_methods_limits[self.rendering_method]:
+            return False
+        return True
+
+    @staticmethod
+    def select_dataframe_batch(p: int, q: int, dataframe: pd.DataFrame) -> pd.DataFrame:
+        batch_size = len(dataframe) // q
+
+        start_index = (p - 1) * batch_size
+        end_index = p * batch_size if p < q else None
+
+        return dataframe.iloc[start_index:end_index]
 
     def update_rendering_method_event(self, rendering_method: str) -> None:
-        # TODO: TO BE REMOVED
+        """
+        Update the rendering method used for visualizing the data.
+
+        Args:
+            rendering_method (str): The new rendering method to be used.
+
+        Returns:
+            None
+        """
         self.rendering_method = rendering_method
-        if rendering_method == "matplotlib":
-            self.batch_ckb.configure(state="normal")
+
+    def batching_changed_state_event(self) -> None:
+        if self.batching_enabled_variable.get():
+            self.batches_count_sld.configure(state="normal")
+            self.rendered_batch_cbox.configure(state="normal")
         else:
-            self.batch_ckb.deselect()
-            self.batch_ckb.configure(state="disabled")
+            self.batches_count_sld.configure(state="disabled")
+            self.rendered_batch_cbox.configure(state="disabled")
 
-    def render_plotly_async(self):
+    def render_plotly(self) -> None:
         """
-        Asynchronously renders LAS data using Plotly.
+        Renders LAS data using Plotly.
 
         Returns:
             None
         """
-        self.plotting_progress_lb.configure(text="Plotting in progress...", text_color="red")
-        self.__las_handler.visualize_las_2d_plotly(self.rendering_stride)
-        self.plotting_progress_lb.configure(text="Done!", text_color="green")
+        self.rendering_progress_lb.configure(text="Please wait. Rendering in progress...", text_color="red")
+        if self.batching_enabled_variable.get():
+            df_batch = VisualisationFrame.select_dataframe_batch(int(self.selected_batch_variable.get()),
+                                                                 self.number_of_batches, self.las_handler.data_frame)
+            self.las_handler.visualize_las_2d_plotly(self.rendering_stride, df_batch)
+        else:
+            self.las_handler.visualize_las_2d_plotly(self.rendering_stride)
 
-    def render_matplotlib_async(self):
+        self.rendering_progress_lb.configure(text="Done!", text_color="green")
+        self.render_btn.configure(state="normal")
+
+    def render_matplotlib(self) -> None:
         """
-        Asynchronously renders LAS data using Matplotlib.
+        Renders LAS data using Matplotlib.
 
         Returns:
             None
         """
-        self.plotting_progress_lb.configure(text="Plotting in progress...", text_color="red")
-        self.__las_handler.visualize_las_2d_matplotlib(self.rendering_stride,
-                                                       batch_size=5000,
-                                                       pause_interval=0.05)
-        self.plotting_progress_lb.configure(text="Done!", text_color="green")
+        self.rendering_progress_lb.configure(text="Please wait. Rendering in progress...", text_color="red")
+        if self.batching_enabled_variable.get():
+            df_batch = VisualisationFrame.select_dataframe_batch(int(self.selected_batch_variable.get()),
+                                                                 self.number_of_batches, self.las_handler.data_frame)
+            self.las_handler.visualize_las_2d_matplotlib(self.rendering_stride,
+                                                         df_batch,
+                                                         batch_size=5000,
+                                                         pause_interval=0.05)
+        else:
+            self.las_handler.visualize_las_2d_matplotlib(self.rendering_stride,
+                                                         batch_size=5000,
+                                                         pause_interval=0.05)
+        self.rendering_progress_lb.configure(text="Done!", text_color="green")
+        self.render_btn.configure(state="normal")
 
-    def render_pptk(self):
+    def render_pptk(self) -> None:
+        """
+        Renders LAS data using pptk.
+
+        Returns:
+            None
+        """
+        self.rendering_progress_lb.configure(text="Please wait. Rendering in progress...", text_color="red")
+
         local_app_data_path = os.environ.get("LOCALAPPDATA", "")
         python37_path = local_app_data_path + "\\Programs\\Python\\python37\\python.exe"
         print(python37_path)
         script_path = "script_pptk.py"
         dataframe_temp_file_path = ".tempdf.csv"
 
-        self.save_selected_columns_to_csv(['X', 'Y', 'Z', 'red', 'green', 'blue'])
+        self.save_selected_columns_to_csv(['X', 'Y', 'Z', 'red', 'green', 'blue', 'classification'])
 
         os.environ.copy()
         subprocess.run([python37_path, script_path, dataframe_temp_file_path], check=True, text=True)
+        self.rendering_progress_lb.configure(text="Done!", text_color="green")
+        self.render_btn.configure(state="normal")
 
     def save_selected_columns_to_csv(self, selected_columns, filename=".tempdf.csv") -> None:
         """
@@ -326,9 +450,16 @@ class VisualisationFrame(customtkinter.CTkFrame):
             None
         """
 
-        df_stride = self.las_handler.data_frame.iloc[::self.rendering_stride].copy()
-        selected_df = df_stride[selected_columns]
-        selected_df.to_csv(filename, index=False)
+        if self.batching_enabled_variable.get():
+            data_frame = VisualisationFrame.select_dataframe_batch(int(self.selected_batch_variable.get()),
+                                                                   self.number_of_batches, self.las_handler.data_frame)
+            df_stride = data_frame.iloc[::self.rendering_stride].copy()
+            selected_df = df_stride[selected_columns]
+            selected_df.to_csv(filename, index=False)
+        else:
+            df_stride = self.las_handler.data_frame.iloc[::self.rendering_stride].copy()
+            selected_df = df_stride[selected_columns]
+            selected_df.to_csv(filename, index=False)
 
     @property
     def rendering_stride(self) -> int:
@@ -346,6 +477,10 @@ class VisualisationFrame(customtkinter.CTkFrame):
     def las_handler(self) -> LasHandler:
         return self.__las_handler
 
+    @property
+    def too_many_points(self) -> bool:
+        return self.__too_many_points
+
     @rendering_stride.setter
     def rendering_stride(self, value: int) -> None:
         self.__rendering_stride = value
@@ -361,3 +496,7 @@ class VisualisationFrame(customtkinter.CTkFrame):
     @las_handler.setter
     def las_handler(self, value: LasHandler) -> None:
         self.__las_handler = value
+
+    @too_many_points.setter
+    def too_many_points(self, value: bool) -> None:
+        self.__too_many_points = bool(value)

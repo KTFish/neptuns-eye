@@ -1,6 +1,8 @@
 import json
 from typing import Dict, Any
 
+import customtkinter
+
 from classification_frame import *
 from file_frame import *
 from las_handler import *
@@ -23,6 +25,7 @@ class App(customtkinter.CTk):
     file_frame: FileFrame
 
     APP_ICON_PATH = "resources\\neptuns-eye-logo.ico"
+    APP_VERSION = "0.1.0"
 
     def __init__(self) -> None:
         super().__init__()
@@ -31,7 +34,7 @@ class App(customtkinter.CTk):
         self.__las_handler = LasHandler()
 
         # Window setup
-        self.title("Neptun's Eye v0.1")
+        self.title(f"Neptun's Eye v{self.APP_VERSION}")
         self.width = int(self.winfo_screenwidth() / 2.5)
         self.height = int(self.winfo_screenheight() / 2)
         self.geometry(f"{self.width}x{self.height}")
@@ -51,7 +54,7 @@ class App(customtkinter.CTk):
             None
         """
         self.grid_rowconfigure((0, 1), weight=1)
-        self.grid_columnconfigure((0,1), weight=1)
+        self.grid_columnconfigure((0, 1), weight=1)
 
         self.file_frame = FileFrame(master=self, las_handler=self.__las_handler)
         self.file_frame.grid(row=0, column=0, padx=20, pady=20, sticky="nsew")
@@ -66,6 +69,15 @@ class App(customtkinter.CTk):
         """Loads and sets the localization."""
         with open(f"localization_{self.language}.json", 'r', encoding='utf-8') as file:
             self.localization_file = json.load(file)
+
+    def invoke_update_loaded_points_count_lb(self) -> None:
+        self.visualisation_frame.update_generated_points_count_lb()
+
+    def invoke_update_file_description(self) -> None:
+        self.file_frame.update_file_description(after_classification=True)
+
+    def get_stride(self) -> int:
+        return self.visualisation_frame.rendering_stride
 
     @property
     def localization_file(self) -> Dict:
