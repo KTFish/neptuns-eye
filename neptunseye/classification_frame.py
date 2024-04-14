@@ -23,8 +23,8 @@ class ClassificationFrame(customtkinter.CTkFrame):
         super().__init__(master, **kwargs)
 
         self.MODELS = {
-            "ExtraTreesClassifier": "resources\\models\\aha41.joblib",
-            "ExtraTreesClassifier851": "resources\\models\\ExtraTreesClassifier851.joblib"
+            "ExtraTreesClassifier": r"./neptunseye/resources/models/aha41.joblib",
+            "ExtraTreesClassifier851": r"./neptunseye/resources/models/ExtraTreesClassifier851.joblib"
         }
 
         self.selected_model = customtkinter.StringVar(value="ExtraTreesClassifier")
