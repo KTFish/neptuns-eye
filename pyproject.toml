@@ -6,7 +6,7 @@ authors = ["KNSI Czarna Magia <czarnamagiaknsi@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "3.11.4"
+python = "^3.11.4"
 contourpy = "1.2.0"
 ctkmessagebox = "2.5"
 customtkinter = "5.2.2"
