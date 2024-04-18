@@ -42,15 +42,15 @@ class LasHandler(object):
         else:
             data_frame = data_frame
 
-        predefined_colors = {
-            11: '#FF0000',  # Red
-            13: '#0000FF',  # Blue
-            25: '#FFFF00',  # Yellow
-            0: '#800080',  # Purple
-            1: '#008000',  # Green
-            15: '#FFA500',  # Orange
-            17: '#00FFFF',  # Cyan
-            19: '#FFC0CB'  # Pink
+        class_color_map = {
+            0: '#FFFFFF',  # 0 never classified - white
+            1: '#000000',  # 1 unclassified - black
+            11: '#0000FF',  # 11 ground - blue
+            13: '#007F00',  # 13 vegetation - green
+            15: '#00FFFF',  # 15 building - cyan
+            17: '#7F7F7F',  # 17 main road - gray
+            19: '#FF0000',  # 19 power lines - red
+            25: '#994B00',  # 25 minor road - brown
         }
 
         points = data_frame[['X', 'Y', 'Z']].values
@@ -65,7 +65,7 @@ class LasHandler(object):
         else:
             classification = data_frame['classification']
             classification = classification[::stride]
-            point_colors = [predefined_colors.get(c, '#FFFFFF') for c in classification]
+            point_colors = [class_color_map.get(c, '#FFFFFF') for c in classification]
 
         fig = go.Figure()
 
