@@ -28,7 +28,14 @@ class ClassificationFrame(ctk.CTkFrame):
 
         self.MODELS = {
             "ExtraTreesClassifier": r"./neptunseye/resources/models/aha41.joblib",
-            "ExtraTreesClassifier851": r"./neptunseye/resources/models/ExtraTreesClassifier851.joblib"
+            "ExtraTreesClassifier851": r"./neptunseye/resources/models/ExtraTreesClassifier851.joblib",
+            "AdaBoostClassifier731": r"./neptunseye/resources/models/AdaBoostClassifier731.joblib",
+            "BaggingClassifier650": r"./neptunseye/resources/models/BaggingClassifier650.joblib",
+            "GradientBoostingClassifier653": r"./neptunseye/resources/models/GradientBoostingClassifier653.joblib",
+            "HistGradientBoostingClassifier720": r"./neptunseye/resources/models/HistGradientBoostingClassifier720"
+                                                 r".joblib",
+            "KNeighborsClassifier795": r"./neptunseye/resources/models/KNeighborsClassifier795.joblib",
+            "RandomForestClassifier851": r"./neptunseye/resources/models/RandomForestClassifier851.joblib"
         }
 
         self.selected_model = ctk.StringVar(value="ExtraTreesClassifier")
@@ -111,7 +118,7 @@ class ClassificationFrame(ctk.CTkFrame):
         """
         self.frame_lb.grid(row=0, column=0, columnspan=7, pady=0, sticky="ew")
         self.model_lb.grid(row=1, column=0, padx=15, sticky="w")
-        self.model_cbox.grid(row=2, column=0, columnspan=4, padx=15, sticky="ew")
+        self.model_cbox.grid(row=2, column=0, columnspan=5, padx=15, sticky="we")
         self.classification_btn.grid(row=9, column=5)
         self.stride_ckb.grid(row=9, column=4)
         self.manage_output_lb.grid(row=1, column=5, padx=20, sticky="w")
@@ -141,9 +148,24 @@ class ClassificationFrame(ctk.CTkFrame):
                                                  f"{str(e)}", icon="cancel")
         return True
 
-    def run_classification(self):
+    def run_classification(self) -> bool:
         print("Loading model from", self.MODELS[self.selected_model.get()])
-        model = ClassificationUtils.load_joblib(self.MODELS[self.selected_model.get()])
+        try:
+            model = ClassificationUtils.load_joblib(self.MODELS[self.selected_model.get()])
+        except FileNotFoundError:
+            CTkMessagebox(title="Error", message="Whoops!\n\n"
+                                                 "Couldn't find the model\n\n"
+                                                 f"{self.selected_model.get()}\n\n"
+                                                 "Make sure the correct joblib file is placed in the resources\\models"
+                                                 "folder.", icon="cancel")
+            self.classification_btn.configure(state=ctk.NORMAL)
+            return False
+        except Exception as e:
+            CTkMessagebox(title="Error", message="That's not good!\n\n"
+                                                 "There was an error while loading the model!\n\n"
+                                                 f"{str(e)}", icon="cancel")
+            self.classification_btn.configure(state=ctk.NORMAL)
+            return False
 
         if self.use_stride.get():
             self.classification_stride = self.get_classification_stride()
@@ -164,6 +186,8 @@ class ClassificationFrame(ctk.CTkFrame):
         CTkMessagebox(title="Classification completed", message=f"All done!\n\n Classification completed.",
                       icon="check", option_1="OK")
         self.__master.invoke_update_file_description()
+
+        return True
 
     def get_classification_stride(self) -> int:
         return self.__master.get_stride()
