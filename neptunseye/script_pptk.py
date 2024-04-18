@@ -50,7 +50,7 @@ def render_pptk(csv_path) -> None:
 
     v = pptk.viewer(xyz)
     v.set(point_size=0.009)
-    v.attributes(classified, rgb)  # RGB values should be normalized
+    v.attributes(rgb, classified)  # RGB values should be normalized
     v.color_map(color_array, scale=[0, max_class])  # Ensure color map is used with the right scale
 
     os.remove(csv_path)

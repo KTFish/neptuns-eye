@@ -46,8 +46,9 @@ class VisualisationFrame(ctk.CTkFrame):
         self.number_of_batches = 2
         self.selected_batch = 1
 
-        self.rendering_methods_limits = {"PPTools": 10000000,
-                                         "plotly": 600000}
+        self.rendering_methods_limits = {"pptk": 10000000,
+                                         "plotly": 600000,
+                                         "polyscope": 1000000}
 
         self.rendering_method = list(self.rendering_methods_limits.keys())[0]
 
@@ -269,6 +270,14 @@ class VisualisationFrame(ctk.CTkFrame):
 
         try:
             self.render_btn.configure(state=ctk.DISABLED)
+            if self.rendering_method == list(self.rendering_methods_limits.keys())[2]:
+                CTkMessagebox(title="Rendering...", message="Working on it!\n\n"
+                                                            "Please be patient! Rendering can take a while depending on"
+                                                            " the number of points and the speed of your computer.\n\n"
+                                                            "The result should pop up in a separate window!",
+                              icon="info")
+                #threading.Thread(target=self.render_polyscope).start()
+                self.render_polyscope()
             if self.rendering_method == list(self.rendering_methods_limits.keys())[1]:
                 CTkMessagebox(title="Rendering...", message="Working on it!\n\n"
                                                             "Please be patient! Rendering can take a while depending on"
@@ -379,32 +388,38 @@ class VisualisationFrame(ctk.CTkFrame):
         if self.batching_enabled_variable.get():
             df_batch = VisualisationFrame.select_dataframe_batch(int(self.selected_batch_variable.get()),
                                                                  self.number_of_batches, self.las_handler.data_frame)
-            self.las_handler.visualize_las_2d_plotly(self.rendering_stride, df_batch)
+            self.las_handler.visualize_las_plotly(self.rendering_stride, df_batch)
         else:
-            self.las_handler.visualize_las_2d_plotly(self.rendering_stride)
+            self.las_handler.visualize_las_plotly(self.rendering_stride)
 
         self.rendering_progress_lb.configure(text="Done!", text_color="green")
         self.render_btn.configure(state="normal")
 
-    def render_matplotlib(self) -> None:
+    def render_polyscope(self) -> None:
         """
-        Renders LAS data using Matplotlib.
+        Renders LAS data using Polyscope.
 
         Returns:
             None
         """
+
         self.rendering_progress_lb.configure(text="Please wait. Rendering in progress...", text_color="red")
-        if self.batching_enabled_variable.get():
-            df_batch = VisualisationFrame.select_dataframe_batch(int(self.selected_batch_variable.get()),
-                                                                 self.number_of_batches, self.las_handler.data_frame)
-            self.las_handler.visualize_las_2d_matplotlib(self.rendering_stride,
-                                                         df_batch,
-                                                         batch_size=5000,
-                                                         pause_interval=0.05)
-        else:
-            self.las_handler.visualize_las_2d_matplotlib(self.rendering_stride,
-                                                         batch_size=5000,
-                                                         pause_interval=0.05)
+        try:
+            if self.batching_enabled_variable.get():
+                df_batch = VisualisationFrame.select_dataframe_batch(int(self.selected_batch_variable.get()),
+                                                                     self.number_of_batches, self.las_handler.data_frame)
+                self.las_handler.visualize_las_polyscope(self.rendering_stride, df_batch)
+            else:
+                self.las_handler.visualize_las_polyscope(self.rendering_stride)
+        except RuntimeError as e:
+            CTkMessagebox(title="Error", message="That's not good!\n\n"
+                                                 "Unexpected polyscope error ocurred!\nPlease try again.\n\n"
+                                                 f"{str(e)}", icon="cancel")
+        except Exception as e:
+            CTkMessagebox(title="Error", message="That's not good!\n\n"
+                                                 "Visualisation failed!\n\n"
+                                                 f"{str(e)}", icon="cancel")
+
         self.rendering_progress_lb.configure(text="Done!", text_color="green")
         self.render_btn.configure(state="normal")
 

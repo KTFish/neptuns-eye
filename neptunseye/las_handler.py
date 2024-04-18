@@ -1,9 +1,9 @@
 from typing import List
 
 import laspy
-import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+import polyscope as ps
 import plotly.graph_objects as go
 
 
@@ -34,7 +34,7 @@ class LasHandler(object):
             except Exception as e:
                 self.__exception = e
 
-    def visualize_las_2d_plotly(self, stride: int = 25, data_frame: pd.DataFrame = None):
+    def visualize_las_plotly(self, stride: int = 25, data_frame: pd.DataFrame = None):
 
         if data_frame is None:
             data_frame = self.data_frame
@@ -86,6 +86,41 @@ class LasHandler(object):
         ))
 
         fig.show()
+
+    def visualize_las_polyscope(self, stride: int = 25, data_frame: pd.DataFrame = None) -> None:
+
+        if data_frame is None:
+            data_frame = self.data_frame
+        else:
+            data_frame = data_frame
+
+        points = np.vstack((data_frame.X, data_frame.Y, data_frame.Z)).T
+        colors = np.vstack((data_frame.red, data_frame.green, data_frame.blue)).T / 65025
+
+        classifications = data_frame.classification.values
+        class_color_map = {
+            0: [1.0, 1.0, 1.0],  # 0 never classified - white
+            1: [0.0, 0.0, 0.0],  # 1 unclassified - black
+            11: [0.0, 0.0, 1.0],  # 11 ground - blue
+            13: [0.0, 0.5, 0.0],  # 13 vegetation - green
+            15: [0.0, 1.0, 1.0],  # 15 building - cyjan
+            17: [0.5, 0.5, 0.5],  # 17 main road - gray
+            19: [1.0, 0.0, 0.0],  # 19 power lines - red
+            25: [0.6, 0.29, 0.0],  # 25 minor road - brown
+        }
+        classification = np.array([class_color_map[class_val] for class_val in classifications])
+
+        ps.init()
+
+        ps.set_up_dir("z_up")
+        ps.set_front_dir("x_front")
+        ps.set_navigation_style("turntable")
+
+        cloud = ps.register_point_cloud("Point cloud", points[::stride], radius=0.0003, point_render_mode="quad")
+        cloud.add_color_quantity("classification", classification[::stride], enabled=True)
+        cloud.add_color_quantity("default", colors[::stride], enabled=True)
+
+        ps.show()
 
     def __get_unique_classes(self) -> List[int]:
         return self.data_frame['classification'].unique().tolist()
