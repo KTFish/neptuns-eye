@@ -1,10 +1,5 @@
-"""Work in progress"""
 import wandb
 import joblib
-
-
-def create_model_artifact():
-    pass
 
 
 def build_model_and_log(config, model):
@@ -24,7 +19,3 @@ def build_model_and_log(config, model):
 
     # run.log_artifact(model_artifact)
     return model
-
-
-def create_dataset_artifact():
-    pass

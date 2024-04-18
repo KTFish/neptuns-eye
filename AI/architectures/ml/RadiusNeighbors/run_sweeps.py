@@ -1,4 +1,4 @@
-"""Work in progress, data must be denoised"""
+"""Work in progress, data must be denoise"""
 from sklearn.neighbors import RadiusNeighborsClassifier
 from sklearn.metrics import accuracy_score
 
