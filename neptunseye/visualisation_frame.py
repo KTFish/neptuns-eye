@@ -425,10 +425,10 @@ class VisualisationFrame(customtkinter.CTkFrame):
         """
         self.rendering_progress_lb.configure(text="Please wait. Rendering in progress...", text_color="red")
 
-        local_app_data_path = os.environ.get("LOCALAPPDATA", "")
-        python37_path = local_app_data_path + "\\Programs\\Python\\python37\\python.exe"
+        userprofile_path = os.environ.get("USERPROFILE", "")
+        python37_path = userprofile_path + r"\.pyenv\pyenv-win\versions\3.7.9\python.exe"
         print(python37_path)
-        script_path = "script_pptk.py"
+        script_path = r".\neptunseye\script_pptk.py"
         dataframe_temp_file_path = ".tempdf.csv"
 
         self.save_selected_columns_to_csv(['X', 'Y', 'Z', 'red', 'green', 'blue', 'classification'])
