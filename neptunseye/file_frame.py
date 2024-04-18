@@ -12,7 +12,7 @@ class FileFrame(customtkinter.CTkFrame):
     __file_path: str
     __las_handler: LasHandler
 
-    CLASSES_DEFINITION_FILE_PATH = "config/classes_definition.json"
+    CLASSES_DEFINITION_FILE_PATH = r"./neptunseye/config/classes_definition.json"
 
     # Widget definitions
     frame_lb: customtkinter.CTkLabel
