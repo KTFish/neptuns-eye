@@ -12,7 +12,6 @@ class LasHandler(object):
     __file_path: str
     __file_loaded: bool
     __las: laspy.LasData
-    visualisation_figure: plt.Figure
     __exception: Exception
     __data_frame: pd.DataFrame
     __unique_classes: List[int]
@@ -98,31 +97,77 @@ class LasHandler(object):
         df = pd.DataFrame(data, columns=columns)
         return df
 
-    @property
-    def las(self) -> laspy.LasData:
-        return self.__las
+    def save_las_file(self, file_path: str = None) -> None:
+        las = laspy.create(point_format=2)
+
+        for column in self.data_frame.columns:
+            if column in las.point_format.dimension_names:
+                setattr(las, column, self.data_frame[column].values)
+
+        if file_path is None:
+            file_path = self.__file_path
+
+        try:
+            las.write(file_path)
+        except Exception as e:
+            self.__exception = e
+
+
 
     @property
-    def file_loaded(self) -> bool:
+    def file_path(self):
+        return self.__file_path
+
+    @file_path.setter
+    def file_path(self, value):
+        if not isinstance(value, str):
+            raise ValueError("File path must be a string")
+        self.__file_path = value
+
+    @property
+    def file_loaded(self):
         return self.__file_loaded
 
+    @file_loaded.setter
+    def file_loaded(self, value):
+        if not isinstance(value, bool):
+            raise ValueError("File loaded status must be a boolean")
+        self.__file_loaded = value
+
     @property
-    def exception(self) -> Exception:
+    def las(self):
+        return self.__las
+
+    @las.setter
+    def las(self, value):
+        if not isinstance(value, laspy.LasData):
+            raise ValueError("LAS data must be an instance of laspy.LasData")
+        self.__las = value
+
+    @property
+    def exception(self):
         return self.__exception
+
+    @exception.setter
+    def exception(self, value):
+        if not isinstance(value, Exception):
+            raise ValueError("Exception must be an instance of Exception")
+        self.__exception = value
+
+    @property
+    def data_frame(self):
+        return self.__data_frame
+
+    @data_frame.setter
+    def data_frame(self, value):
+        if not isinstance(value, pd.DataFrame) and value is not None:
+            raise ValueError("Data frame must be a pandas DataFrame")
+        self.__data_frame = value
 
     @property
     def unique_classes(self) -> List[int]:
         return self.__get_unique_classes()
 
-    @las.setter
-    def las(self, las: laspy.LasData) -> None:
-        self.__las = las
-
-    @file_loaded.setter
-    def file_loaded(self, file_loaded: bool) -> None:
-        self.__file_loaded = file_loaded
-
     @unique_classes.setter
     def unique_classes(self, unique_classes: List[int]) -> None:
         self.__unique_classes = unique_classes
-

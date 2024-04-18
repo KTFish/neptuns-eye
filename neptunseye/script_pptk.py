@@ -4,6 +4,7 @@ import sys
 import os
 import numpy as np
 
+
 def render_pptk(csv_path) -> None:
 
     print("Rendering point cloud using PPTK...")
@@ -53,7 +54,6 @@ def render_pptk(csv_path) -> None:
     v.color_map(color_array, scale=[0, max_class])  # Ensure color map is used with the right scale
 
     os.remove(csv_path)
-    print(f"Array used for color mapping: {color_array}")
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:

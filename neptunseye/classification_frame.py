@@ -1,4 +1,5 @@
 import threading
+from tkinter import filedialog
 
 import customtkinter as ctk
 from CTkMessagebox import CTkMessagebox
@@ -19,6 +20,8 @@ class ClassificationFrame(ctk.CTkFrame):
     model_cbox: ctk.CTkComboBox
     stride_ckb: ctk.CTkCheckBox
     classification_btn: ctk.CTkButton
+    save_btn: ctk.CTkButton
+    save_as_btn: ctk.CTkButton
 
     def __init__(self, master, las_handler: LasHandler, **kwargs):
         super().__init__(master, **kwargs)
@@ -70,23 +73,31 @@ class ClassificationFrame(ctk.CTkFrame):
             None
         """
         self.frame_lb = ctk.CTkLabel(self,
-                                               text="Classification options",
-                                               font=FONT_HELV_MEDIUM_B,
-                                               anchor='center',
-                                               justify='center')
+                                     text="Classification options",
+                                     font=FONT_HELV_MEDIUM_B,
+                                     anchor='center',
+                                     justify='center')
+        self.manage_output_lb = ctk.CTkLabel(self,
+                                             text="Manage output",
+                                             font=FONT_HELV_SMALL_B)
         self.classification_btn = ctk.CTkButton(self,
-                                                          text="Run classification",
-                                                          command=self.classification_event)
+                                                text="Run classification",
+                                                command=self.classification_event)
+        self.save_btn = ctk.CTkButton(self,
+                                      text="Save",
+                                      command=self.overwrite_las_file)
+        self.save_as_btn = ctk.CTkButton(self,
+                                         text="Save as...",
+                                         command=self.save_as_las_file)
         self.model_lb = ctk.CTkLabel(self,
-                                               text="Select model",
-                                               font=FONT_HELV_SMALL_B)
+                                     text="Select model",
+                                     font=FONT_HELV_SMALL_B)
         self.model_cbox = ctk.CTkComboBox(self,
-                                                    values=list(self.MODELS.keys()),
-                                                    variable=self.selected_model)
+                                          values=list(self.MODELS.keys()),
+                                          variable=self.selected_model)
         self.stride_ckb = ctk.CTkCheckBox(self,
-                                                    text="Use stride",
-                                                    variable=self.use_stride)
-        self.manage_output_lb = ctk.CTkLabel(self, text="w")
+                                          text="Use stride",
+                                          variable=self.use_stride)
 
     def set_widgets_positioning(self) -> None:
         """
@@ -103,26 +114,31 @@ class ClassificationFrame(ctk.CTkFrame):
         self.model_cbox.grid(row=2, column=0, columnspan=4, padx=15, sticky="ew")
         self.classification_btn.grid(row=9, column=5)
         self.stride_ckb.grid(row=9, column=4)
+        self.manage_output_lb.grid(row=1, column=5, padx=20, sticky="w")
+        self.save_btn.grid(row=2, column=5, padx=20, sticky="w")
+        self.save_as_btn.grid(row=3, column=5, padx=20, sticky="w")
 
     def classification_event(self) -> bool:
 
         if not self.__las_handler.file_loaded:
-            CTkMessagebox(title="File not loaded", message="Whoops!\n"
+            CTkMessagebox(title="File not loaded", message="Whoops!\n\n"
                                                            "Load .las file first.", icon="cancel")
             return False
 
         try:
             CTkMessagebox(title="Classificaiton in progress...",
-                          message="Working on it!\n"
-                          "Please be patient! Classificaiton can take a while depending on"
-                          " the number of points and the speed of your computer.\n\n",
+                          message="Working on it!\n\n"
+                                  "Please be patient! Classificaiton can take a while depending on"
+                                  " the number of points and the speed of your computer.\n\n",
                           icon="info")
 
             self.classification_btn.configure(state=ctk.DISABLED)
             threading.Thread(target=self.run_classification).start()
         except Exception as e:
             self.classification_btn.configure(state=ctk.NORMAL)
-            pass
+            CTkMessagebox(title="Error", message="That's not good!\n\n"
+                                                 "Classification failed!\n\n"
+                                                 f"{str(e)}", icon="cancel")
         return True
 
     def run_classification(self):
@@ -131,8 +147,8 @@ class ClassificationFrame(ctk.CTkFrame):
 
         if self.use_stride.get():
             self.classification_stride = self.get_classification_stride()
-            print("Classification stride is ", self.classification_stride)
-            X, _ = ClassificationUtils.prepare_data_prediction(self.las_handler.data_frame[::self.classification_stride])
+            X, _ = ClassificationUtils.prepare_data_prediction(
+                self.las_handler.data_frame[::self.classification_stride])
             prediction = model.predict(X)
             prediction_fixed = ClassificationFrame.fix_prediction(prediction, self.classification_stride)
             if len(prediction_fixed) != len(self.las_handler.data_frame['classification']):
@@ -152,6 +168,32 @@ class ClassificationFrame(ctk.CTkFrame):
     def get_classification_stride(self) -> int:
         return self.__master.get_stride()
 
+    def overwrite_las_file(self) -> None:
+        msg = CTkMessagebox(title="Save output",
+                            message=f"Are you sure you want to overwrite currently loaded file?\n\n"
+                                    f"This operation cannot be undone.\n\n",
+                            icon="question", option_1="No", option_2="Yes")
+        if msg.get() == "Yes":
+            self.las_handler.save_las_file()
+
+    def save_as_las_file(self) -> None:
+
+        file_name = ClassificationFrame.open_save_as_dialog()
+
+        self.las_handler.save_las_file(file_name)
+
+    @staticmethod
+    def open_save_as_dialog() -> str:
+        filetypes = (
+            ("Lidar point cloud data", "*.las"),
+            ("All files", "*.*")
+        )
+
+        file_path = filedialog.asksaveasfilename(title="Save as...", filetypes=filetypes, defaultextension=".las")
+        if file_path and not file_path.endswith(".las"):
+            file_path += ".las"
+
+        return file_path
     @staticmethod
     def fix_prediction(prediction, stride):
         new_values = [0] * (len(prediction) * stride)

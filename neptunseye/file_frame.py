@@ -171,27 +171,30 @@ class FileFrame(ctk.CTkFrame):
         Returns:
             None
         """
+
         try:
             temp_las_handler = LasHandler(self.file_path)
 
             self.las_handler.las = temp_las_handler.las
             self.las_handler.data_frame = temp_las_handler.create_dataframe()
             self.las_handler.file_loaded = True
+            self.las_handler.file_path = temp_las_handler.file_path
 
             formatted_points_loaded = f"{self.las_handler.las.header.point_count:,}".replace(',', ' ')
 
             CTkMessagebox(title="File loaded", message=f"{formatted_points_loaded} points loaded!",
                           icon="check", option_1="OK")
-            self.update_file_description()
         except Exception as e:
             if temp_las_handler.exception is not None:
                 e = temp_las_handler.exception
-            CTkMessagebox(title="Failed to load the file",
+            CTkMessagebox(title="Error",
                           message=f"Oh, snap!\n\nLooks like the file\n\n"
                                   f"\"{self.file_path}\"\n\n"
                                   f"is not a valid .las file or cannot be loaded!\n\n"
-                                  f"Description: {e}",
+                                  f"{str(e)}",
                           icon="cancel", option_1="OK", sound=True)
+
+        self.update_file_description()
 
     def update_file_path_tbox(self, path: str) -> None:
         """
@@ -238,8 +241,12 @@ class FileFrame(ctk.CTkFrame):
         for class_id in sorted(self.las_handler.unique_classes):
 
             with open(self.CLASSES_DEFINITION_FILE_PATH, 'r') as file:
-
-                class_definitions = json.load(file)
+                try:
+                    class_definitions = json.load(file)
+                except Exception as e:
+                    CTkMessagebox(title="Error", message="Something's not right!\n"
+                                                         "There's a problem with 'classes_definition.json' file!\n\n"
+                                                         f"{str(e)}", icon="cancel")
 
             class_definitions = {int(key): value for key, value in class_definitions.items()}
             class_definitions_keys = list(class_definitions.keys())

@@ -91,57 +91,57 @@ class VisualisationFrame(ctk.CTkFrame):
             None
         """
         self.frame_lb = ctk.CTkLabel(self,
-                                               text="Visualisation options",
-                                               font=FONT_HELV_MEDIUM_B,
-                                               anchor='center',
-                                               justify='center')
+                                     text="Visualisation options",
+                                     font=FONT_HELV_MEDIUM_B,
+                                     anchor='center',
+                                     justify='center')
         self.render_btn = ctk.CTkButton(self,
-                                                  text="Render visualisation",
-                                                  command=self.render_event)
+                                        text="Render visualisation",
+                                        command=self.render_event)
         self.method_lb = ctk.CTkLabel(self,
-                                                text="Rendering tool",
-                                                font=FONT_HELV_SMALL_B)
+                                      text="Rendering tool",
+                                      font=FONT_HELV_SMALL_B)
         self.method_cbox = ctk.CTkComboBox(self,
-                                                     values=list(self.rendering_methods_limits.keys()),
-                                                     command=self.update_rendering_method_event)
+                                           values=list(self.rendering_methods_limits.keys()),
+                                           command=self.update_rendering_method_event)
         self.stride_lb = ctk.CTkLabel(self,
-                                                text="Rendering stride")
+                                      text="Rendering stride")
         self.stride_sld = ctk.CTkSlider(self,
-                                                  from_=1,
-                                                  to=100,
-                                                  number_of_steps=100,
-                                                  progress_color='#3a7ebf',
-                                                  command=self.update_rendering_stride_event)
+                                        from_=1,
+                                        to=100,
+                                        number_of_steps=100,
+                                        progress_color='#3a7ebf',
+                                        command=self.update_rendering_stride_event)
         self.stride_ebox = ctk.CTkEntry(self,
-                                                  width=50,
-                                                  height=28,
-                                                  textvariable=ctk.StringVar(
-                                                      value=str(self.rendering_stride)))
+                                        width=50,
+                                        height=28,
+                                        textvariable=ctk.StringVar(
+                                            value=str(self.rendering_stride)))
         self.rendering_progress_lb = ctk.CTkLabel(self,
-                                                            text=" ")
+                                                  text=" ")
         self.batch_ckb = ctk.CTkCheckBox(self,
-                                                   text="Enable",
-                                                   variable=self.batching_enabled_variable,
-                                                   command=self.batching_changed_state_event)
+                                         text="Enable",
+                                         variable=self.batching_enabled_variable,
+                                         command=self.batching_changed_state_event)
         self.generated_points_count_lb = ctk.CTkLabel(self, text="")
         self.batching_lb = ctk.CTkLabel(self,
-                                                  text="Batching",
-                                                  font=FONT_HELV_SMALL_B)
+                                        text="Batching",
+                                        font=FONT_HELV_SMALL_B)
         self.batches_count_lb = ctk.CTkLabel(self,
-                                                       text="Number of batches")
+                                             text="Number of batches")
         self.batches_count_sld = ctk.CTkSlider(self,
-                                                         from_=1,
-                                                         to=10,
-                                                         number_of_steps=10,
-                                                         progress_color='#3a7ebf',
-                                                         command=self.update_batches_count_event)
+                                               from_=1,
+                                               to=10,
+                                               number_of_steps=10,
+                                               progress_color='#3a7ebf',
+                                               command=self.update_batches_count_event)
         self.rendered_batch_lb = ctk.CTkLabel(self,
-                                                        text="Rendered batch #:")
+                                              text="Rendered batch #:")
         self.rendered_batch_cbox = ctk.CTkComboBox(self,
-                                                             width=100,
-                                                             values=[str(i) for i in
-                                                                     range(1, self.number_of_batches + 1)],
-                                                             variable=self.selected_batch_variable)
+                                                   width=100,
+                                                   values=[str(i) for i in
+                                                           range(1, self.number_of_batches + 1)],
+                                                   variable=self.selected_batch_variable)
 
     def set_widgets_positioning(self) -> None:
         """
@@ -249,12 +249,12 @@ class VisualisationFrame(ctk.CTkFrame):
             bool: True if rendering is successfully initiated, False otherwise.
         """
         if not self.__las_handler.file_loaded:
-            CTkMessagebox(title="File not loaded", message="Whoops!\n"
+            CTkMessagebox(title="File not loaded", message="Whoops!\n\n"
                                                            "Load .las file first.", icon="cancel")
             return False
 
         if self.too_many_points:
-            msg = CTkMessagebox(title="Too many points", message="Woah!\n"
+            msg = CTkMessagebox(title="Too many points", message="Woah!\n\n"
                                                                  "That's a lot of points!\n"
                                                                  f"Selected rendering method ({self.rendering_method}) "
                                                                  f"can only render around "
@@ -270,21 +270,23 @@ class VisualisationFrame(ctk.CTkFrame):
         try:
             self.render_btn.configure(state=ctk.DISABLED)
             if self.rendering_method == list(self.rendering_methods_limits.keys())[1]:
-                CTkMessagebox(title="Rendering...", message="Working on it!\n"
+                CTkMessagebox(title="Rendering...", message="Working on it!\n\n"
                                                             "Please be patient! Rendering can take a while depending on"
                                                             " the number of points and the speed of your computer.\n\n"
                                                             "The result should pop up in your main browser!",
                               icon="info")
                 threading.Thread(target=self.render_plotly).start()
             elif self.rendering_method == list(self.rendering_methods_limits.keys())[0]:
-                CTkMessagebox(title="Rendering...", message="Working on it!\n"
+                CTkMessagebox(title="Rendering...", message="Working on it!\n\n"
                                                             "Please be patient! Rendering can take a while depending on"
                                                             " the number of points and the speed of your computer.\n\n"
                                                             "The result should pop up in a separate window!",
                               icon="info")
                 threading.Thread(target=self.render_pptk).start()
         except Exception as e:
-            CTkMessagebox(title="Error", message=str(e), icon="cancel")
+            CTkMessagebox(title="Error", message="That's not good!\n\n"
+                                                 "Visualisation failed!\n\n"
+                                                 f"{str(e)}", icon="cancel")
             self.render_btn.configure(state=ctk.NORMAL)
             return False
 
