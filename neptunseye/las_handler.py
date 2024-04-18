@@ -88,48 +88,6 @@ class LasHandler(object):
 
         fig.show()
 
-    def visualize_las_2d_matplotlib(self, stride: int = 15, data_frame: pd.DataFrame = None, **kwargs):
-        """kwargs: batch_size, pause_interval"""
-
-        if data_frame is None:
-            data_frame = self.data_frame
-        else:
-            data_frame = data_frame
-
-        points = data_frame[['X', 'Y', 'Z']].values
-        colors = data_frame[['red', 'green', 'blue']].values / 65535.0
-
-        points = points[::stride]
-        colors = colors[::stride]
-
-        fig = plt.figure(figsize=(14, 12))
-        ax = fig.add_subplot(111, projection='3d')
-        ax.set_xticks([])
-        ax.set_yticks([])
-        ax.set_zticks([])
-        ax.set_xlabel('')
-        ax.set_ylabel('')
-        ax.set_zlabel('')
-
-        total_points = len(points)
-        counter_text_obj = ax.text2D(0.05, 0.95, '', transform=ax.transAxes)
-
-        for start_idx in range(0, total_points, kwargs['batch_size']):
-            end_idx = min(start_idx + kwargs['batch_size'], total_points)
-
-            ax.scatter(points[start_idx:end_idx, 0], points[start_idx:end_idx, 1], points[start_idx:end_idx, 2],
-                       c=colors[start_idx:end_idx], s=0.2)
-
-            displayed_points = end_idx
-            counter_text = f'Points displayed: {displayed_points}/{total_points} --- {((end_idx / total_points) * 100):.1f}%'
-            counter_text_obj.set_text(counter_text)
-
-            plt.draw()
-            plt.gcf().canvas.manager.set_window_title('Neptun\'s Eye - 2D Visualization')
-            plt.pause(kwargs['pause_interval'])
-
-            plt.show()
-
     def __get_unique_classes(self) -> List[int]:
         return self.data_frame['classification'].unique().tolist()
 

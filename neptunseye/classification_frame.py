@@ -1,6 +1,6 @@
 import threading
 
-import customtkinter
+import customtkinter as ctk
 from CTkMessagebox import CTkMessagebox
 
 from las_handler import *
@@ -8,16 +8,17 @@ from resources.fonts import *
 from classification_utils import ClassificationUtils
 
 
-class ClassificationFrame(customtkinter.CTkFrame):
+class ClassificationFrame(ctk.CTkFrame):
     __file_path: str
     __las_handler: LasHandler
     __classification_stride: int
 
-    frame_lb: customtkinter.CTkLabel
-    model_lb: customtkinter.CTkLabel
-    model_cbox: customtkinter.CTkComboBox
-    stride_ckb: customtkinter.CTkCheckBox
-    classification_btn: customtkinter.CTkButton
+    frame_lb: ctk.CTkLabel
+    model_lb: ctk.CTkLabel
+    manage_output_lb: ctk.CTkLabel
+    model_cbox: ctk.CTkComboBox
+    stride_ckb: ctk.CTkCheckBox
+    classification_btn: ctk.CTkButton
 
     def __init__(self, master, las_handler: LasHandler, **kwargs):
         super().__init__(master, **kwargs)
@@ -27,11 +28,11 @@ class ClassificationFrame(customtkinter.CTkFrame):
             "ExtraTreesClassifier851": r"./neptunseye/resources/models/ExtraTreesClassifier851.joblib"
         }
 
-        self.selected_model = customtkinter.StringVar(value="ExtraTreesClassifier")
+        self.selected_model = ctk.StringVar(value="ExtraTreesClassifier")
 
         self.__las_handler = las_handler
         self.__master = master
-        self.use_stride = customtkinter.BooleanVar(value=False)
+        self.use_stride = ctk.BooleanVar(value=False)
 
         self.set_frame_grid(6, 10)
 
@@ -68,23 +69,24 @@ class ClassificationFrame(customtkinter.CTkFrame):
         Returns:
             None
         """
-        self.frame_lb = customtkinter.CTkLabel(self,
+        self.frame_lb = ctk.CTkLabel(self,
                                                text="Classification options",
                                                font=FONT_HELV_MEDIUM_B,
                                                anchor='center',
                                                justify='center')
-        self.classification_btn = customtkinter.CTkButton(self,
+        self.classification_btn = ctk.CTkButton(self,
                                                           text="Run classification",
                                                           command=self.classification_event)
-        self.model_lb = customtkinter.CTkLabel(self,
+        self.model_lb = ctk.CTkLabel(self,
                                                text="Select model",
                                                font=FONT_HELV_SMALL_B)
-        self.model_cbox = customtkinter.CTkComboBox(self,
+        self.model_cbox = ctk.CTkComboBox(self,
                                                     values=list(self.MODELS.keys()),
                                                     variable=self.selected_model)
-        self.stride_ckb = customtkinter.CTkCheckBox(self,
+        self.stride_ckb = ctk.CTkCheckBox(self,
                                                     text="Use stride",
                                                     variable=self.use_stride)
+        self.manage_output_lb = ctk.CTkLabel(self, text="w")
 
     def set_widgets_positioning(self) -> None:
         """
@@ -116,10 +118,10 @@ class ClassificationFrame(customtkinter.CTkFrame):
                           " the number of points and the speed of your computer.\n\n",
                           icon="info")
 
-            self.classification_btn.configure(state=customtkinter.DISABLED)
+            self.classification_btn.configure(state=ctk.DISABLED)
             threading.Thread(target=self.run_classification).start()
         except Exception as e:
-            self.classification_btn.configure(state=customtkinter.NORMAL)
+            self.classification_btn.configure(state=ctk.NORMAL)
             pass
         return True
 
@@ -142,7 +144,7 @@ class ClassificationFrame(customtkinter.CTkFrame):
             prediction = model.predict(X)
             self.las_handler.data_frame['classification'] = prediction
 
-        self.classification_btn.configure(state=customtkinter.NORMAL)
+        self.classification_btn.configure(state=ctk.NORMAL)
         CTkMessagebox(title="Classification completed", message=f"All done!\n\n Classification completed.",
                       icon="check", option_1="OK")
         self.__master.invoke_update_file_description()
