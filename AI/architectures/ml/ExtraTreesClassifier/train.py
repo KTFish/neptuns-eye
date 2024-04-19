@@ -22,23 +22,26 @@ def test():
                'min_weight_fraction_leaf': 0.00026385974415840387, 'bootstrap': True, 'class_0': 29, 'class_1': 29,
                'class_11': 29,
                'class_13': 9, 'class_15': 8, 'class_17': 2, 'class_19': 6, 'class_25': 3}
-
+    params2 = {'n_estimators': 145, 'max_depth': 43, 'criterion': 'log_loss', 'min_samples_split': 37,
+               'min_samples_leaf': 26,
+               'min_weight_fraction_leaf': 0.00027492164326257723, 'bootstrap': True, 'class_0': 87, 'class_1': 93,
+               'class_11': 89, 'class_13': 19, 'class_15': 43, 'class_17': 56, 'class_19': 10, 'class_25': 11}
     rf_class_weight = {}
 
-    for key, value in params1.items():
+    for key, value in params2.items():
         if key.startswith('class_'):
             class_number = int(key.split('_')[1])
             rf_class_weight[class_number] = value
 
     print(rf_class_weight)
 
-    clf = ExtraTreesClassifier(n_estimators=params1['n_estimators'],
-                               max_depth=params1['max_depth'],
-                               criterion=params1['criterion'],
-                               min_samples_split=params1['min_samples_split'],
-                               min_samples_leaf=params1['min_samples_leaf'],
-                               min_weight_fraction_leaf=params1['min_weight_fraction_leaf'],
-                               bootstrap=params1["bootstrap"],
+    clf = ExtraTreesClassifier(n_estimators=params2['n_estimators'],
+                               max_depth=params2['max_depth'],
+                               criterion=params2['criterion'],
+                               min_samples_split=params2['min_samples_split'],
+                               min_samples_leaf=params2['min_samples_leaf'],
+                               min_weight_fraction_leaf=params2['min_weight_fraction_leaf'],
+                               bootstrap=params2["bootstrap"],
                                class_weight=rf_class_weight,
                                random_state=42)
 

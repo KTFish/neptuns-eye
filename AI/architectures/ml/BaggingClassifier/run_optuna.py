@@ -53,4 +53,4 @@ if __name__ == "__main__":
 
     storage_url = f"sqlite:///{folder_path}/BaggingClassifier1.db"
     study = optuna.create_study(direction="maximize", storage=storage_url)
-    study.optimize(objective, n_trials=10)
+    study.optimize(objective, n_trials=100)

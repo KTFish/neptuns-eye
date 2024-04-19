@@ -5,6 +5,7 @@ from preprocess.preprocess import prepare_data_training, prepare_data_prediction
 from sklearn.metrics import accuracy_score
 import os
 
+
 def objective(trial):
     las = read_las_file("../../../data/train/WMII_CLASS.las")
     las2 = read_las_file("../../../data/test/USER_AREA.las")
@@ -23,23 +24,23 @@ def objective(trial):
     rf_min_weight_fraction_leaf = trial.suggest_float("min_weight_fraction_leaf", 0.0, 0.5)
     rf_bootstrap = trial.suggest_categorical("bootstrap", [True, False])
 
-    rf_class_0 = trial.suggest_int("class_0", 1, 100)
-    rf_class_1 = trial.suggest_int("class_1", 1, 100)
-    rf_class_11 = trial.suggest_int("class_11", 1, 100)
-    rf_class_13 = trial.suggest_int("class_13", 1, 100)
-    rf_class_15 = trial.suggest_int("class_15", 1, 100)
-    rf_class_17 = trial.suggest_int("class_17", 1, 100)
-    rf_class_19 = trial.suggest_int("class_19", 1, 100)
-    rf_class_25 = trial.suggest_int("class_25", 1, 100)
+    # rf_class_0 = trial.suggest_int("class_0", 1, 100)
+    # rf_class_1 = trial.suggest_int("class_1", 1, 100)
+    # rf_class_11 = trial.suggest_int("class_11", 1, 100)
+    # rf_class_13 = trial.suggest_int("class_13", 1, 100)
+    # rf_class_15 = trial.suggest_int("class_15", 1, 100)
+    # rf_class_17 = trial.suggest_int("class_17", 1, 100)
+    # rf_class_19 = trial.suggest_int("class_19", 1, 100)
+    # rf_class_25 = trial.suggest_int("class_25", 1, 100)
 
-    rf_class_weight = {0: rf_class_0,
-                       1: rf_class_1,
-                       11: rf_class_11,
-                       13: rf_class_13,
-                       15: rf_class_15,
-                       17: rf_class_17,
-                       19: rf_class_19,
-                       25: rf_class_25}
+    # rf_class_weight = {0: rf_class_0,
+    #                    1: rf_class_1,
+    #                    11: rf_class_11,
+    #                    13: rf_class_13,
+    #                    15: rf_class_15,
+    #                    17: rf_class_17,
+    #                    19: rf_class_19,
+    #                    25: rf_class_25}
 
     clf = ExtraTreesClassifier(criterion=rf_criterion,
                                max_depth=rf_max_depth,
@@ -48,7 +49,7 @@ def objective(trial):
                                min_samples_leaf=rf_min_samples_leaf,
                                min_weight_fraction_leaf=rf_min_weight_fraction_leaf,
                                bootstrap=rf_bootstrap,
-                               class_weight=rf_class_weight,
+                               # class_weight=rf_class_weight,
                                random_state=42)
 
     clf.fit(X_train, y_train)
@@ -67,4 +68,4 @@ if __name__ == "__main__":
 
     storage_url = f"sqlite:///{folder_path}/ExtraTreesClassifier1.db"
     study = optuna.create_study(direction="maximize", storage=storage_url)
-    study.optimize(objective, n_trials=100)
+    study.optimize(objective, n_trials=200)
