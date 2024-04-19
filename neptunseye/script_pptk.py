@@ -20,7 +20,9 @@ def render_pptk(csv_path) -> None:
     Returns:
         None
     """
+    print("Rendering point cloud using PPTK...")
     df = pd.read_csv(csv_path)
+    print(csv_path)
     classified = df.classification
     xyz = df[['X', 'Y', 'Z']].values
     rgb = df[['red', 'green', 'blue']].values / 65025

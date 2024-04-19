@@ -24,7 +24,7 @@ class App(customtkinter.CTk):
     classification_frame: ClassificationFrame
     file_frame: FileFrame
 
-    APP_ICON_PATH = "resources\\neptuns-eye-logo.ico"
+    APP_ICON_PATH = r"./neptunseye/resources/neptuns-eye-logo.ico"
     APP_VERSION = "0.1.0"
 
     def __init__(self) -> None:
