@@ -9,7 +9,9 @@ import wandb
 
 
 def train(train_data, test_data, model, config=None):
-
+    """
+        Train a model with given data, log parameters and accuracy using wandb.
+    """
     with wandb.init(config=config):
 
         config = wandb.config

@@ -1,4 +1,3 @@
-"""Trials for KNeighborsClassifier"""
 from storage.load import read_las_file
 from storage.save import save_joblib
 from sklearn.neighbors import KNeighborsClassifier

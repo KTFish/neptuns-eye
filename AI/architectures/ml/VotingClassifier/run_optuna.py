@@ -2,7 +2,6 @@ import optuna
 from sklearn.ensemble import VotingClassifier, RandomForestClassifier, GradientBoostingClassifier, \
     HistGradientBoostingClassifier, ExtraTreesClassifier
 from sklearn.neighbors import KNeighborsClassifier
-
 from storage.load import read_las_file
 from preprocess.preprocess import prepare_data_training, prepare_data_prediction
 from sklearn.metrics import accuracy_score
@@ -75,6 +74,6 @@ if __name__ == "__main__":
     if not os.path.exists(folder_path):
         os.makedirs(folder_path)
 
-    storage_url = f"sqlite:///{folder_path}/RandomForestClassifier.db"
+    storage_url = f"sqlite:///{folder_path}/VotingClassifier.db"
     study = optuna.create_study(direction="maximize", storage=storage_url)
     study.optimize(objective, n_trials=2000)

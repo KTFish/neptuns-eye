@@ -1,4 +1,3 @@
-"""Trials for RandomForestClassifier"""
 from storage.load import read_las_file
 from storage.save import save_joblib
 from sklearn.ensemble import RandomForestClassifier

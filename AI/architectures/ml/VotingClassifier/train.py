@@ -1,4 +1,3 @@
-"""Trials for RandomForestClassifier"""
 from sklearn.neighbors import KNeighborsClassifier
 
 from storage.load import read_las_file
