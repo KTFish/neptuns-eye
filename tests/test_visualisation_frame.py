@@ -8,13 +8,13 @@ from neptunseye.las_handler import LasHandler
 class TestVisualisationFrame(unittest.TestCase):
 
     def setUp(self):
-        customtkinter.set_appearance_mode("System")  # Required as customtkinter needs an appearance mode
-        customtkinter.set_default_color_theme("blue")  # Set a default theme
-        self.root = customtkinter.CTk()  # Create a main window for the tests
+        customtkinter.set_appearance_mode("System")
+        customtkinter.set_default_color_theme("blue")
+        self.root = customtkinter.CTk()
         self.las_handler = LasHandler()
-        self.las_handler.file_loaded = True  # Assume file is loaded for most tests
+        self.las_handler.file_loaded = True
         self.frame = VisualisationFrame(master=self.root, las_handler=self.las_handler)
-        self.root.withdraw()  # Hide the main window
+        self.root.withdraw()
 
     def test_initialization(self):
         self.assertIsInstance(self.frame, VisualisationFrame)
