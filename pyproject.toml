@@ -31,6 +31,7 @@ six = "1.16.0"
 tenacity = "8.2.3"
 threadpoolctl = "3.4.0"
 tzdata = "2024.1"
+pytest = "8.1.1"
 
 
 [build-system]

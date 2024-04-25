@@ -6,8 +6,8 @@ import json
 import customtkinter
 from CTkMessagebox import CTkMessagebox
 
-from las_handler import *
-from resources.fonts import *
+from neptunseye.las_handler import *
+from neptunseye.resources.fonts import *
 
 
 class VisualisationFrame(customtkinter.CTkFrame):

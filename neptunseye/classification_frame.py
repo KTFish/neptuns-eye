@@ -3,9 +3,9 @@ import threading
 import customtkinter
 from CTkMessagebox import CTkMessagebox
 
-from las_handler import *
-from resources.fonts import *
-from classification_utils import ClassificationUtils
+from neptunseye.las_handler import *
+from neptunseye.resources.fonts import *
+from neptunseye.classification_utils import ClassificationUtils
 
 
 class ClassificationFrame(customtkinter.CTkFrame):
