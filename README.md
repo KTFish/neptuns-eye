@@ -1,23 +1,38 @@
 ![logo-400px](./neptunseye/resources/neptuns-eye-logo.ico)
 
-# Neptun's Eye (ML-powered Point Cloud Object Classification)
+# Neptun's Eye
 
-Projekt realizowany w ramach przedmiotu Projekt Zespołowy na Uniwersytecie Warmińsko-Mazurskim w Olsztynie we współpracy
-z firmą Visimind.
+Neptun's Eye is a ML-powered Point Cloud segmentation tool. The project have been realised by students
+from [Czarna Magia Student Artificial Intelligence Society](https://github.com/knsiczarnamagia) and students from UWM
+with mentorship from [Visimind](https://visimind.com/pl/).
 
-### Cel projektu
+[//]: # (Projekt realizowany w ramach przedmiotu Projekt Zespołowy na Uniwersytecie Warmińsko-Mazurskim w Olsztynie we współpracy)
 
-Celem projektu jest stworzenie skryptu, aplikacji lub programu wykrywającego obiekty na chmurze punktów z wykorzystaniem
-elementów sztucznej inteligencji.
+[//]: # (z firmą Visimind.)
 
+[//]: # ()
 
-<hr>
-Project realised as a part of a Team Project subject at University of Warmia and Mazury in Olsztyn in collaboration with the Visimind company.
+[//]: # (### Cel projektu)
 
-### Aim of the project
+[//]: # ()
 
-The aim of the project is to make a script, an app or a program detecting objects in a point cloud using elements of
-artificial intelligence.
+[//]: # (Celem projektu jest stworzenie skryptu, aplikacji lub programu wykrywającego obiekty na chmurze punktów z wykorzystaniem)
+
+[//]: # (elementów sztucznej inteligencji.)
+
+[//]: # ()
+
+[//]: # (<hr>)
+
+[//]: # (Project realised as a part of a Team Project subject at University of Warmia and Mazury in Olsztyn in collaboration with the Visimind company.)
+
+[//]: # ()
+
+[//]: # ()
+
+[//]: # (The aim of the project is to make a script, an app or a program detecting objects in a point cloud using elements of)
+
+[//]: # (artificial intelligence.)
 
 ## Installation and running
 
@@ -54,7 +69,13 @@ poetry add $(cat requirements.txt)
 ### Run
 
 ```commandline
-poetry run python ./neptunseye/main.py
+make run
+```
+
+### Test
+
+```commandline
+make test
 ```
 
 ### Reference materials
@@ -73,17 +94,27 @@ poetry run python ./neptunseye/main.py
 choco install make
 ```
 
-*[Ogólna lista funkcji.]*
+[//]: # (*[Ogólna lista funkcji.]*)
 
-- Function 1
-- Function 2
-- ...
+[//]: # ()
 
-<hr>
+[//]: # (- Function 1)
 
-- Function 1
-- Function 2
-- ...
+[//]: # (- Function 2)
+
+[//]: # (- ...)
+
+[//]: # ()
+
+[//]: # (<hr>)
+
+[//]: # ()
+
+[//]: # (- Function 1)
+
+[//]: # (- Function 2)
+
+[//]: # (- ...)
 
 ## Usage
 

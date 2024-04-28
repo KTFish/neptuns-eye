@@ -13,7 +13,7 @@ LAS_FILES = {
     "WMII_CLASS": "./neptunseye/resources/data/WMII_CLASS.las",  # Faculty of Mathematics and Computer Science
     "Kortowo": "./neptunseye/resources/data/Kortowo.las",  # University Campus
     'USER_AREA': "./neptunseye/resources/data/USER_AREA.las"  # Słoneczna street
-}
+}  # TODO: This files should be load from a remote source for example AWS bucket
 
 EXPECTED_POINT_COUNT = {
     'WMII_CLASS': 6_375_629,
@@ -53,4 +53,5 @@ def test_df_columns(las_data):
 
 def test_point_count(las_data):
     df, file_name = las_data
-    assert len(df) == EXPECTED_POINT_COUNT[file_name], f"WMII_CLASS: Wrong number of points: {len(df)} instead of {EXPECTED_POINT_COUNT[file_name]}."
+    assert len(df) == EXPECTED_POINT_COUNT[
+        file_name], f"WMII_CLASS: Wrong number of points: {len(df)} instead of {EXPECTED_POINT_COUNT[file_name]}."
