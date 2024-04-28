@@ -1,4 +1,4 @@
-![logo-400px](https://github.com/KTFish/neptuns-eye/blob/main/neptuns-eyes-logo-400px.svg)
+![logo-400px](./neptunseye/resources/neptuns-eye-logo.ico)
 
 # Neptun's Eye (ML-powered Point Cloud Object Classification)
 
@@ -52,10 +52,10 @@ poetry add $(cat requirements.txt)
 ```
 
 ### Run
+
 ```commandline
 poetry run python ./neptunseye/main.py
 ```
-
 
 ### Reference materials
 
@@ -64,7 +64,14 @@ poetry run python ./neptunseye/main.py
 - [Pyenv for windows](https://github.com/pyenv-win/pyenv-win)
 - [Poetry](https://realpython.com/dependency-management-python-poetry/#add-poetry-to-an-existing-project)
 
-## Features
+### Install `make` on Windows
+
+1. Install [chocolatey](https://chocolatey.org/install)
+2. Install make using choco.
+
+```powershell
+choco install make
+```
 
 *[Ogólna lista funkcji.]*
 
