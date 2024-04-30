@@ -6,6 +6,6 @@ wandb
 config.cpython-312.pyc
 *.las
 *.joblib
-
 optuna_trials
 saved_models
+.tempdf.csv
