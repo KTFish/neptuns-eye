@@ -33,6 +33,7 @@ threadpoolctl = "3.4.0"
 tzdata = "2024.1"
 optuna-dashboard = "0.15.1"
 wandb = "0.16.6"
+optuna = "^3.6.1"
 
 
 [build-system]

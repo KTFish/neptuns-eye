@@ -5,14 +5,16 @@ from sklearn.tree import DecisionTreeClassifier
 from storage.load import read_las_file
 from preprocess.preprocess import prepare_data_training, prepare_data_prediction
 from sklearn.metrics import accuracy_score
+import sys
 import os
 
-def objective(trial):
-    las = read_las_file("../../../data/train/WMII_CLASS.las")
-    las2 = read_las_file("../../../data/test/USER_AREA.las")
+sys.path.append(os.path.abspath('../../../'))
+from config import wmii, user_area
 
-    las = las[::40]
-    las2 = las2[::40]
+
+def objective(trial, stride=40):
+    las = wmii[::stride]
+    las2 = user_area[::stride]
 
     X_train, X_test, y_train, y_test = prepare_data_training(las)
     test_features, test_labels = prepare_data_prediction(las2)
@@ -53,4 +55,4 @@ if __name__ == "__main__":
 
     storage_url = f"sqlite:///{folder_path}/BaggingClassifier1.db"
     study = optuna.create_study(direction="maximize", storage=storage_url)
-    study.optimize(objective, n_trials=100)
+    study.optimize(lambda trial: objective(trial, stride=45), n_trials=2)  # define a number of trials here

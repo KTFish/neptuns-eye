@@ -6,6 +6,10 @@ from storage.load import read_las_file
 from preprocess.preprocess import prepare_data_training, prepare_data_prediction
 from sklearn.metrics import accuracy_score
 import os
+import sys
+
+sys.path.append(os.path.abspath('../../../'))
+from config import wmii, user_area
 
 
 def objective(trial):
@@ -76,4 +80,4 @@ if __name__ == "__main__":
 
     storage_url = f"sqlite:///{folder_path}/VotingClassifier.db"
     study = optuna.create_study(direction="maximize", storage=storage_url)
-    study.optimize(objective, n_trials=2000)
+    study.optimize(lambda trial: objective(trial, stride=45), n_trials=2)  # define a number of trials here

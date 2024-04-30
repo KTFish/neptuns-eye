@@ -2,20 +2,20 @@ from sklearn.neighbors import KNeighborsClassifier
 
 from storage.load import read_las_file
 from storage.save import save_joblib
-from sklearn.ensemble import StackingClassifier, RandomForestClassifier, HistGradientBoostingClassifier, \
+from sklearn.ensemble import RandomForestClassifier, HistGradientBoostingClassifier, \
     VotingClassifier, ExtraTreesClassifier
-from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
 from preprocess.preprocess import prepare_data_training, prepare_data_prediction
 import os
+import sys
+
+sys.path.append(os.path.abspath('../../../'))
+from config import wmii, user_area
 
 
 def test():
-    las = read_las_file("../../../data/train/WMII_CLASS.las")
-    las2 = read_las_file("../../../data/test/USER_AREA.las")
-
-    las_strided = las[::40]
-    las2_strided = las2[::40]
+    las_strided = wmii[::40]
+    las2_strided = user_area[::40]
 
     X_train, X_test, y_train, y_test = prepare_data_training(las_strided)
     test_features, test_labels = prepare_data_prediction(las2_strided)
