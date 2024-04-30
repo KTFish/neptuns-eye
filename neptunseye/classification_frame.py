@@ -1,6 +1,7 @@
 import threading
+from tkinter import filedialog
 
-import customtkinter
+import customtkinter as ctk
 from CTkMessagebox import CTkMessagebox
 
 from las_handler import *
@@ -8,30 +9,40 @@ from resources.fonts import *
 from classification_utils import ClassificationUtils
 
 
-class ClassificationFrame(customtkinter.CTkFrame):
+class ClassificationFrame(ctk.CTkFrame):
     __file_path: str
     __las_handler: LasHandler
     __classification_stride: int
 
-    frame_lb: customtkinter.CTkLabel
-    model_lb: customtkinter.CTkLabel
-    model_cbox: customtkinter.CTkComboBox
-    stride_ckb: customtkinter.CTkCheckBox
-    classification_btn: customtkinter.CTkButton
+    frame_lb: ctk.CTkLabel
+    model_lb: ctk.CTkLabel
+    manage_output_lb: ctk.CTkLabel
+    model_cbox: ctk.CTkComboBox
+    stride_ckb: ctk.CTkCheckBox
+    classification_btn: ctk.CTkButton
+    save_btn: ctk.CTkButton
+    save_as_btn: ctk.CTkButton
 
     def __init__(self, master, las_handler: LasHandler, **kwargs):
         super().__init__(master, **kwargs)
 
         self.MODELS = {
             "ExtraTreesClassifier": r"./neptunseye/resources/models/aha41.joblib",
-            "ExtraTreesClassifier851": r"./neptunseye/resources/models/ExtraTreesClassifier851.joblib"
+            "ExtraTreesClassifier851": r"./neptunseye/resources/models/ExtraTreesClassifier851.joblib",
+            "AdaBoostClassifier731": r"./neptunseye/resources/models/AdaBoostClassifier731.joblib",
+            "BaggingClassifier650": r"./neptunseye/resources/models/BaggingClassifier650.joblib",
+            "GradientBoostingClassifier653": r"./neptunseye/resources/models/GradientBoostingClassifier653.joblib",
+            "HistGradientBoostingClassifier720": r"./neptunseye/resources/models/HistGradientBoostingClassifier720"
+                                                 r".joblib",
+            "KNeighborsClassifier795": r"./neptunseye/resources/models/KNeighborsClassifier795.joblib",
+            "RandomForestClassifier851": r"./neptunseye/resources/models/RandomForestClassifier851.joblib"
         }
 
-        self.selected_model = customtkinter.StringVar(value="ExtraTreesClassifier")
+        self.selected_model = ctk.StringVar(value="ExtraTreesClassifier")
 
         self.__las_handler = las_handler
         self.__master = master
-        self.use_stride = customtkinter.BooleanVar(value=False)
+        self.use_stride = ctk.BooleanVar(value=False)
 
         self.set_frame_grid(6, 10)
 
@@ -68,23 +79,32 @@ class ClassificationFrame(customtkinter.CTkFrame):
         Returns:
             None
         """
-        self.frame_lb = customtkinter.CTkLabel(self,
-                                               text="Classification options",
-                                               font=FONT_HELV_MEDIUM_B,
-                                               anchor='center',
-                                               justify='center')
-        self.classification_btn = customtkinter.CTkButton(self,
-                                                          text="Run classification",
-                                                          command=self.classification_event)
-        self.model_lb = customtkinter.CTkLabel(self,
-                                               text="Select model",
-                                               font=FONT_HELV_SMALL_B)
-        self.model_cbox = customtkinter.CTkComboBox(self,
-                                                    values=list(self.MODELS.keys()),
-                                                    variable=self.selected_model)
-        self.stride_ckb = customtkinter.CTkCheckBox(self,
-                                                    text="Use stride",
-                                                    variable=self.use_stride)
+        self.frame_lb = ctk.CTkLabel(self,
+                                     text="Classification options",
+                                     font=FONT_HELV_MEDIUM_B,
+                                     anchor='center',
+                                     justify='center')
+        self.manage_output_lb = ctk.CTkLabel(self,
+                                             text="Manage output",
+                                             font=FONT_HELV_SMALL_B)
+        self.classification_btn = ctk.CTkButton(self,
+                                                text="Run classification",
+                                                command=self.classification_event)
+        self.save_btn = ctk.CTkButton(self,
+                                      text="Save",
+                                      command=self.overwrite_las_file)
+        self.save_as_btn = ctk.CTkButton(self,
+                                         text="Save as...",
+                                         command=self.save_as_las_file)
+        self.model_lb = ctk.CTkLabel(self,
+                                     text="Select model",
+                                     font=FONT_HELV_SMALL_B)
+        self.model_cbox = ctk.CTkComboBox(self,
+                                          values=list(self.MODELS.keys()),
+                                          variable=self.selected_model)
+        self.stride_ckb = ctk.CTkCheckBox(self,
+                                          text="Use stride",
+                                          variable=self.use_stride)
 
     def set_widgets_positioning(self) -> None:
         """
@@ -98,39 +118,59 @@ class ClassificationFrame(customtkinter.CTkFrame):
         """
         self.frame_lb.grid(row=0, column=0, columnspan=7, pady=0, sticky="ew")
         self.model_lb.grid(row=1, column=0, padx=15, sticky="w")
-        self.model_cbox.grid(row=2, column=0, columnspan=4, padx=15, sticky="ew")
+        self.model_cbox.grid(row=2, column=0, columnspan=5, padx=15, sticky="we")
         self.classification_btn.grid(row=9, column=5)
         self.stride_ckb.grid(row=9, column=4)
+        self.manage_output_lb.grid(row=1, column=5, padx=20, sticky="w")
+        self.save_btn.grid(row=2, column=5, padx=20, sticky="w")
+        self.save_as_btn.grid(row=3, column=5, padx=20, sticky="w")
 
     def classification_event(self) -> bool:
 
         if not self.__las_handler.file_loaded:
-            CTkMessagebox(title="File not loaded", message="Whoops!\n"
+            CTkMessagebox(title="File not loaded", message="Whoops!\n\n"
                                                            "Load .las file first.", icon="cancel")
             return False
 
         try:
             CTkMessagebox(title="Classificaiton in progress...",
-                          message="Working on it!\n"
-                          "Please be patient! Classificaiton can take a while depending on"
-                          " the number of points and the speed of your computer.\n\n",
+                          message="Working on it!\n\n"
+                                  "Please be patient! Classificaiton can take a while depending on"
+                                  " the number of points and the speed of your computer.\n\n",
                           icon="info")
 
-            self.classification_btn.configure(state=customtkinter.DISABLED)
+            self.classification_btn.configure(state=ctk.DISABLED)
             threading.Thread(target=self.run_classification).start()
         except Exception as e:
-            self.classification_btn.configure(state=customtkinter.NORMAL)
-            pass
+            self.classification_btn.configure(state=ctk.NORMAL)
+            CTkMessagebox(title="Error", message="That's not good!\n\n"
+                                                 "Classification failed!\n\n"
+                                                 f"{str(e)}", icon="cancel")
         return True
 
-    def run_classification(self):
+    def run_classification(self) -> bool:
         print("Loading model from", self.MODELS[self.selected_model.get()])
-        model = ClassificationUtils.load_joblib(self.MODELS[self.selected_model.get()])
+        try:
+            model = ClassificationUtils.load_joblib(self.MODELS[self.selected_model.get()])
+        except FileNotFoundError:
+            CTkMessagebox(title="Error", message="Whoops!\n\n"
+                                                 "Couldn't find the model\n\n"
+                                                 f"{self.selected_model.get()}\n\n"
+                                                 "Make sure the correct joblib file is placed in the resources\\models"
+                                                 "folder.", icon="cancel")
+            self.classification_btn.configure(state=ctk.NORMAL)
+            return False
+        except Exception as e:
+            CTkMessagebox(title="Error", message="That's not good!\n\n"
+                                                 "There was an error while loading the model!\n\n"
+                                                 f"{str(e)}", icon="cancel")
+            self.classification_btn.configure(state=ctk.NORMAL)
+            return False
 
         if self.use_stride.get():
             self.classification_stride = self.get_classification_stride()
-            print("Classification stride is ", self.classification_stride)
-            X, _ = ClassificationUtils.prepare_data_prediction(self.las_handler.data_frame[::self.classification_stride])
+            X, _ = ClassificationUtils.prepare_data_prediction(
+                self.las_handler.data_frame[::self.classification_stride])
             prediction = model.predict(X)
             prediction_fixed = ClassificationFrame.fix_prediction(prediction, self.classification_stride)
             if len(prediction_fixed) != len(self.las_handler.data_frame['classification']):
@@ -142,14 +182,42 @@ class ClassificationFrame(customtkinter.CTkFrame):
             prediction = model.predict(X)
             self.las_handler.data_frame['classification'] = prediction
 
-        self.classification_btn.configure(state=customtkinter.NORMAL)
+        self.classification_btn.configure(state=ctk.NORMAL)
         CTkMessagebox(title="Classification completed", message=f"All done!\n\n Classification completed.",
                       icon="check", option_1="OK")
         self.__master.invoke_update_file_description()
 
+        return True
+
     def get_classification_stride(self) -> int:
         return self.__master.get_stride()
 
+    def overwrite_las_file(self) -> None:
+        msg = CTkMessagebox(title="Save output",
+                            message=f"Are you sure you want to overwrite currently loaded file?\n\n"
+                                    f"This operation cannot be undone.\n\n",
+                            icon="question", option_1="No", option_2="Yes")
+        if msg.get() == "Yes":
+            self.las_handler.save_las_file()
+
+    def save_as_las_file(self) -> None:
+
+        file_name = ClassificationFrame.open_save_as_dialog()
+
+        self.las_handler.save_las_file(file_name)
+
+    @staticmethod
+    def open_save_as_dialog() -> str:
+        filetypes = (
+            ("Lidar point cloud data", "*.las"),
+            ("All files", "*.*")
+        )
+
+        file_path = filedialog.asksaveasfilename(title="Save as...", filetypes=filetypes, defaultextension=".las")
+        if file_path and not file_path.endswith(".las"):
+            file_path += ".las"
+
+        return file_path
     @staticmethod
     def fix_prediction(prediction, stride):
         new_values = [0] * (len(prediction) * stride)

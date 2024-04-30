@@ -1,6 +1,6 @@
 from tkinter import filedialog
 
-import customtkinter
+import customtkinter as ctk
 import json
 from CTkMessagebox import CTkMessagebox
 
@@ -8,25 +8,25 @@ from las_handler import *
 from resources.fonts import *
 
 
-class FileFrame(customtkinter.CTkFrame):
+class FileFrame(ctk.CTkFrame):
     __file_path: str
     __las_handler: LasHandler
 
     CLASSES_DEFINITION_FILE_PATH = r"./neptunseye/config/classes_definition.json"
 
     # Widget definitions
-    frame_lb: customtkinter.CTkLabel
-    file_description_lb: customtkinter.CTkLabel
-    classification_description_lb: customtkinter.CTkLabel
-    desc_points_count_lb: customtkinter.CTkLabel
-    desc_file_created_lb: customtkinter.CTkLabel
-    desc_classes_count_lb: customtkinter.CTkLabel
-    desc_points_count_val_lb: customtkinter.CTkLabel
-    desc_file_created_val_lb: customtkinter.CTkLabel
-    desc_classes_count_val_lb: customtkinter.CTkLabel
-    file_path_tbox: customtkinter.CTkTextbox
-    desc_classification_tbox: customtkinter.CTkTextbox
-    import_file_btn: customtkinter.CTkButton
+    frame_lb: ctk.CTkLabel
+    file_description_lb: ctk.CTkLabel
+    classification_description_lb: ctk.CTkLabel
+    desc_points_count_lb: ctk.CTkLabel
+    desc_file_created_lb: ctk.CTkLabel
+    desc_classes_count_lb: ctk.CTkLabel
+    desc_points_count_val_lb: ctk.CTkLabel
+    desc_file_created_val_lb: ctk.CTkLabel
+    desc_classes_count_val_lb: ctk.CTkLabel
+    file_path_tbox: ctk.CTkTextbox
+    desc_classification_tbox: ctk.CTkTextbox
+    import_file_btn: ctk.CTkButton
 
     def __init__(self, master, las_handler: LasHandler, **kwargs):
         super().__init__(master, **kwargs)
@@ -70,48 +70,48 @@ class FileFrame(customtkinter.CTkFrame):
         Returns:
             None
         """
-        self.frame_lb = customtkinter.CTkLabel(self,
-                                               text="Select and load LAS file",
-                                               font=FONT_HELV_MEDIUM_B,
-                                               anchor='center', justify='center')
-        self.classification_description_lb = customtkinter.CTkLabel(self,
+        self.frame_lb = ctk.CTkLabel(self,
+                                     text="Select and load LAS file",
+                                     font=FONT_HELV_MEDIUM_B,
+                                     anchor='center', justify='center')
+        self.classification_description_lb = ctk.CTkLabel(self,
                                                           text="Classification",
                                                           anchor="center",
                                                           justify="center",
                                                           font=FONT_HELV_MEDIUM_B)
-        self.file_description_lb = customtkinter.CTkLabel(self,
-                                                          text="Loaded point cloud information",
-                                                          anchor="center",
-                                                          justify="center",
-                                                          font=FONT_HELV_MEDIUM_B)
-        self.desc_points_count_lb = customtkinter.CTkLabel(self, text="Loaded points: ",
-                                                           anchor="w",
-                                                           font=FONT_HELV_SMALL_B)
-        self.desc_file_created_lb = customtkinter.CTkLabel(self, text="File creation date: ",
-                                                           anchor="w",
-                                                           font=FONT_HELV_SMALL_B)
-        self.desc_classes_count_lb = customtkinter.CTkLabel(self, text="Number of classes: ",
-                                                            anchor="w",
-                                                            font=FONT_HELV_SMALL_B)
-        self.desc_points_count_val_lb = customtkinter.CTkLabel(self, text="-",
-                                                               anchor="w",
-                                                               font=FONT_HELV_SMALL)
-        self.desc_file_created_val_lb = customtkinter.CTkLabel(self, text="-",
-                                                               anchor="w",
-                                                               font=FONT_HELV_SMALL)
-        self.desc_classes_count_val_lb = customtkinter.CTkLabel(self, text="-",
-                                                                anchor="w",
-                                                                font=FONT_HELV_SMALL)
-        self.file_path_tbox = customtkinter.CTkTextbox(self,
-                                                       height=10,
-                                                       text_color='gray')
-        self.import_file_btn = customtkinter.CTkButton(self,
-                                                       text="Select file",
-                                                       command=self.open_file_dialog)
-        self.desc_classification_tbox = customtkinter.CTkTextbox(self)
-        self.file_path_tbox.configure(state=customtkinter.DISABLED)
+        self.file_description_lb = ctk.CTkLabel(self,
+                                                text="Loaded point cloud information",
+                                                anchor="center",
+                                                justify="center",
+                                                font=FONT_HELV_MEDIUM_B)
+        self.desc_points_count_lb = ctk.CTkLabel(self, text="Loaded points: ",
+                                                 anchor="w",
+                                                 font=FONT_HELV_SMALL_B)
+        self.desc_file_created_lb = ctk.CTkLabel(self, text="File creation date: ",
+                                                 anchor="w",
+                                                 font=FONT_HELV_SMALL_B)
+        self.desc_classes_count_lb = ctk.CTkLabel(self, text="Number of classes: ",
+                                                  anchor="w",
+                                                  font=FONT_HELV_SMALL_B)
+        self.desc_points_count_val_lb = ctk.CTkLabel(self, text="-",
+                                                     anchor="w",
+                                                     font=FONT_HELV_SMALL)
+        self.desc_file_created_val_lb = ctk.CTkLabel(self, text="-",
+                                                     anchor="w",
+                                                     font=FONT_HELV_SMALL)
+        self.desc_classes_count_val_lb = ctk.CTkLabel(self, text="-",
+                                                      anchor="w",
+                                                      font=FONT_HELV_SMALL)
+        self.file_path_tbox = ctk.CTkTextbox(self,
+                                             height=10,
+                                             text_color='gray')
+        self.import_file_btn = ctk.CTkButton(self,
+                                             text="Select file",
+                                             command=self.open_file_dialog)
+        self.desc_classification_tbox = ctk.CTkTextbox(self)
+        self.file_path_tbox.configure(state=ctk.DISABLED)
         self.desc_classification_tbox.insert("0.0", "[File not loaded]")
-        self.desc_classification_tbox.configure(state=customtkinter.DISABLED)
+        self.desc_classification_tbox.configure(state=ctk.DISABLED)
 
     def set_widgets_positioning(self) -> None:
         """
@@ -171,27 +171,30 @@ class FileFrame(customtkinter.CTkFrame):
         Returns:
             None
         """
+
         try:
             temp_las_handler = LasHandler(self.file_path)
 
             self.las_handler.las = temp_las_handler.las
             self.las_handler.data_frame = temp_las_handler.create_dataframe()
             self.las_handler.file_loaded = True
+            self.las_handler.file_path = temp_las_handler.file_path
 
             formatted_points_loaded = f"{self.las_handler.las.header.point_count:,}".replace(',', ' ')
 
             CTkMessagebox(title="File loaded", message=f"{formatted_points_loaded} points loaded!",
                           icon="check", option_1="OK")
-            self.update_file_description()
         except Exception as e:
             if temp_las_handler.exception is not None:
                 e = temp_las_handler.exception
-            CTkMessagebox(title="Failed to load the file",
+            CTkMessagebox(title="Error",
                           message=f"Oh, snap!\n\nLooks like the file\n\n"
                                   f"\"{self.file_path}\"\n\n"
                                   f"is not a valid .las file or cannot be loaded!\n\n"
-                                  f"Description: {e}",
+                                  f"{str(e)}",
                           icon="cancel", option_1="OK", sound=True)
+
+        self.update_file_description()
 
     def update_file_path_tbox(self, path: str) -> None:
         """
@@ -204,10 +207,10 @@ class FileFrame(customtkinter.CTkFrame):
             None
         """
         if path != '':
-            self.file_path_tbox.configure(state=customtkinter.NORMAL)
+            self.file_path_tbox.configure(state=ctk.NORMAL)
             self.file_path_tbox.delete("0.0", "end")
             self.file_path_tbox.insert("0.0", path)
-            self.file_path_tbox.configure(state=customtkinter.DISABLED)
+            self.file_path_tbox.configure(state=ctk.DISABLED)
 
     def update_file_description(self, after_classification: bool = False) -> None:
         """
@@ -233,13 +236,17 @@ class FileFrame(customtkinter.CTkFrame):
         self.__master.invoke_update_loaded_points_count_lb()
 
     def __update_desc_classification_tbox(self) -> None:
-        self.desc_classification_tbox.configure(state=customtkinter.NORMAL)
+        self.desc_classification_tbox.configure(state=ctk.NORMAL)
         self.desc_classification_tbox.delete("0.0", "end")
         for class_id in sorted(self.las_handler.unique_classes):
 
             with open(self.CLASSES_DEFINITION_FILE_PATH, 'r') as file:
-
-                class_definitions = json.load(file)
+                try:
+                    class_definitions = json.load(file)
+                except Exception as e:
+                    CTkMessagebox(title="Error", message="Something's not right!\n"
+                                                         "There's a problem with 'classes_definition.json' file!\n\n"
+                                                         f"{str(e)}", icon="cancel")
 
             class_definitions = {int(key): value for key, value in class_definitions.items()}
             class_definitions_keys = list(class_definitions.keys())
@@ -250,7 +257,7 @@ class FileFrame(customtkinter.CTkFrame):
                                                                 f"{class_definitions[int(class_id)]}\n")
                 else:
                     self.desc_classification_tbox.insert("end", f"{int(class_id)}: Undefined\n")
-        self.desc_classification_tbox.configure(state=customtkinter.DISABLED)
+        self.desc_classification_tbox.configure(state=ctk.DISABLED)
 
     @property
     def las_handler(self) -> LasHandler:
