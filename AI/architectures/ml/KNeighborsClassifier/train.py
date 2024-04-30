@@ -1,6 +1,6 @@
 from storage.load import read_las_file
 from storage.save import save_joblib
-from sklearn.ensemble import HistGradientBoostingClassifier
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score
 from preprocess.preprocess import prepare_data_training, prepare_data_prediction
 import os
@@ -17,14 +17,14 @@ def test():
     X_train, X_test, y_train, y_test = prepare_data_training(las_strided)
     test_features, test_labels = prepare_data_prediction(las2_strided)
 
-    params1 = {'n_estimators': 89, 'max_depth': 3, 'min_samples_leaf': 67, 'learning_rate': 0.12935930291728567, 'max_bins': 57}
+    params1 = {'n_neighbors': 84, 'weights': 'uniform', 'algorithm': 'auto', 'leaf_size': 55, 'p': 1, 'n_jobs': -1}
 
-    clf = HistGradientBoostingClassifier(max_iter=params1['n_estimators'],
-                                         max_depth=params1['max_depth'],
-                                         min_samples_leaf=params1['min_samples_leaf'],
-                                         learning_rate=params1['learning_rate'],
-                                         max_bins=params1['max_bins'],
-                                         random_state=42)
+    clf = KNeighborsClassifier(n_neighbors=params1['n_neighbors'],
+                               weights=params1['weights'],
+                               algorithm=params1['algorithm'],
+                               leaf_size=params1['leaf_size'],
+                               p=params1['p'],
+                               n_jobs=params1['n_jobs'])
 
     clf.fit(X_train, y_train)
     predictions_las2 = clf.predict(test_features)

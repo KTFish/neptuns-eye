@@ -2,10 +2,12 @@ import joblib
 import laspy
 import pandas as pd
 import numpy as np
-import onnx
 
 
 def load_joblib(joblib_file_path):
+    """
+        Load a model from a joblib file and return it, printing a success or failure message.
+    """
     model = joblib.load(joblib_file_path)
     if model:
         print("Model successfully loaded from the file.")
@@ -15,26 +17,9 @@ def load_joblib(joblib_file_path):
         return None
 
 
-def load_onnx(onnx_file_path):
-    onnx_model = None
-    try:
-        onnx_model = onnx.load(onnx_file_path)
-        print("The model has been successfully loaded from the ONNX file:", onnx_file_path)
-    except Exception as e:
-        print("An error occurred while loading the ONNX model:", e)
-    return onnx_model
-
-
 def read_las_file(file_path):
     """
-    Read data from a LAS (Log ASCII Standard) file and convert it into a pandas DataFrame.
-
-    Parameters:
-    - file_path (str): The path to the LAS file to be read.
-
-    Returns:
-    - DataFrame: A pandas DataFrame containing the data from the LAS file, with each row representing a point.
-    The columns of the DataFrame correspond to different dimensions of the LAS file.
+        Read a LAS file using laspy, extract and return point data as a pandas DataFrame.
     """
     las = laspy.read(file_path)
     columns = [dimension.name for dimension in las.point_format.dimensions]
