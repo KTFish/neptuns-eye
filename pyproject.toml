@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "neptuns-eye"
-version = "0.1.0"
+version = "0.1.1"
 description = "Point Cloud segmentation."
 authors = ["KNSI Czarna Magia <czarnamagiaknsi@gmail.com>"]
 readme = "README.md"
@@ -31,6 +31,7 @@ six = "1.16.0"
 tenacity = "8.2.3"
 threadpoolctl = "3.4.0"
 tzdata = "2024.1"
+polyscope = "^2.2.1"
 
 
 [build-system]

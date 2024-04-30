@@ -1,7 +1,7 @@
 import json
 from typing import Dict, Any
 
-import customtkinter
+import customtkinter as ctk
 
 from classification_frame import *
 from file_frame import *
@@ -9,11 +9,11 @@ from las_handler import *
 from locales import locales
 from visualisation_frame import *
 
-customtkinter.set_appearance_mode("System")
-customtkinter.set_default_color_theme("dark-blue")
+ctk.set_appearance_mode("System")
+ctk.set_default_color_theme("dark-blue")
 
 
-class App(customtkinter.CTk):
+class App(ctk.CTk):
 
     __language = locales.Language.English
     __localization_file: Dict
@@ -25,7 +25,7 @@ class App(customtkinter.CTk):
     file_frame: FileFrame
 
     APP_ICON_PATH = r"./neptunseye/resources/neptuns-eye-logo.ico"
-    APP_VERSION = "0.1.0"
+    APP_VERSION = "0.1.1"
 
     def __init__(self) -> None:
         super().__init__()

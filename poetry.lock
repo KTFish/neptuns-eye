@@ -611,6 +611,80 @@ packaging = "*"
 tenacity = ">=6.2.0"
 
 [[package]]
+name = "polyscope"
+version = "2.2.1"
+description = "Polyscope: A viewer and user interface for 3D data."
+optional = false
+python-versions = "*"
+files = [
+    {file = "polyscope-2.2.1-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:ef4d354b74394322ef37dc0ebde18885f02d53e51bdb0e0c0456ce8dc5027a36"},
+    {file = "polyscope-2.2.1-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:9f4462349bad2f173be909c765f492b5e9becf0e0514a4b4aeb2cb61d82a082c"},
+    {file = "polyscope-2.2.1-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:42c100ac4509b98c750e3e858668f47a698e7289f7bfe9f73a6e9869f934276c"},
+    {file = "polyscope-2.2.1-cp310-cp310-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:8b8307f9334e14512a4442e3d2d6a5d99cac56477e47091cfa51e314cfb78dd9"},
+    {file = "polyscope-2.2.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:591f2b809582cdb8c6690003c7a5f3a1f5ad23fabc4b69f4ab573820a820b044"},
+    {file = "polyscope-2.2.1-cp310-cp310-win32.whl", hash = "sha256:9ac7e1b53b1e049356fa795b724226bd9f0b9b2ddcc25d5ab8b44f8b4c527d92"},
+    {file = "polyscope-2.2.1-cp310-cp310-win_amd64.whl", hash = "sha256:dde332b45509ea7f56d550bb7f211d855a6bbeb124a962460650f3713367b78a"},
+    {file = "polyscope-2.2.1-cp311-cp311-macosx_10_9_universal2.whl", hash = "sha256:76bc4dd68a1ae0277bdb978fe76e33c697d2179a31941489d09e6f3ce772544f"},
+    {file = "polyscope-2.2.1-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:c2c4a64486348abc29ee8a3577c18e6381699f5d3bed6c414bd82e5d06cda8cf"},
+    {file = "polyscope-2.2.1-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:52a25971571cb422f9299b1b52abb43b5313783bed2ee52bb5febdc7a62626bb"},
+    {file = "polyscope-2.2.1-cp311-cp311-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:a2ccf136b4e0c8260adf2f5007f88a83fe6bc9832fabc61c14611bdfd626fcc2"},
+    {file = "polyscope-2.2.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:a996bc6d70f65a4571750f505b27b5db455f0e1e3ffa1c6a7a00096a8110d9ab"},
+    {file = "polyscope-2.2.1-cp311-cp311-win32.whl", hash = "sha256:200d12901822f5a2d6831488acd543ee5ef079c400d12dd5ca8185c55fa18f78"},
+    {file = "polyscope-2.2.1-cp311-cp311-win_amd64.whl", hash = "sha256:36e49fd02e2ced1f287d3c4221476de4008e7b2776e6d2df5a2fe9a80f73650b"},
+    {file = "polyscope-2.2.1-cp312-cp312-macosx_10_9_universal2.whl", hash = "sha256:30815558238a31315e71f76c08a2326bcfa8a530b1947410da1eac48da8c1b21"},
+    {file = "polyscope-2.2.1-cp312-cp312-macosx_10_9_x86_64.whl", hash = "sha256:b2ae46bd17e2bdef06cd5f4f2d30e7f84df11c73902b7bc9c0a785a8acf5d134"},
+    {file = "polyscope-2.2.1-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:d7093a3bcf47abbb47d873047b5df7abdd6a6c6541b81836efcd267c913acbf3"},
+    {file = "polyscope-2.2.1-cp312-cp312-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:3652e93a2407172d16398bbb4730f3e805f5724df97b3f15b4006588aab4ab7c"},
+    {file = "polyscope-2.2.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:3b1700e3196af2149ecb6988e40ca4781d2beb3bcea4048fa1f922fd493d9dc0"},
+    {file = "polyscope-2.2.1-cp312-cp312-win32.whl", hash = "sha256:2663cd3192b5eb26ca8388db2fd2856904a4e77c124d5253d6d0cecfc34395c4"},
+    {file = "polyscope-2.2.1-cp312-cp312-win_amd64.whl", hash = "sha256:ecbab6233d92ed9ac098ffec1fe8969cb3fca4f1bac648ed1b45cdec35a75ea3"},
+    {file = "polyscope-2.2.1-cp36-cp36m-macosx_10_9_x86_64.whl", hash = "sha256:1883c7b30b93ee9d5acacf230734130527568c382a44937d0ac97f9c2b8b4e77"},
+    {file = "polyscope-2.2.1-cp36-cp36m-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:dc77b0a404193ae1277ed34cab5a251f76a6c618d40d40de38f3ca797f76cb8a"},
+    {file = "polyscope-2.2.1-cp36-cp36m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:87faf7fec42a673a4e468229f4beb49404195e3ce6ed5dce48a4d47b8646cb7a"},
+    {file = "polyscope-2.2.1-cp36-cp36m-win32.whl", hash = "sha256:4a4f07947391ba8fab35299b59e598ee77456749f8396339c3e18516fe162761"},
+    {file = "polyscope-2.2.1-cp36-cp36m-win_amd64.whl", hash = "sha256:9e077e7e374256deae3488f4304b2541a778320718a37129a05d7b69073ac18a"},
+    {file = "polyscope-2.2.1-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:9d124d81896b6160353098dee9f49f3f058564f27a30706d2861a2de89fa0a05"},
+    {file = "polyscope-2.2.1-cp37-cp37m-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:a2b9fae58cf2bdd3dbb0854f60e01e780e2f5733366b4ec004106736e63b3530"},
+    {file = "polyscope-2.2.1-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:0bc1adada19ccdb31f8e4e3fa32638fb626c7a3da3079b00a306d5195e8f2728"},
+    {file = "polyscope-2.2.1-cp37-cp37m-win32.whl", hash = "sha256:31eae220dab33d56be24a54399943ef0408546f915b83789be5c04e750b3a234"},
+    {file = "polyscope-2.2.1-cp37-cp37m-win_amd64.whl", hash = "sha256:73e08a21529e8ee84634f1bc8caf93149686f8909107c61b7c3e432d14173d31"},
+    {file = "polyscope-2.2.1-cp38-cp38-macosx_10_9_universal2.whl", hash = "sha256:89406f3bcddf21e44591aa24d49b44ba5ab819108c88bd9e49dac4503a18aefa"},
+    {file = "polyscope-2.2.1-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:983400e5139ce8c7973b4f0bcee7990ca78017e8aec9fa2d8af44387e268e6ed"},
+    {file = "polyscope-2.2.1-cp38-cp38-macosx_11_0_arm64.whl", hash = "sha256:65ebce79f478784b54fbeb8a080005a516a9e5c5d453f3f1a9dde5cf4532d10a"},
+    {file = "polyscope-2.2.1-cp38-cp38-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:e1df6ea12f242323f3fed9522aa9af5c3b2785793f0d45d289f81e7694e5a99f"},
+    {file = "polyscope-2.2.1-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:f1ccf99b17b412b6103696dd79a19727847cfc12074c1f6d4ce866c59d60b33b"},
+    {file = "polyscope-2.2.1-cp38-cp38-win32.whl", hash = "sha256:255c5d073d90b39e752c76f92efae8e47b949f2d84e63ed57edfc7772e1b583a"},
+    {file = "polyscope-2.2.1-cp38-cp38-win_amd64.whl", hash = "sha256:1b74c5749d55c066295325c2a594f9cb49192c2e42d0fb17bab2c9c057056bc9"},
+    {file = "polyscope-2.2.1-cp39-cp39-macosx_10_9_universal2.whl", hash = "sha256:0f061202bebbb5ac2d92454d6560d7fc7acd8031b84462aca60e25249fe5fa80"},
+    {file = "polyscope-2.2.1-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:f35084ed7ed8d3faae26ace6fa2772e561fa13d017218eb424927e48e5ba8613"},
+    {file = "polyscope-2.2.1-cp39-cp39-macosx_11_0_arm64.whl", hash = "sha256:4f5d4ac5a197a544c8309e7454d304fb0f815e379124ed6a7c74cdc5b0085dae"},
+    {file = "polyscope-2.2.1-cp39-cp39-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:a23bef26118d649f1ec63dd49fd8738ac34c99d75039c733b8d9bc9ad46f3258"},
+    {file = "polyscope-2.2.1-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:a8de84243af6b17547422fe84a2a3b083abce758e119223da7a885e6b6027341"},
+    {file = "polyscope-2.2.1-cp39-cp39-win32.whl", hash = "sha256:1fa5d5c3a39659a815e1602f3d57b6a572c64fbd34e2baa11d1a6b54865d9c4e"},
+    {file = "polyscope-2.2.1-cp39-cp39-win_amd64.whl", hash = "sha256:da1cd3a20281a050ac1c4d58d039723e754f4590410f9b2c1e849ab9c1699b0a"},
+    {file = "polyscope-2.2.1-pp310-pypy310_pp73-macosx_10_9_x86_64.whl", hash = "sha256:fd6460054030fd3b026b2b3b9c6a6b5f42cd7a34ff1e5eef0fdb9bf5524087bd"},
+    {file = "polyscope-2.2.1-pp310-pypy310_pp73-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:76dc028f2edc37b7e6127d9311cb3535d02e6a9f57434b4748e76e6d48fe0401"},
+    {file = "polyscope-2.2.1-pp310-pypy310_pp73-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:33951b9d61eb7a9e27463e3061a19ff2a445cb0c842fdee1aacc6d45d0226efd"},
+    {file = "polyscope-2.2.1-pp310-pypy310_pp73-win_amd64.whl", hash = "sha256:e78b36a83b1896fb774f6f04d4f3859ffe239771e690d2b180333d12ecc666a0"},
+    {file = "polyscope-2.2.1-pp37-pypy37_pp73-macosx_10_9_x86_64.whl", hash = "sha256:48f4ba1a225126dfdf14d5053d59d96f287d1403e97e44201104b79960d04789"},
+    {file = "polyscope-2.2.1-pp37-pypy37_pp73-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:37d5d95eed74e7ed19bdfe7ba039965c6588ae89deda6f6bdef60f4ab6a188b0"},
+    {file = "polyscope-2.2.1-pp37-pypy37_pp73-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:73f6fdfb487a21c544298ac75d6b4813b2f422af3fcca3ee21ce8d4b051528ff"},
+    {file = "polyscope-2.2.1-pp37-pypy37_pp73-win_amd64.whl", hash = "sha256:296c5390e8e645848a4c3163212c39e308c8b5f8aa934e3f65d64732d892f384"},
+    {file = "polyscope-2.2.1-pp38-pypy38_pp73-macosx_10_9_x86_64.whl", hash = "sha256:d953ac00e7078aa5813b89b3b32b8d4bfd5c3e91c8c9c995a579149aa8660f3c"},
+    {file = "polyscope-2.2.1-pp38-pypy38_pp73-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:cb7a142e18a393f372ad0f10694eaaa642a51d87338f12e6d234ccbee01cbda3"},
+    {file = "polyscope-2.2.1-pp38-pypy38_pp73-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:92b0ffee7dbb08eafd26b8ce008b9cecae05eba9f079230bd8565acc22f2fb19"},
+    {file = "polyscope-2.2.1-pp38-pypy38_pp73-win_amd64.whl", hash = "sha256:da8ad0cc2acd67dcf0506c6519904473c713eb065d0a7356149db52763d500d7"},
+    {file = "polyscope-2.2.1-pp39-pypy39_pp73-macosx_10_9_x86_64.whl", hash = "sha256:feabcee454c1edd49dbfec6b026935a504daf1555c66d75efd47b83c18bc595d"},
+    {file = "polyscope-2.2.1-pp39-pypy39_pp73-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:fa77f976d098560c63d3d86aa679cecae443c76ca8a3effe4b022872428b4fde"},
+    {file = "polyscope-2.2.1-pp39-pypy39_pp73-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:6eff604016080929a8b3749050e84fb9480432163a517787db03ecf8581ad4bd"},
+    {file = "polyscope-2.2.1-pp39-pypy39_pp73-win_amd64.whl", hash = "sha256:ecfcb13b9dcc165d96237512239d7c49c7fa631019d52689566ec29d4bc5e8a6"},
+    {file = "polyscope-2.2.1.tar.gz", hash = "sha256:b01f0b76cdec3e6728e16e273b07d4630a3073bba41e9fdd3721d569a1417b7e"},
+]
+
+[package.dependencies]
+numpy = "*"
+
+[[package]]
 name = "pyparsing"
 version = "3.1.2"
 description = "pyparsing module - Classes and methods to define and execute parsing grammars"
@@ -783,4 +857,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11.4"
-content-hash = "ad0aa51a086774ad89ff1d02ac054dcaebb56e3820e387b67cb4e19023ea3d1b"
+content-hash = "f14d2891388bce7197ba8ba874112e7e0128ddc3683f94be68aefdef83ae8a4e"
