@@ -2,30 +2,30 @@ import json
 from typing import Dict, Any
 
 import customtkinter as ctk
-
-from classification_frame import *
-from file_frame import *
+from CTkMenuBar import *
+from classification_frame import ClassificationFrame
+from file_frame import FileFrame
+from log_frame import LogFrame
 from las_handler import *
 from locales import locales
 from visualisation_frame import *
+import constants
 
 ctk.set_appearance_mode("System")
-ctk.set_default_color_theme("dark-blue")
+ctk.set_default_color_theme(constants.THEME_FILE_PATH)
 
 
 class App(ctk.CTk):
 
-    __language = locales.Language.English
+    __language = locales.Language.Polish.value
     __localization_file: Dict
     __file_path: str
     __las_handler: LasHandler
 
     visualisation_frame: VisualisationFrame
     classification_frame: ClassificationFrame
+    log_frame: LogFrame
     file_frame: FileFrame
-
-    APP_ICON_PATH = r"./neptunseye/resources/neptuns-eye-logo.ico"
-    APP_VERSION = "0.1.1"
 
     def __init__(self) -> None:
         super().__init__()
@@ -34,14 +34,22 @@ class App(ctk.CTk):
         self.__las_handler = LasHandler()
 
         # Window setup
-        self.title(f"Neptun's Eye v{self.APP_VERSION}")
+        self.title(f"Neptun's Eye v{constants.APP_VERSION}")
+
+        toolbar_menu = CTkTitleMenu(master=self)
+        toolbar_menu.add_cascade("⚒ | Settings")
+        toolbar_menu.add_cascade("🏴 | Language")
+
         self.width = int(self.winfo_screenwidth() / 2.5)
         self.height = int(self.winfo_screenheight() / 2)
         self.geometry(f"{self.width}x{self.height}")
-        self.minsize(1280, 720)
-        self.after(201, lambda: self.iconbitmap(self.APP_ICON_PATH))
+        self.minsize(1280, 360)
+        self.resizable(False, False)
+        self.after(201, lambda: self.iconbitmap(constants.APP_ICON_PATH))
 
+        self.load_localization_file()
         self.initialize_frames()
+
 
     def initialize_frames(self) -> None:
         """
@@ -56,18 +64,31 @@ class App(ctk.CTk):
         self.grid_rowconfigure((0, 1), weight=1)
         self.grid_columnconfigure((0, 1), weight=1)
 
-        self.file_frame = FileFrame(master=self, las_handler=self.__las_handler)
+        self.file_frame = FileFrame(master=self,
+                                    las_handler=self.__las_handler,
+                                    locales=self.localization_file)
         self.file_frame.grid(row=0, column=0, padx=20, pady=20, sticky="nsew")
 
-        self.visualisation_frame = VisualisationFrame(master=self, las_handler=self.__las_handler)
-        self.visualisation_frame.grid(row=1, column=0, columnspan=2, padx=20, pady=20, sticky="nsew")
+        self.visualisation_frame = VisualisationFrame(master=self,
+                                                      las_handler=self.__las_handler,
+                                                      locales=self.localization_file)
+        self.visualisation_frame.grid(row=1, column=0, padx=20, pady=20, sticky="nsew")
 
-        self.classification_frame = ClassificationFrame(master=self, las_handler=self.__las_handler)
+        self.classification_frame = ClassificationFrame(master=self,
+                                                        las_handler=self.__las_handler,
+                                                        locales=self.localization_file)
         self.classification_frame.grid(row=0, column=1, padx=20, pady=20, sticky="nsew")
+
+        self.log_frame = LogFrame(master=self,
+                                  las_handler=self.__las_handler,
+                                  locales=self.localization_file)
+        self.log_frame.grid(row=1, column=1, padx=20, pady=20, sticky="nsew")
+
+
 
     def load_localization_file(self) -> None:
         """Loads and sets the localization."""
-        with open(f"localization_{self.language}.json", 'r', encoding='utf-8') as file:
+        with open(f".\\neptunseye\\locales\\localization_{self.language}.json", 'r', encoding='utf-8') as file:
             self.localization_file = json.load(file)
 
     def invoke_update_loaded_points_count_lb(self) -> None:

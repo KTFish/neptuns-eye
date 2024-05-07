@@ -1,4 +1,5 @@
 from tkinter import filedialog
+from typing import Dict
 
 import customtkinter as ctk
 import json
@@ -6,13 +7,12 @@ from CTkMessagebox import CTkMessagebox
 
 from las_handler import *
 from resources.fonts import *
+import constants
 
 
 class FileFrame(ctk.CTkFrame):
     __file_path: str
     __las_handler: LasHandler
-
-    CLASSES_DEFINITION_FILE_PATH = r"./neptunseye/config/classes_definition.json"
 
     # Widget definitions
     frame_lb: ctk.CTkLabel
@@ -28,10 +28,11 @@ class FileFrame(ctk.CTkFrame):
     desc_classification_tbox: ctk.CTkTextbox
     import_file_btn: ctk.CTkButton
 
-    def __init__(self, master, las_handler: LasHandler, **kwargs):
+    def __init__(self, master, las_handler: LasHandler, locales: Dict, **kwargs):
         super().__init__(master, **kwargs)
 
         self.las_handler = las_handler
+        self.strings = locales
         self.__master = master
 
         self.set_frame_grid(10, 8)
@@ -71,26 +72,26 @@ class FileFrame(ctk.CTkFrame):
             None
         """
         self.frame_lb = ctk.CTkLabel(self,
-                                     text="Select and load LAS file",
+                                     text=self.strings["gui"]["file_frame"]["header_lb"],
                                      font=FONT_HELV_MEDIUM_B,
                                      anchor='center', justify='center')
-        self.classification_description_lb = ctk.CTkLabel(self,
-                                                          text="Classification",
-                                                          anchor="center",
-                                                          justify="center",
-                                                          font=FONT_HELV_MEDIUM_B)
+        # self.classification_description_lb = ctk.CTkLabel(self,
+        #                                                   text="Classification",
+        #                                                   anchor="center",
+        #                                                   justify="center",
+        #                                                   font=FONT_HELV_MEDIUM_B)
         self.file_description_lb = ctk.CTkLabel(self,
-                                                text="Loaded point cloud information",
+                                                text=self.strings["gui"]["file_frame"]["file_description_lb"],
                                                 anchor="center",
                                                 justify="center",
                                                 font=FONT_HELV_MEDIUM_B)
-        self.desc_points_count_lb = ctk.CTkLabel(self, text="Loaded points: ",
+        self.desc_points_count_lb = ctk.CTkLabel(self, text=self.strings["gui"]["file_frame"]["loaded_point_desc_lb"],
                                                  anchor="w",
                                                  font=FONT_HELV_SMALL_B)
-        self.desc_file_created_lb = ctk.CTkLabel(self, text="File creation date: ",
+        self.desc_file_created_lb = ctk.CTkLabel(self, text=self.strings["gui"]["file_frame"]["file_created_desc_date"],
                                                  anchor="w",
                                                  font=FONT_HELV_SMALL_B)
-        self.desc_classes_count_lb = ctk.CTkLabel(self, text="Number of classes: ",
+        self.desc_classes_count_lb = ctk.CTkLabel(self, text=self.strings["gui"]["file_frame"]["number_of_classes"],
                                                   anchor="w",
                                                   font=FONT_HELV_SMALL_B)
         self.desc_points_count_val_lb = ctk.CTkLabel(self, text="-",
@@ -106,12 +107,12 @@ class FileFrame(ctk.CTkFrame):
                                              height=10,
                                              text_color='gray')
         self.import_file_btn = ctk.CTkButton(self,
-                                             text="Select file",
+                                             text=self.strings["gui"]["file_frame"]["select_file_btn"],
                                              command=self.open_file_dialog)
-        self.desc_classification_tbox = ctk.CTkTextbox(self)
+        # self.desc_classification_tbox = ctk.CTkTextbox(self)
         self.file_path_tbox.configure(state=ctk.DISABLED)
-        self.desc_classification_tbox.insert("0.0", "[File not loaded]")
-        self.desc_classification_tbox.configure(state=ctk.DISABLED)
+        # self.desc_classification_tbox.insert("0.0", "[File not loaded]")
+        # self.desc_classification_tbox.configure(state=ctk.DISABLED)
 
     def set_widgets_positioning(self) -> None:
         """
@@ -128,14 +129,14 @@ class FileFrame(ctk.CTkFrame):
         self.import_file_btn.grid(row=1, column=4, padx=5, sticky="w")
 
         self.file_description_lb.grid(row=2, column=0, padx=20, pady=10)
-        self.classification_description_lb.grid(row=2, column=5)
+        # self.classification_description_lb.grid(row=2, column=5)
         self.desc_points_count_lb.grid(row=3, column=0, sticky="w", padx=10)
         self.desc_file_created_lb.grid(row=4, column=0, sticky="w", padx=10)
         self.desc_classes_count_lb.grid(row=5, column=0, sticky="w", padx=10)
         self.desc_points_count_val_lb.grid(row=3, column=1, columnspan=4, sticky="w")
         self.desc_file_created_val_lb.grid(row=4, column=1, columnspan=4, sticky="w")
         self.desc_classes_count_val_lb.grid(row=5, column=1, columnspan=4, sticky="w")
-        self.desc_classification_tbox.grid(row=3, column=5, columnspan=5, rowspan=5, sticky="nswe", padx=20, pady=20)
+        # self.desc_classification_tbox.grid(row=3, column=5, columnspan=5, rowspan=5, sticky="nswe", padx=20, pady=20)
 
     def open_file_dialog(self) -> None:
         """
@@ -153,7 +154,8 @@ class FileFrame(ctk.CTkFrame):
             ("All files", "*.*")
         )
 
-        file_path = filedialog.askopenfilename(title="Select file", filetypes=filetypes)
+        file_path = filedialog.askopenfilename(title=self.strings["gui"]["file_frame"]["select_file_btn"],
+                                               filetypes=filetypes)
 
         self.file_path = file_path
         self.update_file_path_tbox(file_path)
@@ -180,19 +182,27 @@ class FileFrame(ctk.CTkFrame):
             self.las_handler.file_loaded = True
             self.las_handler.file_path = temp_las_handler.file_path
 
-            formatted_points_loaded = f"{self.las_handler.las.header.point_count:,}".replace(',', ' ')
+            formatted_points_loaded = f"{self.las_handler.las.header.point_count:,}"
+            success_message = self.strings["messages"]["file_loaded_msg"].format(points_count=formatted_points_loaded)
+            CTkMessagebox(
+                title=self.strings["messages"]["file_loaded_title"],
+                message=success_message,
+                icon="check",
+                option_1="OK"
+            )
 
-            CTkMessagebox(title="File loaded", message=f"{formatted_points_loaded} points loaded!",
-                          icon="check", option_1="OK")
         except Exception as e:
-            if temp_las_handler.exception is not None:
-                e = temp_las_handler.exception
-            CTkMessagebox(title="Error",
-                          message=f"Oh, snap!\n\nLooks like the file\n\n"
-                                  f"\"{self.file_path}\"\n\n"
-                                  f"is not a valid .las file or cannot be loaded!\n\n"
-                                  f"{str(e)}",
-                          icon="cancel", option_1="OK", sound=True)
+            error_message = self.strings["messages"]["invalid_file_err_msg"].format(
+                file_path=self.file_path,
+                e=str(temp_las_handler.exception if hasattr(temp_las_handler, "exception") else e)
+            )
+            CTkMessagebox(
+                title=self.strings["messages"]["invalid_file_err_title"],
+                message=error_message,
+                icon="cancel",
+                option_1="OK",
+                sound=True
+            )
 
         self.update_file_description()
 
@@ -216,48 +226,63 @@ class FileFrame(ctk.CTkFrame):
         """
         Update the file description labels with information from the loaded LAS file.
 
+        Args:
+            after_classification (bool): Whether this update is after classification.
+
         Returns:
             None
         """
-        formatted_points_loaded = f"{self.las_handler.las.header.point_count:,}".replace(',', ' ')
-
+        formatted_points_loaded = f"{self.las_handler.las.header.point_count:,}"
         self.desc_points_count_val_lb.configure(text=formatted_points_loaded)
+
         self.desc_file_created_val_lb.configure(text=self.las_handler.las.header.creation_date)
 
         unique_classes_count = len(self.las_handler.unique_classes)
-        if unique_classes_count <= 1 and (
-                self.las_handler.unique_classes[0] == 0 or self.las_handler.unique_classes[0] == 1):
-            self.desc_classes_count_val_lb.configure(text="Not classified")
+        if unique_classes_count <= 1 and self.las_handler.unique_classes[0] in (0, 1):
+            self.desc_classes_count_val_lb.configure(text=self.strings["gui"]["file_frame"]["not_classified_lb"])
         else:
             self.desc_classes_count_val_lb.configure(text=unique_classes_count)
 
-        self.__update_desc_classification_tbox()
+        # if after_classification:
+        #     self.__update_desc_classification_tbox()
 
         self.__master.invoke_update_loaded_points_count_lb()
 
     def __update_desc_classification_tbox(self) -> None:
-        self.desc_classification_tbox.configure(state=ctk.NORMAL)
-        self.desc_classification_tbox.delete("0.0", "end")
-        for class_id in sorted(self.las_handler.unique_classes):
+        """
+        Update description classification textbox with class definitions.
 
-            with open(self.CLASSES_DEFINITION_FILE_PATH, 'r') as file:
-                try:
-                    class_definitions = json.load(file)
-                except Exception as e:
-                    CTkMessagebox(title="Error", message="Something's not right!\n"
-                                                         "There's a problem with 'classes_definition.json' file!\n\n"
-                                                         f"{str(e)}", icon="cancel")
+        Enables and clears `self.desc_classification_tbox`, then populates it with
+        class definitions retrieved from a JSON file based on unique class IDs.
+        If a class definition is found, it displays it in the format '[class_id]: definition'.
+        If no definition is found, it displays 'class_id: Undefined'.
+        Handles any errors encountered during file reading by displaying an error message.
+
+        After updating, disables `self.desc_classification_tbox`.
+
+        Returns:
+            None
+        """
+        try:
+            self.desc_classification_tbox.configure(state=ctk.NORMAL)
+            self.desc_classification_tbox.delete("0.0", "end")
+
+            with open(constants.CLASSES_DEFINITION_FILE_PATH, 'r') as file:
+                class_definitions = json.load(file)
 
             class_definitions = {int(key): value for key, value in class_definitions.items()}
-            class_definitions_keys = list(class_definitions.keys())
 
-            if class_definitions is not None:
-                if class_id in class_definitions_keys:
-                    self.desc_classification_tbox.insert("end", f"[{int(class_id)}]:  "
-                                                                f"{class_definitions[int(class_id)]}\n")
+            for class_id in sorted(self.las_handler.unique_classes):
+                if class_id in class_definitions:
+                    self.desc_classification_tbox.insert("end", f"[{class_id}]: {class_definitions[class_id]}\n")
                 else:
-                    self.desc_classification_tbox.insert("end", f"{int(class_id)}: Undefined\n")
-        self.desc_classification_tbox.configure(state=ctk.DISABLED)
+                    self.desc_classification_tbox.insert("end", f"{class_id}: Undefined\n")
+
+        except Exception as e:
+            CTkMessagebox(title="Error", message=self.strings["messages"]["invalid_file_err_msg"].format(str(e)))
+
+        finally:
+            self.desc_classification_tbox.configure(state=ctk.DISABLED)
 
     @property
     def las_handler(self) -> LasHandler:

@@ -1,4 +1,70 @@
 {
-  "test": "test",
-  "test2": "test2"
+  "english_name": "English",
+  "gui": {
+    "file_frame": {
+      "header_lb": "Select and load LAS file",
+      "select_file_btn": "Select file",
+      "file_description_lb": "Loaded point cloud information",
+      "loaded_point_desc_lb": "Loaded points:",
+      "file_created_desc_date": "File creation date:",
+      "number_of_classes": "Number of classes:",
+      "classification_lb": "Classification",
+      "file_not_loaded_lb": "[File not loaded]",
+      "not_classified_lb": "Not classified",
+      "undefined_class": "Undefined"
+    },
+    "classification_frame": {
+      "header_lb": "Classification options",
+      "save_output_btn": "Save",
+      "save_as_output_btn": "Save as...",
+      "select_model_lb": "Select model",
+      "use_stride_ckb": "Use stride",
+      "run_classification_btn": "Run classification"
+    },
+    "visualisation_frame": {
+      "header_lb": "Visualisation options",
+      "rendering_tool_lb": "Rendering tool",
+      "rendering_stride_lb": "Rendering stride",
+      "batched_visualisation_lb": "Batch visualisation",
+      "number_of_batches_lb": "Number of batches",
+      "rendered_batch_lb": "Rendered batch #",
+      "render_visualisation_btn": "Render visualisation",
+      "selected_stride_points": "{points_number} points will be rendered.",
+      "rendering_in_progress": "Please wait. Rendering in progress...",
+      "done": "Done!"
+    }
+  },
+  "messages":
+  {
+    "file_not_loaded_err_title": "File not loaded",
+    "file_not_loaded_err_msg": "You need to load a file before proceeding with this action.",
+    "file_loaded_title": "File loaded",
+    "file_loaded_msg": "{formatted_points_loaded_count} points loaded!",
+    "invalid_file_err_title": "Invalid file",
+    "invalid_file_err_msg": "Encountered an issue while attempting to load the file:\n\n{file_path}\n\nThis file is either not a valid .las file or cannot be loaded.\n\n{e}",
+    "classification_in_progress_title": "Classification in progress...",
+    "classification_in_progress_msg": "Working on it!\n\n Classification can take a while depending on the number of points and the speed of your computer.\n\n",
+    "classification_failed_err_title": "Classification error",
+    "classification_failed_err_msg": "Unexpected error occurred and classification failed.\n\n{e}",
+    "model_not_found_err_msg": "Encountered an issue while attempting to locate the selected model:\n\n{model}\n\nPlease ensure that the correct joblib file is placed within the 'resources\\models' folder.",
+    "model_loading_err_msg": "Unexpected error occurred while loading the model\n\n{e}",
+    "classification_successful_title": "Done",
+    "classification_successful_msg": "Classification completed successfully.",
+    "save_popup_title": "Save output",
+    "save_popup_message": "Are you sure you want to overwrite currently loaded file?\n\nThis operation cannot be undone.",
+    "classes_def_file_err_title": "Encountered an issue with the 'classes_definition.json' file.\n\n{e}",
+    "too_many_points_warning_title": "Too many points",
+    "too_many_points_warning_msg1": "We've detected a large number of points that may impact rendering performance.\n\nSelected rendering method ({rendering_method}) can smoothly handle up to {rendering_methods_limit} points.\n\n",
+    "too_many_points_warning_msg2": "Consider using another rendering method or displaying only a portion of the file through batching.\n\n Do you wish to proceed?",
+    "yes": "Yes",
+    "no": "No",
+    "cancel": "Cancel",
+    "rendering_in_progress_title": "Rendering...",
+    "rendering_in_progress_msg_w": "Processing...\n\nPlease allow some time for rendering. The duration depends on the number of points and your computer's performance.\n\nThe result will appear in a separate window.",
+    "rendering_in_progress_msg_b": "Processing...\n\nPlease allow some time for rendering. The duration depends on the number of points and your computer's performance.\n\nThe result will open in your main browser.",
+    "visualisation_failed_err_title": "Visualisation error",
+    "visualisation_failed_err_msg": "Unexpected error occurred and visualisation failed.\n\n{e}",
+    "polyscope_error_msg": "Unexpected polyscope error ocurred!\n\nPlease try again.\n\n{e}"
+
+  }
 }

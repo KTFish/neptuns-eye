@@ -64,6 +64,20 @@ test = ["Pillow", "contourpy[test-no-images]", "matplotlib"]
 test-no-images = ["pytest", "pytest-cov", "pytest-xdist", "wurlitzer"]
 
 [[package]]
+name = "ctkmenubar"
+version = "0.6"
+description = "Customtkinter Menu Widget"
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "CTkMenuBar-0.6-py3-none-any.whl", hash = "sha256:66b1a3a0db0b87d856e53b3ef7c7db56ed8ef5eb637479e4acfbb9ad4501ad57"},
+    {file = "ctkmenubar-0.6.tar.gz", hash = "sha256:7324cbedbc0285948e4d438ce8a13f9454b323910000c56112df5d91b14887d5"},
+]
+
+[package.dependencies]
+customtkinter = "*"
+
+[[package]]
 name = "ctkmessagebox"
 version = "2.5"
 description = "A modern messagebox for customtkinter"
@@ -857,4 +871,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11.4"
-content-hash = "f14d2891388bce7197ba8ba874112e7e0128ddc3683f94be68aefdef83ae8a4e"
+content-hash = "c93bd8c299dc3e9a179abbf0d700f7a719f6356f385d41918ca49b1f607b1ab3"

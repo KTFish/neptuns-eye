@@ -1,5 +1,7 @@
+import json
 import threading
 from tkinter import filedialog
+from typing import Dict
 
 import customtkinter as ctk
 from CTkMessagebox import CTkMessagebox
@@ -7,6 +9,7 @@ from CTkMessagebox import CTkMessagebox
 from las_handler import *
 from resources.fonts import *
 from classification_utils import ClassificationUtils
+import constants
 
 
 class ClassificationFrame(ctk.CTkFrame):
@@ -23,20 +26,16 @@ class ClassificationFrame(ctk.CTkFrame):
     save_btn: ctk.CTkButton
     save_as_btn: ctk.CTkButton
 
-    def __init__(self, master, las_handler: LasHandler, **kwargs):
+    def __init__(self, master, las_handler: LasHandler, locales: Dict, **kwargs):
         super().__init__(master, **kwargs)
 
-        self.MODELS = {
-            "ExtraTreesClassifier": r"./neptunseye/resources/models/aha41.joblib",
-            "ExtraTreesClassifier851": r"./neptunseye/resources/models/ExtraTreesClassifier851.joblib",
-            "AdaBoostClassifier731": r"./neptunseye/resources/models/AdaBoostClassifier731.joblib",
-            "BaggingClassifier650": r"./neptunseye/resources/models/BaggingClassifier650.joblib",
-            "GradientBoostingClassifier653": r"./neptunseye/resources/models/GradientBoostingClassifier653.joblib",
-            "HistGradientBoostingClassifier720": r"./neptunseye/resources/models/HistGradientBoostingClassifier720"
-                                                 r".joblib",
-            "KNeighborsClassifier795": r"./neptunseye/resources/models/KNeighborsClassifier795.joblib",
-            "RandomForestClassifier851": r"./neptunseye/resources/models/RandomForestClassifier851.joblib"
-        }
+        with open(constants.MODELS_DEFINITION_FILE_PATH, 'r') as file:
+            try:
+                self.models: Dict[str, str] = json.load(file)
+            except Exception as e:
+                CTkMessagebox(title="Error", message="Something's not right!\n"
+                                                     "There's a problem with 'models.json' file!\n\n"
+                                                     f"{str(e)}", icon="cancel")
 
         self.selected_model = ctk.StringVar(value="ExtraTreesClassifier")
 
@@ -100,7 +99,7 @@ class ClassificationFrame(ctk.CTkFrame):
                                      text="Select model",
                                      font=FONT_HELV_SMALL_B)
         self.model_cbox = ctk.CTkComboBox(self,
-                                          values=list(self.MODELS.keys()),
+                                          values=list(self.models.keys()),
                                           variable=self.selected_model)
         self.stride_ckb = ctk.CTkCheckBox(self,
                                           text="Use stride",
@@ -119,11 +118,12 @@ class ClassificationFrame(ctk.CTkFrame):
         self.frame_lb.grid(row=0, column=0, columnspan=7, pady=0, sticky="ew")
         self.model_lb.grid(row=1, column=0, padx=15, sticky="w")
         self.model_cbox.grid(row=2, column=0, columnspan=5, padx=15, sticky="we")
-        self.classification_btn.grid(row=9, column=5)
-        self.stride_ckb.grid(row=9, column=4)
+        self.classification_btn.grid(row=8, column=5, padx=15, pady=10, sticky='w')
+        self.save_btn.grid(row=2, column=5, padx=15, sticky="w")
+        self.save_as_btn.grid(row=3, column=5, padx=15, sticky="w")
+        self.stride_ckb.grid(row=8, column=4, pady=10)
         self.manage_output_lb.grid(row=1, column=5, padx=20, sticky="w")
-        self.save_btn.grid(row=2, column=5, padx=20, sticky="w")
-        self.save_as_btn.grid(row=3, column=5, padx=20, sticky="w")
+
 
     def classification_event(self) -> bool:
 
@@ -149,9 +149,9 @@ class ClassificationFrame(ctk.CTkFrame):
         return True
 
     def run_classification(self) -> bool:
-        print("Loading model from", self.MODELS[self.selected_model.get()])
+        print("Loading model from", self.models[self.selected_model.get()])
         try:
-            model = ClassificationUtils.load_joblib(self.MODELS[self.selected_model.get()])
+            model = ClassificationUtils.load_joblib(self.models[self.selected_model.get()])
         except FileNotFoundError:
             CTkMessagebox(title="Error", message="Whoops!\n\n"
                                                  "Couldn't find the model\n\n"

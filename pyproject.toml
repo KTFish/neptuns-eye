@@ -32,6 +32,7 @@ tenacity = "8.2.3"
 threadpoolctl = "3.4.0"
 tzdata = "2024.1"
 polyscope = "^2.2.1"
+ctkmenubar = "^0.6"
 
 
 [build-system]

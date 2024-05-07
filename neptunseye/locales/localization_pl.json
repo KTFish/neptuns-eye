@@ -1,0 +1,70 @@
+{
+"english_name": "Polish",
+  "gui": {
+    "file_frame": {
+      "header_lb": "Wybierz i załaduj plik LAS",
+      "select_file_btn": "Wybierz plik",
+      "file_description_lb": "Informacje o pliku",
+      "loaded_point_desc_lb": "Załadowane punkty:",
+      "file_created_desc_date": "Data utworzenia pliku:",
+      "number_of_classes": "Liczba klas:",
+      "classification_lb": "Klasyfikacja",
+      "file_not_loaded_lb": "[Plik nie został załadowany]",
+      "not_classified_lb": "Niesklasyfikowany",
+      "undefined_class": "Nieokreślony"
+    },
+    "classification_frame": {
+      "header_lb": "Opcje klasyfikacji",
+      "save_output_btn": "Zapisz",
+      "save_as_output_btn": "Zapisz jako...",
+      "select_model_lb": "Wybierz model",
+      "use_stride_ckb": "Używaj kroku",
+      "run_classification_btn": "Klasyfikuj"
+    },
+    "visualisation_frame": {
+      "header_lb": "Opcje wizualizacji",
+      "rendering_tool_lb": "Narzędzie renderowania",
+      "rendering_stride_lb": "Krok renderowania",
+      "batched_visualisation_lb": "Częściowa wizualizacja",
+      "number_of_batches_lb": "Liczba części",
+      "rendered_batch_lb": "Wyświetlana część numer #",
+      "render_visualisation_btn": "Renderuj",
+      "selected_stride_points": "{points_number} punktów zostanie wygenerowanych.",
+      "rendering_in_progress": "Proszę czekać. Trwa renderowanie...",
+      "done": "Gotowe!",
+      "enable": "Aktywna"
+    }
+  },
+  "messages":
+  {
+    "file_not_loaded_err_title": "Plik nie został załadowany",
+    "file_not_loaded_err_msg": "Załaduj plik przed kontynuowaniem tej akcji.",
+    "file_loaded_title": "Plik załadowany",
+    "file_loaded_msg": "Załadowane punkty: {points_count}",
+    "invalid_file_err_title": "Nieprawidłowy plik",
+    "invalid_file_err_msg": "Wystąpił problem podczas próby załadowania pliku:\n\n{file_path}\n\nTen plik nie jest prawidłowym plikiem .las lub nie można go załadować.\n\n{e}",
+    "classification_in_progress_title": "Trwa klasyfikacja...",
+    "classification_in_progress_msg": "Trwa pracowanie!\n\n Klasyfikacja może zająć trochę czasu w zależności od liczby punktów i szybkości komputera.\n\n",
+    "classification_failed_err_title": "Błąd klasyfikacji",
+    "classification_failed_err_msg": "Wystąpił nieoczekiwany błąd i klasyfikacja nie powiodła się.\n\n{e}",
+    "model_not_found_err_msg": "Wystąpił problem podczas próby odnalezienia wybranego modelu:\n\n{model}\n\nUpewnij się, że właściwy plik joblib znajduje się w folderze 'resources\\models'.",
+    "model_loading_err_msg": "Wystąpił nieoczekiwany błąd podczas ładowania modelu\n\n{e}",
+    "classification_successful_title": "Gotowe",
+    "classification_successful_msg": "Klasyfikacja zakończona pomyślnie.",
+    "save_popup_title": "Zapisz wynik",
+    "save_popup_message": "Czy na pewno chcesz nadpisać aktualnie załadowany plik?\n\nTej operacji nie można cofnąć.",
+    "classes_def_file_err_msg": "Wystąpił problem z plikiem 'classes_definition.json'.\n\n{e}",
+    "too_many_points_warning_title": "Zbyt dużo punktów",
+    "too_many_points_warning_msg1": "Wykryto dużą liczbę punktów, co może wpłynąć na wydajność renderowania.\n\nWybrana metoda renderowania ({rendering_method}) może płynnie obsłużyć do {rendering_methods_limit} punktów.\n\n",
+    "too_many_points_warning_msg2": "Rozważ użycie innej metody renderowania lub wyświetlanie tylko fragmentu pliku za pomocą partycjonowania.\n\n Czy chcesz kontynuować?",
+    "yes": "Tak",
+    "no": "Nie",
+    "cancel": "Anuluj",
+    "rendering_in_progress_title": "Renderowanie...",
+    "rendering_in_progress_msg_w": "Przetwarzanie...\n\nProszę odczekać chwilę na renderowanie. Czas trwania zależy od liczby punktów i wydajności komputera.\n\nWynik pojawi się w osobnym oknie.",
+    "rendering_in_progress_msg_b": "Przetwarzanie...\n\nProszę odczekać chwilę na renderowanie. Czas trwania zależy od liczby punktów i wydajności komputera.\n\nWynik otworzy się w głównej przeglądarce.",
+    "visualisation_failed_err_title": "Błąd wizualizacji",
+    "visualisation_failed_err_msg": "Wystąpił nieoczekiwany błąd i wizualizacja nie powiodła się.\n\n{e}",
+    "polyscope_error_msg": "Wystąpił nieoczekiwany błąd w Polyscope!\n\nSpróbuj ponownie.\n\n{e}"
+  }
+}
