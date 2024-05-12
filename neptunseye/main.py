@@ -97,5 +97,6 @@ class App(ctk.CTk):
 
 
 if __name__ == "__main__":
+    print("Siema")
     app = App()
     app.mainloop()

@@ -53,9 +53,5 @@ RUN poetry install
 # Ustawienie pracy w głównym katalogu aplikacji
 WORKDIR /neptuns-eye/neptunseye
 
-# Dodanie i przygotowanie skryptu startowego
-COPY entrypoint.sh ./
-RUN chmod +x entrypoint.sh
-
-# Ustawienie pliku entrypoint.sh jako domyślnego punktu wejścia
-ENTRYPOINT ["/neptuns-eye/neptunseye/entrypoint.sh"]
+# Ustawienie pliku main.py jako domyślnego punktu wejścia
+ENTRYPOINT ["poetry", "run", "python", "main.py"]
