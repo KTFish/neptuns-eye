@@ -20,16 +20,14 @@ RUN apt-get update && apt-get install -y \
     tk-dev \
     libffi-dev
 
-# Instalacja Pythona 3.11.4
+# Instalacja Pythona 3.11.4 i 3.7.9
 RUN curl -O https://www.python.org/ftp/python/3.11.4/Python-3.11.4.tar.xz \
     && tar -xf Python-3.11.4.tar.xz \
     && cd Python-3.11.4 \
     && ./configure --enable-optimizations \
     && make -j 8 \
-    && make altinstall
-
-# Instalacja Pythona 3.7.9
-RUN curl -O https://www.python.org/ftp/python/3.7.9/Python-3.7.9.tar.xz \
+    && make altinstall \
+    && curl -O https://www.python.org/ftp/python/3.7.9/Python-3.7.9.tar.xz \
     && tar -xf Python-3.7.9.tar.xz \
     && cd Python-3.7.9 \
     && ./configure --enable-optimizations \
@@ -45,13 +43,13 @@ ARG GITHUB_TOKEN
 RUN git clone https://x-access-token:${GITHUB_TOKEN}@github.com/KTFish/neptuns-eye.git /neptuns-eye
 WORKDIR /neptuns-eye
 RUN git checkout 47-research-how-to-use-docker-in-our-project
-
-# Instalacja zależności za pomocą Poetry
 RUN poetry env use /usr/local/bin/python3.11
 RUN poetry install
 
-# Ustawienie pracy w głównym katalogu aplikacji
+# Skopiowanie i przygotowanie skryptu startowego
 WORKDIR /neptuns-eye/neptunseye
+COPY entrypoint.sh ./
+RUN chmod +x entrypoint.sh
 
-# Ustawienie pliku main.py jako domyślnego punktu wejścia
-ENTRYPOINT ["entrypoint.sh"]
+# Uruchomienie aplikacji
+ENTRYPOINT ["/neptuns-eye/neptunseye/entrypoint.sh"]
