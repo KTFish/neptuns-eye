@@ -1,11 +1,9 @@
 FROM ubuntu:latest
 LABEL authors="PC"
 
-ENTRYPOINT ["top", "-b"]
-
-FROM ubuntu:latest
-
+# Instalacja podstawowych narzędzi
 RUN apt-get update && apt-get install -y \
+    git \
     curl \
     build-essential \
     libssl-dev \
@@ -22,19 +20,39 @@ RUN apt-get update && apt-get install -y \
     tk-dev \
     libffi-dev
 
-RUN curl -O https://www.python.org/ftp/python/3.11.0/Python-3.11.0.tar.xz \
-    && tar -xf Python-3.11.0.tar.xz \
-    && cd Python-3.11.0 \
+# Instalacja Pythona 3.11.4
+RUN curl -O https://www.python.org/ftp/python/3.11.4/Python-3.11.4.tar.xz \
+    && tar -xf Python-3.11.4.tar.xz \
+    && cd Python-3.11.4 \
     && ./configure --enable-optimizations \
     && make -j 8 \
     && make altinstall
 
-# Instalacja curl i Poetry
-RUN apt-get install -y curl
-RUN curl -sSL https://install.python-poetry.org | python3.11 - --version 1.8.2
+# Instalacja Pythona 3.7.9
+RUN curl -O https://www.python.org/ftp/python/3.7.9/Python-3.7.9.tar.xz \
+    && tar -xf Python-3.7.9.tar.xz \
+    && cd Python-3.7.9 \
+    && ./configure --enable-optimizations \
+    && make -j 8 \
+    && make altinstall
 
-# Dodanie .local/bin do PATH
+# Instalacja Poetry
+RUN curl -sSL https://install.python-poetry.org | python3.11 - --version 1.8.2
 ENV PATH="${PATH}:/root/.local/bin"
 
-# Sprawdzenie wersji Poetry
-RUN poetry --version
+# Pobranie repozytorium i przełączenie na określony branch
+ARG GITHUB_TOKEN
+RUN git clone https://x-access-token:${GITHUB_TOKEN}@github.com/KTFish/neptuns-eye.git /neptuns-eye
+WORKDIR /neptuns-eye
+RUN git checkout 47-research-how-to-use-docker-in-our-project
+
+# Instalacja zależności za pomocą Poetry
+RUN poetry env use /usr/local/bin/python3.11
+RUN poetry install
+
+# Ustawienie pracy w głównym katalogu aplikacji
+WORKDIR /neptuns-eye/neptunseye
+
+# Ustawienie pliku main.py jako domyślnego punktu wejścia
+ENTRYPOINT ["sh", "-c", "poetry run python fetch_las_files.py && poetry run python main.py"]
+
