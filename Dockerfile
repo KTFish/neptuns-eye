@@ -40,13 +40,11 @@ RUN curl -O https://www.python.org/ftp/python/3.7.9/Python-3.7.9.tar.xz \
 RUN curl -sSL https://install.python-poetry.org | python3.11 - --version 1.8.2
 ENV PATH="${PATH}:/root/.local/bin"
 
-# Pobranie repozytorium i przełączenie na określony branch
+# Pobranie repozytorium i instalacja zależności
 ARG GITHUB_TOKEN
 RUN git clone https://x-access-token:${GITHUB_TOKEN}@github.com/KTFish/neptuns-eye.git /neptuns-eye
-WORKDIR /neptuns-eye
-RUN git checkout 47-research-how-to-use-docker-in-our-project
 
-# Instalacja zależności za pomocą Poetry
+WORKDIR /neptuns-eye
 RUN poetry env use /usr/local/bin/python3.11
 RUN poetry install
 
@@ -55,3 +53,4 @@ WORKDIR /neptuns-eye/neptunseye
 
 # Ustawienie pliku main.py jako domyślnego punktu wejścia
 ENTRYPOINT ["poetry", "run", "python", "main.py"]
+
