@@ -1,3 +1,3 @@
 #!/bin/bash
-poetry run python hello.py
+poetry run python fetch_las_file.py
 poetry run python main.py

@@ -54,5 +54,4 @@ RUN poetry install
 WORKDIR /neptuns-eye/neptunseye
 
 # Ustawienie pliku main.py jako domyślnego punktu wejścia
-ENTRYPOINT ["sh", "-c", "poetry run python fetch_las_files.py && poetry run python main.py"]
-
+ENTRYPOINT ["/neptuns-eye/neptunseye/entrypoint.sh"]
