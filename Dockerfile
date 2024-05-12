@@ -49,8 +49,8 @@ RUN poetry env use /usr/local/bin/python3.11
 RUN poetry install
 
 # Ustawienie pracy w głównym katalogu aplikacji
-WORKDIR /neptuns-eye/neptunseye
+WORKDIR /neptuns-eye
 
 # Ustawienie pliku main.py jako domyślnego punktu wejścia
-ENTRYPOINT ["poetry", "run", "python", "main.py"]
+ENTRYPOINT ["poetry", "run", "python", "./neptunseye/main.py"]
 
