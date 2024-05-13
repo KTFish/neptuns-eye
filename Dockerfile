@@ -40,9 +40,7 @@ RUN curl -O https://www.python.org/ftp/python/3.7.9/Python-3.7.9.tar.xz \
 RUN curl -sSL https://install.python-poetry.org | python3.11 - --version 1.8.2
 ENV PATH="${PATH}:/root/.local/bin"
 
-RUN python3.7 -m venv /venv37 \
-    && . /venv37/bin/activate \
-    && pip install numpy pandas laspy pptk
+RUN python3.7 -m pip install numpy pandas laspy pptk
 
 # Pobranie repozytorium i instalacja zależności
 ARG GITHUB_TOKEN
