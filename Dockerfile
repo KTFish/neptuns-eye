@@ -18,7 +18,18 @@ RUN apt-get update && apt-get install -y \
     libexpat1-dev \
     liblzma-dev \
     tk-dev \
-    libffi-dev
+    libffi-dev \
+    libglfw3 \
+    libglfw3-dev \
+    libgl1-mesa-dev \
+    libglu1-mesa-dev \
+    libxinerama-dev \
+    libxcursor-dev \
+    libxi-dev \
+    x11-xserver-utils \
+    xorg-dev \
+    libgl1-mesa-glx
+
 
 # Instalacja Pythona 3.11.4
 RUN curl -O https://www.python.org/ftp/python/3.11.4/Python-3.11.4.tar.xz \
