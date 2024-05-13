@@ -28,7 +28,8 @@ RUN apt-get update && apt-get install -y \
     libxi-dev \
     x11-xserver-utils \
     xorg-dev \
-    libgl1-mesa-glx
+    libgl1
+
 
 
 # Instalacja Pythona 3.11.4
