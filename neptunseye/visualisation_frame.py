@@ -433,7 +433,7 @@ class VisualisationFrame(ctk.CTkFrame):
         self.rendering_progress_lb.configure(text="Please wait. Rendering in progress...", text_color="red")
 
         userprofile_path = os.environ.get("USERPROFILE", "")
-        python37_path = userprofile_path + r"\.pyenv\pyenv-win\versions\3.7.9\python.exe"
+        python37_path = userprofile_path + r"/venv37/bin/python"
         print(python37_path)
         script_path = r".\neptunseye\script_pptk.py"
         dataframe_temp_file_path = ".tempdf.csv"

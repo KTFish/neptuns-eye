@@ -40,16 +40,26 @@ RUN curl -O https://www.python.org/ftp/python/3.7.9/Python-3.7.9.tar.xz \
 RUN curl -sSL https://install.python-poetry.org | python3.11 - --version 1.8.2
 ENV PATH="${PATH}:/root/.local/bin"
 
+# Utworzenie i aktywacja wirtualnego środowiska dla Pythona 3.7.9
+RUN python3.7 -m venv /venv37 \
+    && . /venv37/bin/activate
+
+# Instalacja pakietów numpy, pandas, laspy, pptk do środowiska Pythona 3.7.9
+RUN /venv37/bin/pip install numpy pandas laspy pptk
+
 # Pobranie repozytorium i instalacja zależności
 ARG GITHUB_TOKEN
-RUN git clone https://x-access-token:${GITHUB_TOKEN}@github.com/KTFish/neptuns-eye.git /neptuns-eye
-
+RUN git clone https://x-access-token:${GITHUB_TOKEN}@github.com/KTFish/neptuns-eye.git /neptuns-eye \
+    && cd /neptuns-eye \
+    && git checkout 47-research-how-to-use-docker-in-our-project
 WORKDIR /neptuns-eye
 RUN poetry env use /usr/local/bin/python3.11
 RUN poetry install
 
 # Ustawienie pracy w głównym katalogu aplikacji
 WORKDIR /neptuns-eye
+
+COPY USER_AREA.las USER_AREA.las
 
 # Ustawienie pliku main.py jako domyślnego punktu wejścia
 ENTRYPOINT ["poetry", "run", "python", "./neptunseye/main.py"]
