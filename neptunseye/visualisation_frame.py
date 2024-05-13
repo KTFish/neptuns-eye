@@ -423,6 +423,9 @@ class VisualisationFrame(ctk.CTkFrame):
         self.rendering_progress_lb.configure(text="Done!", text_color="green")
         self.render_btn.configure(state="normal")
 
+    import os
+    import subprocess
+
     def render_pptk(self) -> None:
         """
         Renders LAS data using pptk.
@@ -430,17 +433,25 @@ class VisualisationFrame(ctk.CTkFrame):
         Returns:
             None
         """
+        # Ustawienie wiadomości o postępie
         self.rendering_progress_lb.configure(text="Please wait. Rendering in progress...", text_color="red")
 
-        python37_path = r"/usr/local/bin/python3.7"
+        # Ścieżka do interpretera Pythona
+        python37_path = "/usr/local/bin/python3.7"
         print(python37_path)
-        script_path = r".\neptunseye\script_pptk.py"
-        dataframe_temp_file_path = ".tempdf.csv"
 
+        # Dostosowanie ścieżki skryptu do konwencji systemu Linux
+        script_path = "/neptuns-eye/neptunseye/script_pptk.py"
+        dataframe_temp_file_path = "/neptuns-eye/tempdf.csv"
+
+        # Zapisanie wybranych kolumn do pliku CSV
         self.save_selected_columns_to_csv(['X', 'Y', 'Z', 'red', 'green', 'blue', 'classification'])
 
+        # Kopiowanie zmiennych środowiskowych i uruchomienie skryptu
         os.environ.copy()
         subprocess.run([python37_path, script_path, dataframe_temp_file_path], check=True, text=True)
+
+        # Uaktualnienie interfejsu użytkownika po zakończeniu renderowania
         self.rendering_progress_lb.configure(text="Done!", text_color="green")
         self.render_btn.configure(state="normal")
 
