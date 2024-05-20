@@ -6,16 +6,20 @@ class ClassificationUtils:
     @staticmethod
     def prepare_data_prediction(df, target_column="classification"):
         """
-            Prepare prediction data by keeping specified columns and separating features from the target.
+        Prepare prediction data by keeping specified columns and separating features from the target.
+
+        Parameters:
+        df (DataFrame): Input data frame.
+        target_column (str): Column name to be used as the target variable. Default is "classification".
+
+        Returns:
+        tuple: Features and target labels for prediction.
         """
         columns_to_keep = ["X", "Y", "Z", "intensity", "return_number", "number_of_returns",
                            "scan_direction_flag", "edge_of_flight_line", "scan_angle_rank",
                            "red", "green", "blue", target_column]
 
-        # Usuwamy wszystkie kolumny, które nie są w liście columns_to_keep
         df = df[columns_to_keep]
-
-        # Rozdzielamy kolumny na zmienne niezależne i zmienną docelową
         test_features = df.drop(columns=[target_column])
         test_labels = df[target_column]
 
