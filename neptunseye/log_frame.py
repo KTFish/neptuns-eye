@@ -1,5 +1,6 @@
 import json
 import threading
+import time
 from tkinter import filedialog
 from typing import Dict
 
@@ -65,7 +66,7 @@ class LogFrame(ctk.CTkFrame):
                                      anchor='center',
                                      justify='center')
 
-        self.log_tbox = ctk.CTkTextbox(self, bg_color='gray12', fg_color='gray12')
+        self.log_tbox = ctk.CTkTextbox(self, bg_color='gray12', fg_color='gray12', font=("Consolas", 12))
 
     def set_widgets_positioning(self) -> None:
         """
@@ -79,3 +80,39 @@ class LogFrame(ctk.CTkFrame):
         """
         self.frame_lb.grid(row=0, column=0, columnspan=6, sticky="ew")
         self.log_tbox.grid(row=1, column=0, columnspan=6, sticky="nsew", padx=10)
+
+    def insert_text_with_timestamp(self, text: str) -> None:
+        """Inserts text with a timestamp and newline into a CustomTkinter textbox.
+
+        Args:
+          text: The text to be inserted.
+
+        Returns:
+            None
+        """
+        current_time = time.strftime("%H:%M")
+
+        self.log_tbox.configure(state=ctk.NORMAL)
+
+        self.log_tbox.insert(ctk.END, f"[{current_time}] {text}\n")
+
+        self.log_tbox.see(ctk.END)
+
+        self.log_tbox.configure(state=ctk.DISABLED)
+
+    def insert_text(self, text: str) -> None:
+        """Inserts text and newline into a CustomTkinter textbox.
+
+        Args:
+          text: The text to be inserted.
+
+        Returns:
+            None
+        """
+        self.log_tbox.configure(state=ctk.NORMAL)
+
+        self.log_tbox.insert(ctk.END, f"{text}\n")
+
+        self.log_tbox.see(ctk.END)
+
+        self.log_tbox.configure(state=ctk.DISABLED)

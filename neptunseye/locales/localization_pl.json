@@ -19,7 +19,8 @@
       "save_as_output_btn": "Zapisz jako...",
       "select_model_lb": "Wybierz model",
       "use_stride_ckb": "Używaj kroku",
-      "run_classification_btn": "Klasyfikuj"
+      "run_classification_btn": "Klasyfikuj",
+      "manage_output": "Zapisz wynik"
     },
     "visualisation_frame": {
       "header_lb": "Opcje wizualizacji",
@@ -32,7 +33,11 @@
       "selected_stride_points": "{points_number} punktów zostanie wygenerowanych.",
       "rendering_in_progress": "Proszę czekać. Trwa renderowanie...",
       "done": "Gotowe!",
-      "enable": "Aktywna"
+      "enable": "Używaj"
+    },
+    "toolbar": {
+      "settings_btn": "Ustawienia",
+      "language_btn": "Język"
     }
   },
   "messages":
@@ -44,7 +49,7 @@
     "invalid_file_err_title": "Nieprawidłowy plik",
     "invalid_file_err_msg": "Wystąpił problem podczas próby załadowania pliku:\n\n{file_path}\n\nTen plik nie jest prawidłowym plikiem .las lub nie można go załadować.\n\n{e}",
     "classification_in_progress_title": "Trwa klasyfikacja...",
-    "classification_in_progress_msg": "Trwa pracowanie!\n\n Klasyfikacja może zająć trochę czasu w zależności od liczby punktów i szybkości komputera.\n\n",
+    "classification_in_progress_msg": "Trwa klasyfikacja!\n\n Klasyfikacja może zająć trochę czasu w zależności od liczby punktów i szybkości komputera.\n\n",
     "classification_failed_err_title": "Błąd klasyfikacji",
     "classification_failed_err_msg": "Wystąpił nieoczekiwany błąd i klasyfikacja nie powiodła się.\n\n{e}",
     "model_not_found_err_msg": "Wystąpił problem podczas próby odnalezienia wybranego modelu:\n\n{model}\n\nUpewnij się, że właściwy plik joblib znajduje się w folderze 'resources\\models'.",
@@ -54,6 +59,7 @@
     "save_popup_title": "Zapisz wynik",
     "save_popup_message": "Czy na pewno chcesz nadpisać aktualnie załadowany plik?\n\nTej operacji nie można cofnąć.",
     "classes_def_file_err_msg": "Wystąpił problem z plikiem 'classes_definition.json'.\n\n{e}",
+    "models_file_err_msg": "Wystąpił problem z plikiem 'models.json'.\n\n{e}",
     "too_many_points_warning_title": "Zbyt dużo punktów",
     "too_many_points_warning_msg1": "Wykryto dużą liczbę punktów, co może wpłynąć na wydajność renderowania.\n\nWybrana metoda renderowania ({rendering_method}) może płynnie obsłużyć do {rendering_methods_limit} punktów.\n\n",
     "too_many_points_warning_msg2": "Rozważ użycie innej metody renderowania lub wyświetlanie tylko fragmentu pliku za pomocą partycjonowania.\n\n Czy chcesz kontynuować?",
@@ -61,8 +67,8 @@
     "no": "Nie",
     "cancel": "Anuluj",
     "rendering_in_progress_title": "Renderowanie...",
-    "rendering_in_progress_msg_w": "Przetwarzanie...\n\nProszę odczekać chwilę na renderowanie. Czas trwania zależy od liczby punktów i wydajności komputera.\n\nWynik pojawi się w osobnym oknie.",
-    "rendering_in_progress_msg_b": "Przetwarzanie...\n\nProszę odczekać chwilę na renderowanie. Czas trwania zależy od liczby punktów i wydajności komputera.\n\nWynik otworzy się w głównej przeglądarce.",
+    "rendering_in_progress_msg_w": "Przetwarzanie...\n\nProszę czekać. Czas trwania zależy od liczby punktów i wydajności komputera.\n\nWynik pojawi się w osobnym oknie.",
+    "rendering_in_progress_msg_b": "Przetwarzanie...\n\nProszę czekać. Czas trwania zależy od liczby punktów i wydajności komputera.\n\nWynik otworzy się w głównej przeglądarce.",
     "visualisation_failed_err_title": "Błąd wizualizacji",
     "visualisation_failed_err_msg": "Wystąpił nieoczekiwany błąd i wizualizacja nie powiodła się.\n\n{e}",
     "polyscope_error_msg": "Wystąpił nieoczekiwany błąd w Polyscope!\n\nSpróbuj ponownie.\n\n{e}"

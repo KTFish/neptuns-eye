@@ -75,11 +75,6 @@ class FileFrame(ctk.CTkFrame):
                                      text=self.strings["gui"]["file_frame"]["header_lb"],
                                      font=FONT_HELV_MEDIUM_B,
                                      anchor='center', justify='center')
-        # self.classification_description_lb = ctk.CTkLabel(self,
-        #                                                   text="Classification",
-        #                                                   anchor="center",
-        #                                                   justify="center",
-        #                                                   font=FONT_HELV_MEDIUM_B)
         self.file_description_lb = ctk.CTkLabel(self,
                                                 text=self.strings["gui"]["file_frame"]["file_description_lb"],
                                                 anchor="center",
@@ -109,10 +104,7 @@ class FileFrame(ctk.CTkFrame):
         self.import_file_btn = ctk.CTkButton(self,
                                              text=self.strings["gui"]["file_frame"]["select_file_btn"],
                                              command=self.open_file_dialog)
-        # self.desc_classification_tbox = ctk.CTkTextbox(self)
         self.file_path_tbox.configure(state=ctk.DISABLED)
-        # self.desc_classification_tbox.insert("0.0", "[File not loaded]")
-        # self.desc_classification_tbox.configure(state=ctk.DISABLED)
 
     def set_widgets_positioning(self) -> None:
         """
@@ -129,14 +121,12 @@ class FileFrame(ctk.CTkFrame):
         self.import_file_btn.grid(row=1, column=4, padx=5, sticky="w")
 
         self.file_description_lb.grid(row=2, column=0, padx=20, pady=10)
-        # self.classification_description_lb.grid(row=2, column=5)
         self.desc_points_count_lb.grid(row=3, column=0, sticky="w", padx=10)
         self.desc_file_created_lb.grid(row=4, column=0, sticky="w", padx=10)
         self.desc_classes_count_lb.grid(row=5, column=0, sticky="w", padx=10)
         self.desc_points_count_val_lb.grid(row=3, column=1, columnspan=4, sticky="w")
         self.desc_file_created_val_lb.grid(row=4, column=1, columnspan=4, sticky="w")
         self.desc_classes_count_val_lb.grid(row=5, column=1, columnspan=4, sticky="w")
-        # self.desc_classification_tbox.grid(row=3, column=5, columnspan=5, rowspan=5, sticky="nswe", padx=20, pady=20)
 
     def open_file_dialog(self) -> None:
         """
@@ -177,6 +167,8 @@ class FileFrame(ctk.CTkFrame):
         try:
             temp_las_handler = LasHandler(self.file_path)
 
+            self.__master.invoke_insert_text_with_timestamp(f"Loading file: {self.file_path}")
+
             self.las_handler.las = temp_las_handler.las
             self.las_handler.data_frame = temp_las_handler.create_dataframe()
             self.las_handler.file_loaded = True
@@ -190,8 +182,10 @@ class FileFrame(ctk.CTkFrame):
                 icon="check",
                 option_1="OK"
             )
+            self.__master.invoke_insert_text_with_timestamp(f"Successfully loaded {formatted_points_loaded} points.")
 
         except Exception as e:
+            print(str(e))
             error_message = self.strings["messages"]["invalid_file_err_msg"].format(
                 file_path=self.file_path,
                 e=str(temp_las_handler.exception if hasattr(temp_las_handler, "exception") else e)

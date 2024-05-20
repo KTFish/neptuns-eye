@@ -19,7 +19,8 @@
       "save_as_output_btn": "Save as...",
       "select_model_lb": "Select model",
       "use_stride_ckb": "Use stride",
-      "run_classification_btn": "Run classification"
+      "run_classification_btn": "Run classification",
+      "manage_output": "Manage output"
     },
     "visualisation_frame": {
       "header_lb": "Visualisation options",
@@ -31,7 +32,12 @@
       "render_visualisation_btn": "Render visualisation",
       "selected_stride_points": "{points_number} points will be rendered.",
       "rendering_in_progress": "Please wait. Rendering in progress...",
-      "done": "Done!"
+      "done": "Done!",
+      "enable": "Enabled"
+    },
+    "toolbar": {
+      "settings_btn": "Settings",
+      "language_btn": "Language"
     }
   },
   "messages":
@@ -39,7 +45,7 @@
     "file_not_loaded_err_title": "File not loaded",
     "file_not_loaded_err_msg": "You need to load a file before proceeding with this action.",
     "file_loaded_title": "File loaded",
-    "file_loaded_msg": "{formatted_points_loaded_count} points loaded!",
+    "file_loaded_msg": "{points_count} points loaded!",
     "invalid_file_err_title": "Invalid file",
     "invalid_file_err_msg": "Encountered an issue while attempting to load the file:\n\n{file_path}\n\nThis file is either not a valid .las file or cannot be loaded.\n\n{e}",
     "classification_in_progress_title": "Classification in progress...",
@@ -52,7 +58,8 @@
     "classification_successful_msg": "Classification completed successfully.",
     "save_popup_title": "Save output",
     "save_popup_message": "Are you sure you want to overwrite currently loaded file?\n\nThis operation cannot be undone.",
-    "classes_def_file_err_title": "Encountered an issue with the 'classes_definition.json' file.\n\n{e}",
+    "classes_def_file_err_msg": "Encountered an issue with the 'classes_definition.json' file.\n\n{e}",
+    "models_file_err_msg": "Encountered an issue with the 'models.json' file.\n\n{e}",
     "too_many_points_warning_title": "Too many points",
     "too_many_points_warning_msg1": "We've detected a large number of points that may impact rendering performance.\n\nSelected rendering method ({rendering_method}) can smoothly handle up to {rendering_methods_limit} points.\n\n",
     "too_many_points_warning_msg2": "Consider using another rendering method or displaying only a portion of the file through batching.\n\n Do you wish to proceed?",

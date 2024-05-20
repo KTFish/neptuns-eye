@@ -29,13 +29,15 @@ class ClassificationFrame(ctk.CTkFrame):
     def __init__(self, master, las_handler: LasHandler, locales: Dict, **kwargs):
         super().__init__(master, **kwargs)
 
+        self.strings = locales
+
         with open(constants.MODELS_DEFINITION_FILE_PATH, 'r') as file:
             try:
                 self.models: Dict[str, str] = json.load(file)
             except Exception as e:
-                CTkMessagebox(title="Error", message="Something's not right!\n"
-                                                     "There's a problem with 'models.json' file!\n\n"
-                                                     f"{str(e)}", icon="cancel")
+                CTkMessagebox(title="Error",
+                              message=self.strings["messages"]["models_file_err_msg"].format(e=str(e)),
+                              icon="cancel")
 
         self.selected_model = ctk.StringVar(value="ExtraTreesClassifier")
 
@@ -79,30 +81,31 @@ class ClassificationFrame(ctk.CTkFrame):
             None
         """
         self.frame_lb = ctk.CTkLabel(self,
-                                     text="Classification options",
+                                     text=self.strings["gui"]["classification_frame"]["header_lb"],
                                      font=FONT_HELV_MEDIUM_B,
                                      anchor='center',
                                      justify='center')
         self.manage_output_lb = ctk.CTkLabel(self,
-                                             text="Manage output",
+                                             text=self.strings["gui"]["classification_frame"]["manage_output"],
                                              font=FONT_HELV_SMALL_B)
         self.classification_btn = ctk.CTkButton(self,
-                                                text="Run classification",
+                                                text=self.strings["gui"]["classification_frame"][
+                                                    "run_classification_btn"],
                                                 command=self.classification_event)
         self.save_btn = ctk.CTkButton(self,
-                                      text="Save",
+                                      text=self.strings["gui"]["classification_frame"]["save_output_btn"],
                                       command=self.overwrite_las_file)
         self.save_as_btn = ctk.CTkButton(self,
-                                         text="Save as...",
+                                         text=self.strings["gui"]["classification_frame"]["save_as_output_btn"],
                                          command=self.save_as_las_file)
         self.model_lb = ctk.CTkLabel(self,
-                                     text="Select model",
+                                     text="",
                                      font=FONT_HELV_SMALL_B)
         self.model_cbox = ctk.CTkComboBox(self,
                                           values=list(self.models.keys()),
                                           variable=self.selected_model)
         self.stride_ckb = ctk.CTkCheckBox(self,
-                                          text="Use stride",
+                                          text=self.strings["gui"]["classification_frame"]["use_stride_ckb"],
                                           variable=self.use_stride)
 
     def set_widgets_positioning(self) -> None:
@@ -124,49 +127,46 @@ class ClassificationFrame(ctk.CTkFrame):
         self.stride_ckb.grid(row=8, column=4, pady=10)
         self.manage_output_lb.grid(row=1, column=5, padx=20, sticky="w")
 
-
     def classification_event(self) -> bool:
 
         if not self.__las_handler.file_loaded:
-            CTkMessagebox(title="File not loaded", message="Whoops!\n\n"
-                                                           "Load .las file first.", icon="cancel")
+            CTkMessagebox(title=self.strings["messages"]["file_not_loaded_err_title"],
+                          message=self.strings["messages"]["file_not_loaded_err_msg"], icon="cancel")
             return False
 
         try:
-            CTkMessagebox(title="Classificaiton in progress...",
-                          message="Working on it!\n\n"
-                                  "Please be patient! Classificaiton can take a while depending on"
-                                  " the number of points and the speed of your computer.\n\n",
+            CTkMessagebox(title=self.strings["messages"]["classification_in_progress_title"],
+                          message=self.strings["messages"]["classification_in_progress_msg"],
                           icon="info")
 
             self.classification_btn.configure(state=ctk.DISABLED)
             threading.Thread(target=self.run_classification).start()
         except Exception as e:
             self.classification_btn.configure(state=ctk.NORMAL)
-            CTkMessagebox(title="Error", message="That's not good!\n\n"
-                                                 "Classification failed!\n\n"
-                                                 f"{str(e)}", icon="cancel")
+            CTkMessagebox(title=self.strings["messages"]["classification_failed_err_title"],
+                          message=self.strings["messages"]["classification_failed_err_msg"].format(e=str(e)),
+                          icon="cancel")
         return True
 
     def run_classification(self) -> bool:
-        print("Loading model from", self.models[self.selected_model.get()])
+        self.__master.invoke_insert_text_with_timestamp("Loading model from:\n" + str(self.models[self.selected_model.get()]))
         try:
             model = ClassificationUtils.load_joblib(self.models[self.selected_model.get()])
         except FileNotFoundError:
-            CTkMessagebox(title="Error", message="Whoops!\n\n"
-                                                 "Couldn't find the model\n\n"
-                                                 f"{self.selected_model.get()}\n\n"
-                                                 "Make sure the correct joblib file is placed in the resources\\models"
-                                                 "folder.", icon="cancel")
+            CTkMessagebox(title=self.strings["messages"]["classification_failed_err_title"],
+                          message=self.strings["messages"]["model_not_found_err_msg"].format(
+                              model=self.selected_model.get()),
+                          icon="cancel")
             self.classification_btn.configure(state=ctk.NORMAL)
             return False
         except Exception as e:
-            CTkMessagebox(title="Error", message="That's not good!\n\n"
-                                                 "There was an error while loading the model!\n\n"
-                                                 f"{str(e)}", icon="cancel")
+            CTkMessagebox(title=self.strings["messages"]["classification_failed_err_title"],
+                          message=self.strings["messages"]["model_loading_err_msg"].format(e=str(e)),
+                          icon="cancel")
             self.classification_btn.configure(state=ctk.NORMAL)
             return False
 
+        self.__master.invoke_insert_text_with_timestamp("Model loaded successfully.")
         if self.use_stride.get():
             self.classification_stride = self.get_classification_stride()
             X, _ = ClassificationUtils.prepare_data_prediction(
@@ -181,9 +181,11 @@ class ClassificationFrame(ctk.CTkFrame):
             X, _ = ClassificationUtils.prepare_data_prediction(self.las_handler.data_frame)
             prediction = model.predict(X)
             self.las_handler.data_frame['classification'] = prediction
+            self.__master.invoke_insert_text_with_timestamp("Classification completed.")
 
         self.classification_btn.configure(state=ctk.NORMAL)
-        CTkMessagebox(title="Classification completed", message=f"All done!\n\n Classification completed.",
+        CTkMessagebox(title=self.strings["messages"]["classification_successful_title"],
+                      message=self.strings["messages"]["classification_successful_msg"],
                       icon="check", option_1="OK")
         self.__master.invoke_update_file_description()
 
@@ -193,11 +195,11 @@ class ClassificationFrame(ctk.CTkFrame):
         return self.__master.get_stride()
 
     def overwrite_las_file(self) -> None:
-        msg = CTkMessagebox(title="Save output",
-                            message=f"Are you sure you want to overwrite currently loaded file?\n\n"
-                                    f"This operation cannot be undone.\n\n",
-                            icon="question", option_1="No", option_2="Yes")
-        if msg.get() == "Yes":
+        msg = CTkMessagebox(title=self.strings["messages"]["save_popup_title"],
+                            message=self.strings["messages"]["save_popup_message"],
+                            icon="question", option_1=self.strings["messages"]["no"],
+                            option_2=self.strings["messages"]["yes"])
+        if msg.get() == self.strings["messages"]["yes"]:
             self.las_handler.save_las_file()
 
     def save_as_las_file(self) -> None:
@@ -206,18 +208,20 @@ class ClassificationFrame(ctk.CTkFrame):
 
         self.las_handler.save_las_file(file_name)
 
-    @staticmethod
-    def open_save_as_dialog() -> str:
+    def open_save_as_dialog(self) -> str:
         filetypes = (
             ("Lidar point cloud data", "*.las"),
             ("All files", "*.*")
         )
 
-        file_path = filedialog.asksaveasfilename(title="Save as...", filetypes=filetypes, defaultextension=".las")
+        file_path = filedialog.asksaveasfilename(
+            title=self.strings["gui"]["classification_frame"]["save_as_output_btn"],
+            filetypes=filetypes, defaultextension=".las")
         if file_path and not file_path.endswith(".las"):
             file_path += ".las"
 
         return file_path
+
     @staticmethod
     def fix_prediction(prediction, stride):
         new_values = [0] * (len(prediction) * stride)

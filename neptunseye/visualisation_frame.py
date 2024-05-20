@@ -269,45 +269,79 @@ class VisualisationFrame(ctk.CTkFrame):
         if self.too_many_points:
             msg = CTkMessagebox(title=self.strings["messages"]["too_many_points_warning_title"],
                                 message=self.strings["messages"]["too_many_points_warning_msg1"].format(
-                                    rendering_method=self.rendering_method, rendering_methods_limit=self.rendering_methods_limits[rendering_method]
+                                    rendering_method=self.rendering_method,
+                                    rendering_methods_limit=self.rendering_methods_limits[self.rendering_method]
                                 )
                                         + self.strings["messages"]["too_many_points_warning_msg2"],
-                                icon="warning", options=["Yes", "No"])
-            if msg.get() == "No":
+                                icon="warning",
+                                options=[self.strings["messages"]["yes"], self.strings["messages"]["no"]])
+            if msg.get() == self.strings["messages"]["no"]:
                 return False
 
         try:
             self.render_btn.configure(state=ctk.DISABLED)
+
             if self.rendering_method == list(self.rendering_methods_limits.keys())[2]:
-                CTkMessagebox(title="Rendering...", message="Working on it!\n\n"
-                                                            "Please be patient! Rendering can take a while depending on"
-                                                            " the number of points and the speed of your computer.\n\n"
-                                                            "The result should pop up in a separate window!",
-                              icon="info")
-                #threading.Thread(target=self.render_polyscope).start()
+                self.__display_rendering_in_progress_msg("window")
+                self.__master.invoke_insert_text_with_timestamp("Rendering with Polyscope...")
                 self.render_polyscope()
             if self.rendering_method == list(self.rendering_methods_limits.keys())[1]:
-                CTkMessagebox(title="Rendering...", message="Working on it!\n\n"
-                                                            "Please be patient! Rendering can take a while depending on"
-                                                            " the number of points and the speed of your computer.\n\n"
-                                                            "The result should pop up in your main browser!",
-                              icon="info")
+                self.__display_rendering_in_progress_msg("browser")
+                self.__master.invoke_insert_text_with_timestamp("Rendering with Plotly...")
                 threading.Thread(target=self.render_plotly).start()
             elif self.rendering_method == list(self.rendering_methods_limits.keys())[0]:
-                CTkMessagebox(title="Rendering...", message="Working on it!\n\n"
-                                                            "Please be patient! Rendering can take a while depending on"
-                                                            " the number of points and the speed of your computer.\n\n"
-                                                            "The result should pop up in a separate window!",
-                              icon="info")
+                self.__display_rendering_in_progress_msg("window")
+                self.__master.invoke_insert_text_with_timestamp("Rendering with pptk...")
                 threading.Thread(target=self.render_pptk).start()
         except Exception as e:
-            CTkMessagebox(title="Error", message="That's not good!\n\n"
-                                                 "Visualisation failed!\n\n"
-                                                 f"{str(e)}", icon="cancel")
+            self.__display_rendering_in_progress_msg("exception", exception=e)
             self.render_btn.configure(state=ctk.NORMAL)
             return False
 
         return True
+
+    def __display_rendering_in_progress_msg(self, msg_type: str, **kwargs) -> None:
+        """
+        Display a message for rendering in progress.
+
+        Displays a message based on the specified `msg_type`:
+            - "window": Displays a window message.
+            - "browser": Displays a browser message.
+            - "exception": Displays an exception message with details from `kwargs`.
+
+        Args:
+            msg_type (str): Type of message to display ("window", "browser", or "exception").
+            **kwargs: Additional keyword arguments, including 'exception' for the "exception" message type.
+
+        Raises:
+            AttributeError: If an unknown `msg_type` is provided.
+
+        Returns:
+            None
+        """
+        if msg_type not in ("window", "browser", "exception"):
+            raise AttributeError(f"Unknown type of message: {msg_type}")
+
+        if msg_type == "window":
+            CTkMessagebox(
+                title=self.strings["messages"]["rendering_in_progress_title"],
+                message=self.strings["messages"]["rendering_in_progress_msg_w"],
+                icon="info"
+            )
+        elif msg_type == "browser":
+            CTkMessagebox(
+                title=self.strings["messages"]["rendering_in_progress_title"],
+                message=self.strings["messages"]["rendering_in_progress_msg_b"],
+                icon="info"
+            )
+        elif msg_type == "exception":
+            CTkMessagebox(
+                title=self.strings["messages"]["visualisation_failed_err_title"],
+                message=self.strings["messages"]["visualisation_failed_err_msg"].format(
+                    e=str(kwargs["exception"])
+                ),
+                icon="info"
+            )
 
     def update_rendering_stride_event(self, slider_value: float) -> None:
         """
@@ -449,7 +483,8 @@ class VisualisationFrame(ctk.CTkFrame):
         try:
             if self.batching_enabled_variable.get():
                 df_batch = VisualisationFrame.select_dataframe_batch(int(self.selected_batch_variable.get()),
-                                                                     self.number_of_batches, self.las_handler.data_frame)
+                                                                     self.number_of_batches,
+                                                                     self.las_handler.data_frame)
                 self.las_handler.visualize_las_polyscope(self.rendering_stride, df_batch)
             else:
                 self.las_handler.visualize_las_polyscope(self.rendering_stride)

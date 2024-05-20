@@ -1,8 +1,9 @@
 [tool.poetry]
 name = "neptuns-eye"
-version = "0.1.1"
+version = "0.1.2"
 description = "Point Cloud segmentation."
-authors = ["KNSI Czarna Magia <czarnamagiaknsi@gmail.com>"]
+authors = ["KNSI Czarna Magia <czarnamagiaknsi@gmail.com>",
+  "Nikodem Przybyszewski <nikodem.przybyszewski@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]

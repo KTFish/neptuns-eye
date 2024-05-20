@@ -36,8 +36,6 @@ class ClassificationUtils:
     def load_joblib(joblib_file_path):
         model = joblib.load(joblib_file_path)
         if model:
-            print("Model successfully loaded from the file.")
             return model
         else:
-            print("Failed to load the model from the file.")
             return None
