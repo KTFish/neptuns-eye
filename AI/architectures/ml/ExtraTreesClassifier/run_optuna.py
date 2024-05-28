@@ -8,10 +8,11 @@ import os
 sys.path.append(os.path.abspath('../../../'))
 from config import wmii, user_area
 
+from config import wmii_filtered, user_area_filtered
 
 def objective(trial, stride=40):
-    las = wmii[::stride]
-    las2 = user_area[::stride]
+    las = wmii_filtered[::stride]
+    las2 = user_area_filtered[::stride]
 
     X_train, X_test, y_train, y_test = prepare_data_training(las)
     test_features, test_labels = prepare_data_prediction(las2)
@@ -49,4 +50,4 @@ if __name__ == "__main__":
 
     storage_url = f"sqlite:///{folder_path}/ExtraTreesClassifier1.db"
     study = optuna.create_study(direction="maximize", storage=storage_url)
-    study.optimize(lambda trial: objective(trial, stride=45), n_trials=2)  # define a number of trials here
+    study.optimize(lambda trial: objective(trial, stride=45), n_trials=100)  # define a number of trials here

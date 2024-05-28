@@ -35,6 +35,7 @@ optuna-dashboard = "0.15.1"
 wandb = "0.16.6"
 optuna = "^3.6.1"
 polyscope = "^2.2.1"
+seaborn = "^0.13.2"
 
 
 [build-system]
