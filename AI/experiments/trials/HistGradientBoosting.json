@@ -1,0 +1,27 @@
+{
+    "hgb_n_estimators": [
+        "int",
+        2,
+        150
+    ],
+    "hgb_max_depth": [
+        "int",
+        2,
+        100
+    ],
+    "hgb_min_samples_leaf": [
+        "int",
+        1,
+        100
+    ],
+    "hgb_learning_rate": [
+        "float",
+        0.001,
+        1.0
+    ],
+    "hgb_max_bins": [
+        "int",
+        2,
+        255
+    ]
+}

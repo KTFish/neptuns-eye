@@ -1,6 +1,5 @@
 import joblib
 import laspy
-from sklearn.ensemble import RandomForestClassifier
 
 
 def save_joblib(model, filename):

@@ -1,0 +1,90 @@
+{
+    "rf_n_estimators": [
+        "int",
+        10,
+        100
+    ],
+    "rf_max_depth": [
+        "int",
+        3,
+        50
+    ],
+    "rf_criterion": [
+        "categorical",
+        [
+            "gini",
+            "entropy"
+        ]
+    ],
+    "rf_min_samples_split": [
+        "int",
+        2,
+        20
+    ],
+    "rf_min_samples_leaf": [
+        "int",
+        1,
+        20
+    ],
+    "gb_learning_rate": [
+        "float",
+        0.01,
+        1.0
+    ],
+    "gb_max_iter": [
+        "int",
+        50,
+        200
+    ],
+    "gb_max_depth": [
+        "int",
+        3,
+        50
+    ],
+    "knn_n_neighbors": [
+        "int",
+        3,
+        30
+    ],
+    "knn_weights": [
+        "categorical",
+        [
+            "uniform",
+            "distance"
+        ]
+    ],
+    "et_n_estimators": [
+        "int",
+        10,
+        100
+    ],
+    "et_max_depth": [
+        "int",
+        3,
+        50
+    ],
+    "et_criterion": [
+        "categorical",
+        [
+            "gini",
+            "entropy"
+        ]
+    ],
+    "et_min_samples_split": [
+        "int",
+        2,
+        20
+    ],
+    "et_min_samples_leaf": [
+        "int",
+        1,
+        20
+    ],
+    "voting_type": [
+        "categorical",
+        [
+            "hard",
+            "soft"
+        ]
+    ]
+}

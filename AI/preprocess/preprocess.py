@@ -1,35 +1,28 @@
 from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import MinMaxScaler
 
 
-def prepare_data_training(df, test_size=0.2, random_state=42, keep_colors=True):
+def prepare_data(df, test_size=0.3, random_state=42, columns_to_keep=None, purpose='prediction'):
+    if columns_to_keep is None:
+        columns_to_keep = ["X", "Y", "Z", "intensity", "number_of_returns", "classification", "red", "green", "blue"]
 
-    columns_to_keep = ["X", "Y", "Z", "intensity", "return_number", "number_of_returns",
-                       "edge_of_flight_line", "classification", "scan_angle_rank"]
+    allowed_purposes = {'prediction', 'training'}
 
-    if keep_colors:
-        columns_to_keep.append("grayscale")
+    if purpose not in allowed_purposes:
+        raise ValueError(f"Nieznany typ danych: {purpose}. Dozwolone wartości to: {', '.join(allowed_purposes)}")
 
-    print(columns_to_keep)
-
-    df = df[columns_to_keep]
-    x = df.drop(columns=["classification"])
-    y = df["classification"]
-
-    return train_test_split(x, y, test_size=test_size, random_state=random_state)
-
-
-def prepare_data_prediction(df, keep_colors=True):
-
-    columns_to_keep = ["X", "Y", "Z", "intensity", "return_number", "number_of_returns",
-                       "edge_of_flight_line", "classification", "scan_angle_rank"]
-
-    if keep_colors:
-        columns_to_keep.append("grayscale")
-
-    print(columns_to_keep)
+    missing_columns = [col for col in columns_to_keep if col not in df.columns]
+    if missing_columns:
+        raise ValueError(f"Brakujące kolumny w DataFrame: {', '.join(missing_columns)}")
 
     df = df[columns_to_keep]
-    test_features = df.drop(columns=["classification"])
-    test_labels = df["classification"]
+    features = df.drop(columns=["classification"])
+    features = MinMaxScaler().fit_transform(features)
+    labels = df["classification"]
 
-    return test_features, test_labels
+    if purpose == 'prediction':
+        # Logika dla danych predykcji
+        return features, labels
+    elif purpose == 'training':
+        # Logika dla danych treningowych
+        return train_test_split(features, labels, test_size=test_size, random_state=random_state)

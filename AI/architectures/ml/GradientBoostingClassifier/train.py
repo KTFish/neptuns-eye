@@ -1,8 +1,7 @@
-from storage.load import read_las_file
 from storage.save import save_joblib
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.metrics import accuracy_score
-from preprocess.preprocess import prepare_data_training, prepare_data_prediction
+from preprocess.preprocess import prepare_data
 import os
 import sys
 
@@ -14,8 +13,8 @@ def test():
     las_strided = wmii[::40]
     las2_strided = user_area[::40]
 
-    X_train, X_test, y_train, y_test = prepare_data_training(las_strided)
-    test_features, test_labels = prepare_data_prediction(las2_strided)
+    X_train, X_test, y_train, y_test = prepare_data(las_strided, purpose="training")
+    test_features, test_labels = prepare_data(las2_strided, purpose="prediction")
 
     params1 = {'n_estimators': 24, 'max_depth': 2, 'min_samples_leaf': 21, 'learning_rate': 0.054760435890100975,
                'subsample': 0.9392221613418507}

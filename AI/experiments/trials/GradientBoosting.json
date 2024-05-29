@@ -1,0 +1,27 @@
+{
+    "gb_n_estimators": [
+        "int",
+        2,
+        30
+    ],
+    "gb_max_depth": [
+        "int",
+        2,
+        30
+    ],
+    "gb_min_samples_leaf": [
+        "int",
+        5,
+        40
+    ],
+    "gb_learning_rate": [
+        "float",
+        0.01,
+        0.1
+    ],
+    "gb_subsample": [
+        "float",
+        0.5,
+        1.0
+    ]
+}

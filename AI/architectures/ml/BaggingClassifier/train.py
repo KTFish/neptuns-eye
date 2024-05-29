@@ -1,9 +1,8 @@
-from storage.load import read_las_file
 from storage.save import save_joblib
 from sklearn.ensemble import BaggingClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score
-from preprocess.preprocess import prepare_data_training, prepare_data_prediction
+from preprocess.preprocess import prepare_data
 import os
 import sys
 
@@ -15,8 +14,8 @@ def test():
     las_strided = wmii[::40]
     las2_strided = user_area[::40]
 
-    X_train, X_test, y_train, y_test = prepare_data_training(las_strided)
-    test_features, test_labels = prepare_data_prediction(las2_strided)
+    X_train, X_test, y_train, y_test = prepare_data(las_strided, purpose="training")
+    test_features, test_labels = prepare_data(las2_strided, purpose="prediction")
 
     params1 = {'n_estimators': 14, 'bootstrap': True, 'max_depth': 100, 'criterion': 'entropy',
                'min_samples_split': 22, 'min_samples_leaf': 10, 'min_weight_fraction_leaf': 0.11211559235297958}

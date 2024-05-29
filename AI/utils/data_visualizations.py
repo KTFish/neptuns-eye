@@ -5,10 +5,9 @@ import seaborn as sns
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.metrics import confusion_matrix
-from sklearn.metrics import classification_report
 
 sys.path.append(os.path.abspath('../'))
-from config import wmii_filtered, user_area
+from config import wmii, user_area
 
 
 def make_correlation_matrix(df):
@@ -43,12 +42,13 @@ def make_confusion_matrix(y_test, y_pred):
     plt.ylabel('Actual')
     plt.title('Confusion Matrix')
 
+    # Przenieś etykiety osi X na górę
     ax.xaxis.tick_top()
 
     plt.show()
 
 
 if __name__ == '__main__':
-    make_correlation_matrix(wmii_filtered)
+    make_correlation_matrix(wmii)
 
 

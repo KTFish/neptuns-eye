@@ -1,11 +1,10 @@
 from sklearn.neighbors import KNeighborsClassifier
 
-from storage.load import read_las_file
 from storage.save import save_joblib
 from sklearn.ensemble import RandomForestClassifier, HistGradientBoostingClassifier, \
     VotingClassifier, ExtraTreesClassifier
 from sklearn.metrics import accuracy_score
-from preprocess.preprocess import prepare_data_training, prepare_data_prediction
+from preprocess.preprocess import prepare_data
 import os
 import sys
 
@@ -17,8 +16,8 @@ def test():
     las_strided = wmii[::40]
     las2_strided = user_area[::40]
 
-    X_train, X_test, y_train, y_test = prepare_data_training(las_strided)
-    test_features, test_labels = prepare_data_prediction(las2_strided)
+    X_train, X_test, y_train, y_test = prepare_data(las_strided, purpose="training")
+    test_features, test_labels = prepare_data(las2_strided, purpose="prediction")
 
     params1 = {'rf_n_estimators': 79, 'rf_max_depth': 5, 'rf_criterion': 'entropy', 'rf_min_samples_split': 4,
                'rf_min_samples_leaf': 15, 'gb_learning_rate': 0.500201172974442, 'gb_max_iter': 57, 'gb_max_depth': 34,

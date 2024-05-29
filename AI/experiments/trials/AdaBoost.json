@@ -1,0 +1,8 @@
+{
+    "n_estimators": ["int", 10, 50],
+    "learning_rate": ["float", 0.01, 1.0],
+    "algorithm": ["categorical", ["SAMME", "SAMME.R"]],
+    "base_estimator_max_depth": ["int", 1, 10],
+    "base_estimator_min_samples_split": ["int", 2, 20],
+    "base_estimator_min_samples_leaf": ["int", 1, 20]
+}

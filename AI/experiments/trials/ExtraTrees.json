@@ -1,0 +1,9 @@
+{
+    "n_estimators": ["int", 2, 200],
+    "max_depth": ["int", 2, 200],
+    "criterion": ["categorical", ["gini", "entropy", "log_loss"]],
+    "min_samples_split": ["int", 2, 200],
+    "min_samples_leaf": ["int", 1, 200],
+    "min_weight_fraction_leaf": ["float", 0.0, 0.5],
+    "bootstrap": ["categorical", ["true", "false"]]
+}

@@ -2,7 +2,6 @@ from experiments.sweeps.train import train
 from experiments.sweeps.SVC_config import sweep_config
 from storage.load import read_las_file
 from sklearn.svm import LinearSVC
-from sklearn.metrics import accuracy_score
 import wandb
 
 

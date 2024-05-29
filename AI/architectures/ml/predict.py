@@ -1,11 +1,10 @@
-from preprocess.preprocess import prepare_data_prediction
+from preprocess.preprocess import prepare_data
 from storage.save import write_las_file
-from sklearn.metrics import accuracy_score
 
 
-def predict(df, model, target_column="classification", save_las_path: str = None):
+def predict(df, model, save_las_path: str = None):
 
-    test_features, test_labels = prepare_data_prediction(df, target_column)
+    test_features, test_labels = prepare_data(df, purpose="prediction")
     preds = model.predict(test_features)
 
     if save_las_path is not None:

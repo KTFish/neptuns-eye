@@ -1,9 +1,8 @@
-from storage.load import read_las_file
 from storage.save import save_joblib
 from sklearn.ensemble import AdaBoostClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score
-from preprocess.preprocess import prepare_data_training, prepare_data_prediction
+from preprocess.preprocess import prepare_data
 import os
 import sys
 
@@ -16,8 +15,8 @@ def test():
     las_strided = wmii[::40]
     las2_strided = user_area[::40]
 
-    X_train, X_test, y_train, y_test = prepare_data_training(las_strided)
-    test_features, test_labels = prepare_data_prediction(las2_strided)
+    X_train, X_test, y_train, y_test = prepare_data(las_strided, purpose="training")
+    test_features, test_labels = prepare_data(las2_strided, purpose="prediction")
 
     params1 = {'n_estimators': 10, 'learning_rate': 0.6226480302841445, 'algorithm': 'SAMME',
                'base_estimator_max_depth': 5, 'base_estimator_min_samples_split': 2,

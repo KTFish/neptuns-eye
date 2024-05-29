@@ -1,0 +1,82 @@
+{
+    "rf_n_estimators": [
+        "int",
+        2,
+        150
+    ],
+    "rf_max_depth": [
+        "int",
+        2,
+        100
+    ],
+    "rf_criterion": [
+        "categorical",
+        [
+            "gini",
+            "entropy",
+            "log_loss"
+        ]
+    ],
+    "rf_min_samples_split": [
+        "int",
+        2,
+        100
+    ],
+    "rf_min_samples_leaf": [
+        "int",
+        1,
+        100
+    ],
+    "rf_min_weight_fraction_leaf": [
+        "float",
+        0.0,
+        0.5
+    ],
+    "rf_bootstrap": [
+        "categorical",
+        [
+            "true",
+            "false"
+        ]
+    ],
+    "rf_class_0": [
+        "int",
+        1,
+        30
+    ],
+    "rf_class_1": [
+        "int",
+        1,
+        30
+    ],
+    "rf_class_11": [
+        "int",
+        1,
+        30
+    ],
+    "rf_class_13": [
+        "int",
+        1,
+        30
+    ],
+    "rf_class_15": [
+        "int",
+        1,
+        30
+    ],
+    "rf_class_17": [
+        "int",
+        1,
+        30
+    ],
+    "rf_class_19": [
+        "int",
+        1,
+        30
+    ],
+    "rf_class_25": [
+        "int",
+        1,
+        30
+    ]
+}
