@@ -1,5 +1,4 @@
 import sys
-import optuna
 import json
 import os
 from sklearn.ensemble import AdaBoostClassifier, ExtraTreesClassifier, BaggingClassifier, GradientBoostingClassifier, \
@@ -9,7 +8,6 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.neural_network import MLPClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score
-from storage.load import read_las_file
 from preprocess.preprocess import prepare_data
 
 sys.path.append(os.path.abspath('../../../'))
