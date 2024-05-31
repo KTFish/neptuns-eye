@@ -10,6 +10,42 @@ def train_ml(df: pd.DataFrame,
              test_size=0.2,
              test_acc: bool = False,
              save_path: str = None):
+    """
+    Train a machine learning model and optionally evaluate test accuracy and save the model.
+
+    Parameters:
+    -----------
+    df : pandas.DataFrame
+        Input data with features and the target column.
+
+    clf : estimator object
+        The machine learning model to be trained.
+
+    target_column : str
+        Name of the target column in `df`.
+
+    test_size : float
+        Proportion of the dataset to include in the test split.
+
+    test_acc : bool
+        If True, evaluate and print test accuracy.
+
+    save_path : str
+        Path to save the trained model. If None, the model is not saved.
+
+    Returns:
+    --------
+    clf : estimator object
+        The trained machine learning model.
+
+    y_pred : numpy.ndarray or None
+        Predicted labels for the test set if `test_acc` is True, otherwise None.
+
+    Side Effects:
+    -------------
+    - Prints the progress of training and test accuracy (if applicable).
+    - Saves the trained model to `save_path` if provided.
+    """
 
     X_train, X_test, y_train, y_test = prepare_data_training(df,
                                                              target_column,
