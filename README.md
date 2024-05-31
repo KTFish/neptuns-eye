@@ -70,7 +70,7 @@ make test
 choco install make
 ```
 
-### Research & ML
+## Research & ML
 
 During the project a lot of effort has been invested in the data preprocessing. Each dataset that we worked with have
 been described by a Dataset Card. It was crucial for the project because it was the first time we have been working with
