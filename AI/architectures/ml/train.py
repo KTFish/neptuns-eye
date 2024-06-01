@@ -25,3 +25,4 @@ def train_ml(df: pd.DataFrame,
     print("Training done!")
 
     return clf, y_pred
+
