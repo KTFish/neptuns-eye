@@ -4,8 +4,8 @@ from sklearn.preprocessing import MinMaxScaler
 
 def prepare_data(df, test_size=0.3, random_state=42, columns_to_keep=None, purpose='prediction'):
     if columns_to_keep is None:
-        columns_to_keep = ["X", "Y", "Z", "intensity", "number_of_returns", "classification", "red", "green", "blue"]
-
+        columns_to_keep = ['Z', 'red', 'green', 'blue', 'intensity', 'classification',
+                           'number_of_returns', 'return_number', 'edge_of_flight_line', 'scan_angle_rank']
     allowed_purposes = {'prediction', 'training'}
 
     if purpose not in allowed_purposes:

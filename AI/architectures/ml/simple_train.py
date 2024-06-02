@@ -1,12 +1,10 @@
-import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import classification_report, accuracy_score
-from storage.save import save_joblib
 
 
-def train_evaluate_classifier(point_cloud_df, feature_columns, label_column,
-                              clf=None, test_size=0.4, random_state=42):
+def train_evaluate_classifier(point_cloud_df, feature_columns, label_column, validation_df=None,
+                              clf=None, test_size=0.4, random_state=42, stride=30):
     """
     Trains and evaluates a given classifier on a point cloud dataset.
 
@@ -23,7 +21,7 @@ def train_evaluate_classifier(point_cloud_df, feature_columns, label_column,
     - accuracy (float): Accuracy of the model on the test set.
     """
 
-    point_cloud_df = point_cloud_df[::80]
+    point_cloud_df = point_cloud_df[::stride]
 
     # Extract features and labels
     features = point_cloud_df[feature_columns]
@@ -49,9 +47,22 @@ def train_evaluate_classifier(point_cloud_df, feature_columns, label_column,
     predictions = clf.predict(X_test)
 
     # Evaluate the classifier performance
-    report = classification_report(y_test, predictions, output_dict=True)
+    report = classification_report(y_test, predictions, output_dict=True, zero_division=0)
     accuracy = accuracy_score(y_test, predictions)
 
+    if validation_df is not None:
+        # validation_df = validation_df[::stride]
+
+        valid_features = validation_df[feature_columns]
+        valid_labels = validation_df[label_column]
+        scaler = MinMaxScaler()
+        valid_features_scaled = scaler.fit_transform(valid_features)
+
+        valid_predictions = clf.predict(valid_features_scaled)
+
+        report2 = classification_report(valid_labels, valid_predictions, output_dict=True, zero_division=0)
+        accuracy2 = accuracy_score(valid_labels, valid_predictions)
+
+        return report, accuracy, report2, accuracy2, clf
+
     return report, accuracy, clf
-
-

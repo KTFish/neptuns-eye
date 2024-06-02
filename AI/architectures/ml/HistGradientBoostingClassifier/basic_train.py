@@ -1,4 +1,4 @@
-from sklearn.ensemble import ExtraTreesClassifier
+from sklearn.ensemble import HistGradientBoostingClassifier
 import os
 from storage.save import save_joblib
 import pandas as pd
@@ -16,7 +16,7 @@ def run_training():
     feature_columns = ['Z', 'red', 'green', 'blue', "intensity", "number_of_returns", "edge_of_flight_line"]
     label_column = 'classification'
 
-    clf = ExtraTreesClassifier(n_estimators=100, random_state=42)
+    clf = HistGradientBoostingClassifier(random_state=42)
     report, accuracy, report2, accuracy2, clf = train_evaluate_classifier(df,
                                                                           feature_columns,
                                                                           label_column,

@@ -1,9 +1,8 @@
-from sklearn.ensemble import ExtraTreesClassifier
+from sklearn.ensemble import AdaBoostClassifier
 import os
 from storage.save import save_joblib
 import pandas as pd
 from AI.architectures.ml.simple_train import train_evaluate_classifier
-
 
 def run_training():
     # Example usage
@@ -16,18 +15,18 @@ def run_training():
     feature_columns = ['Z', 'red', 'green', 'blue', "intensity", "number_of_returns", "edge_of_flight_line"]
     label_column = 'classification'
 
-    clf = ExtraTreesClassifier(n_estimators=100, random_state=42)
+    clf = AdaBoostClassifier(n_estimators=100, random_state=42)
     report, accuracy, report2, accuracy2, clf = train_evaluate_classifier(df,
                                                                           feature_columns,
                                                                           label_column,
                                                                           validation_df=df2,
                                                                           clf=clf)
 
-    print("Accuracy with ExtraTreesClassifier on training dataset:", accuracy)
+    print("Accuracy with AdaBoostClassifier on training dataset:", accuracy)
     print("Classification Report:")
     print(pd.DataFrame(report).transpose())
 
-    print("Accuracy with ExtraTreesClassifier on validation dataset:", accuracy2)
+    print("Accuracy with AdaBoostClassifier on validation dataset:", accuracy2)
     print("Classification Report:")
     print(pd.DataFrame(report2).transpose())
 
