@@ -103,9 +103,9 @@ def create_model(model_type, params):
         raise ValueError(f"Nieznany typ modelu: {model_type}")
 
 
-def objective(trial, model_type, training_set=wmii, validation_set=user_area, stride=40):
+def objective(trial, model_type, training_set=wmii, validation_set=user_area, stride=720):
     las = training_set[::stride]
-    las2 = validation_set[::stride]
+    las2 = validation_set[::30]
 
     X_train, X_test, y_train, y_test = prepare_data(las, purpose="training")
     test_features, test_labels = prepare_data(las2, purpose="prediction")

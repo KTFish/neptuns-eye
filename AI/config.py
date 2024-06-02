@@ -11,11 +11,10 @@ import os
 
 # DIRECTORY PATHS
 
-# Ustaw ścieżkę bazową do katalogu, w którym znajduje się plik config
 base_path = os.path.dirname(os.path.abspath(__file__))
 
-# Definiuj zmienne z odpowiednio zmodyfikowanymi ścieżkami
 wmii = read_las_file(os.path.join(base_path, "data/train/WMII_CLASS.las"))
 user_area = read_las_file(os.path.join(base_path, "data/test/USER_AREA.las"))
+# kortowo = read_las_file(os.path.join(base_path, "data/test/Kortowo.las"))
 
 

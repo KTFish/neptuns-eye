@@ -22,4 +22,4 @@ if __name__ == "__main__":
                                            model_type=model_type,
                                            stride=720,
                                            training_set=wmii,
-                                           validation_set=user_area), n_trials=100)
+                                           validation_set=user_area), n_trials=1000)

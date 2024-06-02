@@ -1,7 +1,6 @@
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import classification_report, accuracy_score
 from storage.save import save_joblib
 
@@ -29,18 +28,14 @@ def train_evaluate_random_forest(point_cloud_df, feature_columns, label_column,
     - validation_accuracy (float, optional): Accuracy on the validation set.
     """
 
-    point_cloud_df = point_cloud_df[::20]
+    point_cloud_df = point_cloud_df[::30]
 
     # Extract features and labels
     features = point_cloud_df[feature_columns]
     labels = point_cloud_df[label_column]
 
-    # Normalize features
-    scaler = MinMaxScaler()
-    features_scaled = scaler.fit_transform(features)
-
     # Split the dataset into training and testing sets
-    X_train, X_test, y_train, y_test = train_test_split(features_scaled, labels, test_size=test_size,
+    X_train, X_test, y_train, y_test = train_test_split(features, labels, test_size=test_size,
                                                         random_state=random_state)
 
     # Initialize and train the RandomForestClassifier
@@ -62,9 +57,8 @@ def train_evaluate_random_forest(point_cloud_df, feature_columns, label_column,
         validation_df = validation_df[::30]
         validation_features = validation_df[feature_columns]
         validation_labels = validation_df[validation_label_column]
-        validation_features_scaled = scaler.transform(validation_features)  # Ensure same scaling
 
-        validation_predictions = rf_classifier.predict(validation_features_scaled)
+        validation_predictions = rf_classifier.predict(validation_features)
         validation_report = classification_report(validation_labels, validation_predictions, output_dict=True)
         validation_accuracy = accuracy_score(validation_labels, validation_predictions)
 
@@ -75,12 +69,6 @@ def train_evaluate_random_forest(point_cloud_df, feature_columns, label_column,
 
 
 from config import wmii, user_area
-
-# feature_columns = ['Z', 'red', 'green', 'blue', "intensity", "number_of_returns", "edge_of_flight_line"]
-# feature_columns = ['X', 'Y', 'Z', 'red', 'green', 'blue']
-
-# feature_columns = ['X', 'Y', 'Z', 'red', 'green', 'blue', 'intensity',
-# 'return_number','edge_of_flight_line','scan_angle_rank']
 
 feature_columns = ['Z', 'red', 'green', 'blue', 'intensity',
                    'number_of_returns', 'return_number', 'edge_of_flight_line', 'scan_angle_rank']

@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import confusion_matrix
 
 sys.path.append(os.path.abspath('../'))
-from config import wmii, user_area
+from config import wmii, user_area, kortowo
 
 
 def make_correlation_matrix(df):
@@ -15,9 +15,9 @@ def make_correlation_matrix(df):
     correlation_matrix = df.corr()
 
     # Wyświetl macierz korelacji w postaci heatmapy
-    plt.figure(figsize=(14, 12))
-    ax = sns.heatmap(correlation_matrix, annot=True, fmt='.2f', cmap='coolwarm', linewidths=.5,
-                     cbar_kws={"shrink": 0.8})
+    fig, ax = plt.subplots(figsize=(14, 12))
+    sns.heatmap(correlation_matrix, annot=True, fmt='.2f', cmap='coolwarm', linewidths=.5,
+                cbar_kws={"shrink": 0.8}, ax=ax)
 
     # Ustaw etykiety osi
     ax.set_xticklabels(ax.get_xticklabels(), rotation=90)
@@ -25,6 +25,9 @@ def make_correlation_matrix(df):
 
     # Przenieś etykiety osi X na górę
     ax.xaxis.tick_top()
+
+    # Ustaw tytuł wykresu na dole
+    fig.text(0.5, 0.04, 'Correlation Matrix (kortowo) with unnecessary data removed', ha='center', fontsize=20)
 
     plt.show()
 
@@ -49,6 +52,9 @@ def make_confusion_matrix(y_test, y_pred):
 
 
 if __name__ == '__main__':
-    make_correlation_matrix(wmii)
+    columns_to_keep = ['Z', 'red', 'green', 'blue', 'intensity', 'classification',
+                       'number_of_returns', 'return_number', 'edge_of_flight_line', 'scan_angle_rank']
+    kortowo = kortowo.loc[:, columns_to_keep]
+    make_correlation_matrix(kortowo)
 
 

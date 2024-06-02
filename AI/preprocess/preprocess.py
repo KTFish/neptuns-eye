@@ -1,11 +1,10 @@
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import MinMaxScaler
 
 
-def prepare_data(df, test_size=0.3, random_state=42, columns_to_keep=None, purpose='prediction'):
+def prepare_data(df, test_size=0.4, random_state=42, columns_to_keep=None, purpose='prediction'):
     if columns_to_keep is None:
-        columns_to_keep = ['Z', 'red', 'green', 'blue', 'intensity', 'classification',
-                           'number_of_returns', 'return_number', 'edge_of_flight_line', 'scan_angle_rank']
+        columns_to_keep = ['Z', 'red', 'green', 'blue', 'intensity',
+                           'number_of_returns', 'return_number', 'edge_of_flight_line', 'scan_angle_rank', 'classification']
     allowed_purposes = {'prediction', 'training'}
 
     if purpose not in allowed_purposes:
@@ -16,8 +15,9 @@ def prepare_data(df, test_size=0.3, random_state=42, columns_to_keep=None, purpo
         raise ValueError(f"Brakujące kolumny w DataFrame: {', '.join(missing_columns)}")
 
     df = df[columns_to_keep]
+
     features = df.drop(columns=["classification"])
-    features = MinMaxScaler().fit_transform(features)
+    # features = MinMaxScaler().fit_transform(features)
     labels = df["classification"]
 
     if purpose == 'prediction':
