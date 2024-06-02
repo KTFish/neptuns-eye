@@ -287,7 +287,56 @@ kortowo.las represents a fragment of the kortowo district in Olsztyn.
 | Twos     | 11,314,728   |
 | Threes     | 20,106,010   |
 
+### Data dependencies
+#### Raw corelation matrix of wmii.las 
+![raw_corelation_matrix](images/image.png)
+#### Corelation matrix of wmii.las with empty columns removed
+![corelation_matrix_wmii](images/image1.png)
+#### Corelation matrix of user area.las with empty columns removed
+![corelation_matrix_user_area](images/image2.png)
+#### Correlation matrix of Kortowo.las with empty columns removed except for the classification column
+![corelation_matrix_kortowo](images/image3.png)
 
+### Searching for the most significant columns 
+
+#### The impact of given columns on the accuracy of the RandomForestClassifier model
+*stride for validation dataset = 30, stride for training dataset = 30, n_estimators = 100*
+
+![feature_sets](images/feature_sets.png)
+
+| Feature             | Set 1 | Set 2 | Set 3 | Set 4 | Set 5 |
+|---------------------|-------|-------|-------|-------|-------|
+| X                   | ✓     | ✓     |       |       |       |
+| Y                   | ✓     | ✓     |       |       |       |
+| Z                   | ✓     | ✓     | ✓     | ✓     | ✓     |
+| red                 | ✓     | ✓     | ✓     | ✓     | ✓     |
+| green               | ✓     | ✓     | ✓     | ✓     | ✓     |
+| blue                | ✓     | ✓     | ✓     | ✓     | ✓     |
+| intensity           |       | ✓     | ✓     | ✓     |       |
+| return_number       |       | ✓     |       | ✓     | ✓     |
+| edge_of_flight_line |       | ✓     | ✓     | ✓     |       |
+| scan_angle_rank     |       | ✓     |       | ✓     | ✓     |
+| number_of_returns   |       |       | ✓     | ✓     | ✓     |
+
+#### The influence of the stride parameter on the accuracy of the RandomForestClassifier model on the training dataset
+
+Note: Stride means that every stride record will be used, it's basically like a step. Stride = 2 means every other record will be selected.
+
+| Stride       | Validation Accuracy |
+|--------------|---------------------|
+| No stride    | 0.7037              |
+| stride = 2   | 0.7039              |
+| stride = 5   | 0.7037              |
+| stride = 10  | 0.7038              |
+| stride = 30  | 0.7035              |
+| stride = 60  | 0.7024              |
+| stride = 120 | 0.7015              |
+
+Note: Stride higher than 120 will rarely be used.
+
+#### The influence of the stride parameter on the accuracy of the RandomForestClassifier model on the training and validation dataset
+
+![stride](images/stride.png)
 
 ### Used stack
 
