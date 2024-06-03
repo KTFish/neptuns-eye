@@ -32,7 +32,7 @@ class ClassificationFrame(ctk.CTkFrame):
 
         self.strings = locales
 
-        with open(constants.MODELS_DEFINITION_FILE_PATH, 'r') as file:
+        with open(os_utils.resource_path(constants.MODELS_DEFINITION_FILE_PATH), 'r') as file:
             try:
                 self.models: Dict[str, str] = json.load(file)
             except Exception as e:

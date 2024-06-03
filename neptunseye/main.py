@@ -1,3 +1,4 @@
+import configparser
 import json
 from typing import Dict, Any
 
@@ -32,6 +33,13 @@ class App(ctk.CTk):
 
         self.__file_path = None
         self.__las_handler = LasHandler()
+        self.CFG_PATH = os_utils.resource_path(constants.CONFIG_FILE_PATH)
+
+        language = App.get_language(self.CFG_PATH)
+        if language == "Polski":
+            self.language = locales.Language.Polish.value
+        else:
+            self.language = locales.Language.English.value
 
         self.load_localization_file()
         self.strings = self.localization_file
@@ -40,8 +48,11 @@ class App(ctk.CTk):
         self.title(f"Neptun's Eye v{constants.APP_VERSION}")
 
         toolbar_menu = CTkTitleMenu(master=self)
-        toolbar_menu.add_cascade("⚒ | " + self.localization_file["gui"]["toolbar"]["settings_btn"])
-        toolbar_menu.add_cascade("🏴 | " + self.localization_file["gui"]["toolbar"]["language_btn"])
+        settings_tbmbtn = toolbar_menu.add_cascade("⚒ | " + self.localization_file["gui"]["toolbar"]["settings_btn"])
+        language_tbmbtn = toolbar_menu.add_cascade("🏴 | " + self.localization_file["gui"]["toolbar"]["language_btn"])
+        dropdown = CustomDropdownMenu(widget=language_tbmbtn)
+        dropdown.add_option(option="English", command=lambda: App.set_language(self.CFG_PATH, "English"))
+        dropdown.add_option(option="Polski", command=lambda: App.set_language(self.CFG_PATH, "Polski"))
 
         self.width = int(self.winfo_screenwidth() / 2.5)
         self.height = int(self.winfo_screenheight() / 2)
@@ -56,6 +67,21 @@ class App(ctk.CTk):
                                 f"===============================")
         self.invoke_insert_text_with_timestamp("Ready. Please load the file.")
 
+    @staticmethod
+    def set_language(file_path, new_language):
+        import configparser
+        config = configparser.ConfigParser()
+        config.read(file_path)
+        config['Settings']['language'] = f'"{new_language}"'
+
+        with open(file_path, 'w') as configfile:
+            config.write(configfile)
+
+    @staticmethod
+    def get_language(file_path):
+        config = configparser.ConfigParser()
+        config.read(file_path)
+        return config['Settings']['language'].strip('"')
 
     def initialize_frames(self) -> None:
         """
@@ -92,7 +118,7 @@ class App(ctk.CTk):
 
     def load_localization_file(self) -> None:
         """Loads and sets the localization."""
-        with open(f".\\neptunseye\\locales\\localization_{self.language}.json", 'r', encoding='utf-8') as file:
+        with open(os_utils.resource_path(f"locales\\localization_{self.language}.json"), 'r', encoding='utf-8') as file:
             self.localization_file = json.load(file)
 
     def invoke_update_loaded_points_count_lb(self) -> None:
