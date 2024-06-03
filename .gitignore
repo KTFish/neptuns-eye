@@ -6,3 +6,7 @@ wandb
 config.cpython-312.pyc
 *.las
 *.joblib
+/dist
+/build
+/AI
+/AI
