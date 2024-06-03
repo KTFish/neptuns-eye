@@ -318,6 +318,12 @@ kortowo.las represents a fragment of the kortowo district in Olsztyn.
 | scan_angle_rank     |       | ✓     |       | ✓     | ✓     |
 | number_of_returns   |       |       | ✓     | ✓     | ✓     |
 
+#### the influence of R, G and B columns on the accuracy of the RandomForestClassifier model
+*feature_columns = ['Z', 'red', 'green', 'blue', 'intensity','number_of_returns', 'return_number','edge_of_flight_line', 'scan_angle_rank'], training dataset stride = 720, validation dataset stride = 30, n_estimators = 100*
+![rgb](images/rgb.png)
+
+### Searching for dataset minimization
+
 #### The influence of the stride parameter on the accuracy of the RandomForestClassifier model on the training dataset
 
 Note: Stride means that every stride record will be used, it's basically like a step. Stride = 2 means every other record will be selected.
@@ -337,6 +343,24 @@ Note: Stride higher than 120 will rarely be used.
 #### The influence of the stride parameter on the accuracy of the RandomForestClassifier model on the training and validation dataset
 
 ![stride](images/stride.png)
+
+### The effect of data scaling on the accuracy of the RandomForestClassifier model
+*stride on training dataset = 720, stride on validation dataset = 30, n_estimators = 100*
+|                  | Test Accuracy | Validation Accuracy |
+|------------------|---------------|---------------------|
+| Raw Data         | 0.931131809   | 0.709942897         |
+| MinMaxScaler     | 0.930849562   | 0.709571228         |
+| Difference       | 0.000282247   | 0.000371669         |
+
+### Impact of normalization of R, G and B columns (divide by 65025) on the accuracy of the RandomForestClassifier model
+
+|                  | Test Accuracy | Validation Accuracy |
+|------------------|---------------|---------------------|
+| Raw RGB          | 0.931131809   | 0.709942898         |
+| Normalized RGB   | 0.859441152   | 0.577975895         |
+| Difference       | 0.071690657   | 0.131966998         |
+
+
 
 ### Used stack
 
