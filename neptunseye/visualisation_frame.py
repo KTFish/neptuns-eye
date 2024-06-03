@@ -1,7 +1,7 @@
 import os
 import subprocess
 import threading
-import json
+
 from typing import Dict
 
 import customtkinter as ctk
@@ -9,6 +9,7 @@ from CTkMessagebox import CTkMessagebox
 
 from las_handler import *
 from resources.fonts import *
+import os_utils
 
 
 class VisualisationFrame(ctk.CTkFrame):
@@ -510,9 +511,9 @@ class VisualisationFrame(ctk.CTkFrame):
         self.rendering_progress_lb.configure(text="Please wait. Rendering in progress...", text_color="red")
 
         userprofile_path = os.environ.get("USERPROFILE", "")
-        python37_path = userprofile_path + r"\.pyenv\pyenv-win\versions\3.7.9\python.exe"
+        python37_path = os_utils.resource_path(userprofile_path + r"\.pyenv\pyenv-win\versions\3.7.9\python.exe")
         print(python37_path)
-        script_path = r".\neptunseye\script_pptk.py"
+        script_path = os_utils.resource_path(r"resources\script_pptk.py")
         dataframe_temp_file_path = ".tempdf.csv"
 
         self.save_selected_columns_to_csv(['X', 'Y', 'Z', 'red', 'green', 'blue', 'classification'])

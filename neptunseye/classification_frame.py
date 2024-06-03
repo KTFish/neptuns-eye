@@ -10,6 +10,7 @@ from las_handler import *
 from resources.fonts import *
 from classification_utils import ClassificationUtils
 import constants
+import os_utils
 
 
 class ClassificationFrame(ctk.CTkFrame):
@@ -149,9 +150,10 @@ class ClassificationFrame(ctk.CTkFrame):
         return True
 
     def run_classification(self) -> bool:
-        self.__master.invoke_insert_text_with_timestamp("Loading model from:\n" + str(self.models[self.selected_model.get()]))
+        joblib_file_path = os_utils.resource_path(str(self.models[self.selected_model.get()]))
+        self.__master.invoke_insert_text_with_timestamp("Loading model from:\n" + joblib_file_path)
         try:
-            model = ClassificationUtils.load_joblib(self.models[self.selected_model.get()])
+            model = ClassificationUtils.load_joblib(joblib_file_path)
         except FileNotFoundError:
             CTkMessagebox(title=self.strings["messages"]["classification_failed_err_title"],
                           message=self.strings["messages"]["model_not_found_err_msg"].format(

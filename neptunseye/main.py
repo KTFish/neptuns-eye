@@ -9,10 +9,10 @@ from log_frame import LogFrame
 from las_handler import *
 from locales import locales
 from visualisation_frame import *
-import constants
+import constants, os_utils
 
 ctk.set_appearance_mode("System")
-ctk.set_default_color_theme(constants.THEME_FILE_PATH)
+ctk.set_default_color_theme(os_utils.resource_path(constants.THEME_FILE_PATH))
 
 
 class App(ctk.CTk):
@@ -48,7 +48,7 @@ class App(ctk.CTk):
         self.geometry(f"{self.width}x{self.height}")
         self.minsize(1280, 360)
         self.resizable(False, False)
-        self.after(201, lambda: self.iconbitmap(constants.APP_ICON_PATH))
+        self.after(201, lambda: self.iconbitmap(os_utils.resource_path(constants.APP_ICON_PATH)))
 
         self.initialize_frames()
 

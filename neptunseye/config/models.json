@@ -1,10 +1,10 @@
 {
-  "ExtraTreesClassifier": "./neptunseye/resources/models/aha41.joblib",
-  "ExtraTreesClassifier851": "./neptunseye/resources/models/ExtraTreesClassifier851.joblib",
-  "AdaBoostClassifier731": "./neptunseye/resources/models/AdaBoostClassifier731.joblib",
-  "BaggingClassifier650": "./neptunseye/resources/models/BaggingClassifier650.joblib",
-  "GradientBoostingClassifier653": "./neptunseye/resources/models/GradientBoostingClassifier653.joblib",
-  "HistGradientBoostingClassifier720": "./neptunseye/resources/models/HistGradientBoostingClassifier720.joblib",
-  "KNeighborsClassifier795": "./neptunseye/resources/models/KNeighborsClassifier795.joblib",
-  "RandomForestClassifier851": "./neptunseye/resources/models/RandomForestClassifier851.joblib"
+  "ExtraTreesClassifier": "resources/models/aha41.joblib",
+  "ExtraTreesClassifier851": "resources/models/ExtraTreesClassifier851.joblib",
+  "AdaBoostClassifier731": "resources/models/AdaBoostClassifier731.joblib",
+  "BaggingClassifier650": "resources/models/BaggingClassifier650.joblib",
+  "GradientBoostingClassifier653": "resources/models/GradientBoostingClassifier653.joblib",
+  "HistGradientBoostingClassifier720": "resources/models/HistGradientBoostingClassifier720.joblib",
+  "KNeighborsClassifier795": "resources/models/KNeighborsClassifier795.joblib",
+  "RandomForestClassifier851": "resources/models/RandomForestClassifier851.joblib"
 }

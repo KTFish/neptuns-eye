@@ -7,7 +7,7 @@ from CTkMessagebox import CTkMessagebox
 
 from las_handler import *
 from resources.fonts import *
-import constants
+import constants, os_utils
 
 
 class FileFrame(ctk.CTkFrame):
@@ -242,6 +242,7 @@ class FileFrame(ctk.CTkFrame):
 
         self.__master.invoke_update_loaded_points_count_lb()
 
+    # This function in currently not being used because the event log is WIP.
     def __update_desc_classification_tbox(self) -> None:
         """
         Update description classification textbox with class definitions.
