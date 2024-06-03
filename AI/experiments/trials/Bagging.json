@@ -1,39 +1,39 @@
 {
-    "bc_n_estimators": [
+    "n_estimators": [
         "int",
         2,
         150
     ],
-    "bc_bootstrap": [
+    "bootstrap": [
         "categorical",
         [
             "true",
             "false"
         ]
     ],
-    "dtc_max_depth": [
+    "max_depth": [
         "int",
         2,
         100
     ],
-    "dtc_criterion": [
+    "criterion": [
         "categorical",
         [
             "gini",
             "entropy"
         ]
     ],
-    "dtc_min_samples_split": [
+    "min_samples_split": [
         "int",
         2,
         100
     ],
-    "dtc_min_samples_leaf": [
+    "min_samples_leaf": [
         "int",
         1,
         100
     ],
-    "dtc_min_weight_fraction_leaf": [
+    "min_weight_fraction_leaf": [
         "float",
         0.0,
         0.5

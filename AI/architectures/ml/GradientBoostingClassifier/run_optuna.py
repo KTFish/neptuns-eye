@@ -20,6 +20,6 @@ if __name__ == "__main__":
     study = optuna.create_study(direction="maximize", storage=storage_url)
     study.optimize(lambda trial: objective(trial,
                                            model_type=model_type,
-                                           stride=45,
+                                           stride=720,
                                            training_set=wmii,
-                                           validation_set=user_area), n_trials=2)
+                                           validation_set=user_area), n_trials=1000)

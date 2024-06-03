@@ -1,7 +1,8 @@
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import RandomForestClassifier, ExtraTreesClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report, accuracy_score
 from storage.save import save_joblib
+import pandas as pd
 
 
 def train_evaluate_random_forest(point_cloud_df, feature_columns, label_column,
@@ -27,7 +28,7 @@ def train_evaluate_random_forest(point_cloud_df, feature_columns, label_column,
     - validation_accuracy (float, optional): Accuracy on the validation set.
     """
 
-    point_cloud_df = point_cloud_df[::30]
+    point_cloud_df = point_cloud_df[::720]
 
     # Extract features and labels
     features = point_cloud_df[feature_columns]
@@ -38,7 +39,7 @@ def train_evaluate_random_forest(point_cloud_df, feature_columns, label_column,
                                                         random_state=random_state)
 
     # Initialize and train the RandomForestClassifier
-    rf_classifier = RandomForestClassifier(n_estimators=n_estimators, random_state=random_state)
+    rf_classifier = ExtraTreesClassifier(n_estimators=n_estimators, random_state=random_state)
     rf_classifier.fit(X_train, y_train)
 
     save_joblib(rf_classifier, 'rf_kek.joblib')

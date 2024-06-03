@@ -39,31 +39,21 @@ def get_hyperparameters(trial, model_type):
 def create_model(model_type, params):
     if model_type == "Bagging":
         estimator = DecisionTreeClassifier(
-            criterion=params.pop("dtc_criterion"),
-            max_depth=params.pop("dtc_max_depth"),
-            min_samples_split=params.pop("dtc_min_samples_split"),
-            min_samples_leaf=params.pop("dtc_min_samples_leaf"),
-            min_weight_fraction_leaf=params.pop("dtc_min_weight_fraction_leaf")
+            criterion=params.pop("criterion"),
+            max_depth=params.pop("max_depth"),
+            min_samples_split=params.pop("min_samples_split"),
+            min_samples_leaf=params.pop("min_samples_leaf"),
+            min_weight_fraction_leaf=params.pop("min_weight_fraction_leaf")
         )
         return BaggingClassifier(base_estimator=estimator, random_state=42, **params)
     elif model_type == "GradientBoosting":
         return GradientBoostingClassifier(random_state=42, **params)
-    elif model_type == "HistGradient":
+    elif model_type == "HistGradientBoosting":
         return HistGradientBoostingClassifier(random_state=42, **params)
     elif model_type == "KNeighbors":
         return KNeighborsClassifier(**params)
     elif model_type == "RandomForest":
-        class_weights = {
-            0: params.pop("rf_class_0"),
-            1: params.pop("rf_class_1"),
-            11: params.pop("rf_class_11"),
-            13: params.pop("rf_class_13"),
-            15: params.pop("rf_class_15"),
-            17: params.pop("rf_class_17"),
-            19: params.pop("rf_class_19"),
-            25: params.pop("rf_class_25")
-        }
-        return RandomForestClassifier(class_weight=class_weights, random_state=42, **params)
+        return RandomForestClassifier(random_state=42, **params)
     elif model_type == "Stacking":
         base_models = [
             ('rf', RandomForestClassifier(n_estimators=params.pop("rf_n_estimators"), max_depth=params.pop("rf_max_depth"),
@@ -104,7 +94,7 @@ def create_model(model_type, params):
 
 
 def objective(trial, model_type, training_set=wmii, validation_set=user_area, stride=720):
-    las = training_set[::stride]
+    las = training_set[::720]
     las2 = validation_set[::30]
 
     X_train, X_test, y_train, y_test = prepare_data(las, purpose="training")
