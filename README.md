@@ -6,13 +6,33 @@ Neptun's Eye is a ML-powered Point Cloud segmentation tool. The project have bee
 from [Czarna Magia Student Artificial Intelligence Society](https://github.com/knsiczarnamagia) and students from UWM
 with mentorship from [Visimind](https://visimind.com/pl/).
 
-## Usage
+# Latest build
+Neptun's eye v0.1.2
+Download [**here**](https://github.com)
+<!-- TUTAJ WSTAWIĆ LINK DO POBRANIA BUILDA !-->
 
-*[Przykłady zastosowania projektu.]*
+# Installation
+We packed our app into easy to run executable. You can download and run it right away or dowload some additional tools for more functionalities.
+## Ready-to-run build
+- Download latest build above.
+- Extract the files into a single folder in any location you want.
+- Find and run `main.exe` file in the `dist` folder.
 
-## Run locally
+That's it! You're good to go!
+> [!IMPORTANT]
+> Verify if there are models you are using inside `dist\main\_internal\resources\models` folder.
 
-### Run with `poetry`
+## Other options
+### Visualisation with pptk
+Our app uses a fast an efficient point cloud visualisation tool in Python called `pptk`.
+This tool requires you to install Python 3.7.9 on your computer and download `pandas` and `pptk` for this version using any package-management system.
+- You can download Python 3.7.9 from the official website [here](https://www.python.org/downloads/release/python-379/)
+> [!IMPORTANT]
+> After you install python you must change the Python 3.7.9 path in the app settings. See how to do that below.
+<!-- TUTAJ BĘDZIE ZWIJANY AKAPIT, KTÓRY NIE WIEM JAK SIĘ ROBI NA TEMAT INSTALACJI O KTÓREJ MOWA WYŻEJ !-->
+
+<!-- TO CO PONIŻEJ TRZEBA SCHOWAĆ !-->
+### Run with Poetry
 
 - Install `pipx`.
 - Install poetry using `pipx` (do not use brew).
@@ -375,22 +395,29 @@ Note: Stride higher than 120 will rarely be used.
 | VotingClassifier                | 0.9359        | 0.7205              | -                               |
 
 
-### Used stack
+# Used stack
 
 - ML: Sklearn, Pandas, Laspy
 - Experiment Tracking: Weights and Biases, Optuna
+- GUI: customtkinter
+- Point cloud visualisation: pptk, polyscope, plotly
 - Version Control: Git & GitHub
-- Organization: Scrum
+- Organization: GitHub Projects
 
-### License
+# License
 
-This project is licensed under the [License Name](link).
+This project is licensed under the [MIT License](LICENSE).
 
-### Neptun's Eye Team
+# Neptun's Eye Team
 
+**GUI & App:**
 - [Nikodem Przybyszewski](https://github.com/nexter0)
+  
+**ML team:**
 - [Michał Sztymelski](https://github.com/Stimm147)
 - [Kacper Gutowski](https://github.com/Perunio)
-- [Alan Ferenc](https://github.com/Zeusthegoddd)
 - [Jan Karaś](https://github.com/KTFish)
+  
+**Assistant**
+- [Alan Ferenc](https://github.com/Zeusthegoddd)
 
