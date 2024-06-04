@@ -369,8 +369,8 @@ Note: Stride higher than 120 will rarely be used.
 | ExtraTreesClassifier            | 0.9303        | **0.7446**          | 0.7655                               |
 | GradientBoostingClassifier      | 0.9325        | 0.7183              | 0.7402                               |
 | HistGradientBoostingClassifier  | **0.9390**    | 0.7094              | **0.7995**                               |
-| KNeighborsClassifier            | 0.8913        | 0.7044              | -                               |
-| RandomForestClassifier          | 0.9311        | 0.7099              | -                               |
+| KNeighborsClassifier            | 0.8913        | 0.7044              | 0.6992                               |
+| RandomForestClassifier          | 0.9311        | 0.7099              | 0.7205                               |
 | StackingClassifier              | 0.9385        | 0.7021              | -                               |
 | VotingClassifier                | 0.9359        | 0.7205              | -                               |
 
