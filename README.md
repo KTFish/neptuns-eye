@@ -9,6 +9,11 @@ with mentorship from [Visimind](https://visimind.com/pl/).
 # Latest build
 Neptun's eye v0.1.2
 Download [**here**](https://github.com)
+### Requirements
+- Windows 10 or newer OS
+- [**Optional**] Python 3.7.9 for `pptk` support
+> [!NOTE]
+> The app requires OpenGL 3.3 or newer and might not work correctly on virtual machines or old computers.
 <!-- TUTAJ WSTAWIĆ LINK DO POBRANIA BUILDA !-->
 
 # Installation
