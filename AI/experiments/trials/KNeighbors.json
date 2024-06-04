@@ -1,17 +1,17 @@
 {
-    "knn_n_neighbors": [
+    "n_neighbors": [
         "int",
         1,
         100
     ],
-    "knn_weights": [
+    "weights": [
         "categorical",
         [
             "uniform",
             "distance"
         ]
     ],
-    "knn_algorithm": [
+    "algorithm": [
         "categorical",
         [
             "auto",
@@ -19,19 +19,19 @@
             "kd_tree"
         ]
     ],
-    "knn_leaf_size": [
+    "leaf_size": [
         "int",
         1,
         100
     ],
-    "knn_p": [
+    "p": [
         "categorical",
         [
             1,
             2
         ]
     ],
-    "knn_n_jobs": [
+    "n_jobs": [
         "categorical",
         [
             1,

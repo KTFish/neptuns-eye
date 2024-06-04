@@ -10,16 +10,14 @@ from config import wmii, user_area
 
 
 def test():
-    las_strided = wmii[::40]
-    las2_strided = user_area[::40]
+    las_strided = wmii[::720]
+    las2_strided = user_area[::30]
 
     X_train, X_test, y_train, y_test = prepare_data(las_strided, purpose="training")
     test_features, test_labels = prepare_data(las2_strided, purpose="prediction")
 
-    params1 = {'n_estimators': 103, 'max_depth': 72, 'criterion': 'entropy', 'min_samples_split': 62,
-               'min_samples_leaf': 84, 'min_weight_fraction_leaf': 0.0434597955820919, 'bootstrap': False,
-               'class_0': 4, 'class_1': 9, 'class_11': 30, 'class_13': 13, 'class_15': 17, 'class_17': 13,
-               'class_19': 26, 'class_25': 14}
+    params1 = {'n_estimators': 56, 'max_depth': 163, 'criterion': 'entropy', 'min_samples_split': 69,
+               'min_samples_leaf': 8, 'min_weight_fraction_leaf': 1.807024458708799e-05, 'bootstrap': False}
 
     rf_class_weight = {}
 
@@ -37,7 +35,7 @@ def test():
                                  min_samples_leaf=params1['min_samples_leaf'],
                                  min_weight_fraction_leaf=params1['min_weight_fraction_leaf'],
                                  bootstrap=params1["bootstrap"],
-                                 class_weight=rf_class_weight,
+                                 # class_weight=rf_class_weight,
                                  random_state=42)
 
     clf.fit(X_train, y_train)
