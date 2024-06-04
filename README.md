@@ -22,7 +22,7 @@ That's it! You're good to go!
 > [!IMPORTANT]
 > Verify if there are models you are using inside `dist\main\_internal\resources\models` folder.
 
-## Other options
+## More options
 ### Visualisation with pptk
 Our app uses a fast an efficient point cloud visualisation tool in Python called `pptk`.
 This tool requires you to install Python 3.7.9 on your computer and download `pandas` and `pptk` for this version using any package-management system.
