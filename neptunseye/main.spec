@@ -19,6 +19,8 @@ a = Analysis(
         'classification_utils',
         'file_frame',
         'las_handler',
+        'sklearn'
+        'sklearn.ensemble._forest'
         'visualisation_frame',
     ],
     hookspath=[],

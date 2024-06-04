@@ -11,6 +11,8 @@ from resources.fonts import *
 from classification_utils import ClassificationUtils
 import constants
 import os_utils
+import sklearn
+import sklearn.ensemble._forest
 
 
 class ClassificationFrame(ctk.CTkFrame):
@@ -129,6 +131,7 @@ class ClassificationFrame(ctk.CTkFrame):
         self.manage_output_lb.grid(row=1, column=5, padx=20, sticky="w")
 
     def classification_event(self) -> bool:
+
 
         if not self.__las_handler.file_loaded:
             CTkMessagebox(title=self.strings["messages"]["file_not_loaded_err_title"],

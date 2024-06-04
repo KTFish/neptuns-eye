@@ -1,13 +1,13 @@
-import os
-import subprocess
-import threading
+import configparser, threading, subprocess, os
 
 from typing import Dict
+
 
 import customtkinter as ctk
 from CTkMessagebox import CTkMessagebox
 
 from las_handler import *
+import constants
 from resources.fonts import *
 import os_utils
 
@@ -43,6 +43,7 @@ class VisualisationFrame(ctk.CTkFrame):
         self.__master = master
         self.las_handler = las_handler
         self.strings = locales
+        self.CFG_PATH = os_utils.resource_path(constants.CONFIG_FILE_PATH)
 
         self.rendering_stride = 15
         self.generated_points_count = 0
@@ -380,7 +381,9 @@ class VisualisationFrame(ctk.CTkFrame):
         point_count = self.las_handler.las.header.point_count
         self.generated_points_count = round(point_count / self.rendering_stride)
         formatted_generated_points_count = f"{self.generated_points_count:,}".replace(',', ' ')
-        self.generated_points_count_lb.configure(text=f"{formatted_generated_points_count} points will be rendered.")
+        self.generated_points_count_lb.configure(
+            text=self.strings["gui"]["visualisation_frame"]["selected_stride_points"].format(
+                points_number=formatted_generated_points_count))
 
         if not self.__check_rendering_method_limit(self.generated_points_count):
             text_color = "orange"
@@ -461,7 +464,8 @@ class VisualisationFrame(ctk.CTkFrame):
         Returns:
             None
         """
-        self.rendering_progress_lb.configure(text="Please wait. Rendering in progress...", text_color="red")
+        self.rendering_progress_lb.configure(text=self.strings["gui"]["visualisation_frame"]["rendering_in_progress"],
+                                             text_color="red")
         if self.batching_enabled_variable.get():
             df_batch = VisualisationFrame.select_dataframe_batch(int(self.selected_batch_variable.get()),
                                                                  self.number_of_batches, self.las_handler.data_frame)
@@ -469,7 +473,8 @@ class VisualisationFrame(ctk.CTkFrame):
         else:
             self.las_handler.visualize_las_plotly(self.rendering_stride)
 
-        self.rendering_progress_lb.configure(text="Done!", text_color="green")
+        self.rendering_progress_lb.configure(text=self.strings["gui"]["visualisation_frame"]["done"],
+                                             text_color="green")
         self.render_btn.configure(state="normal")
 
     def render_polyscope(self) -> None:
@@ -480,7 +485,8 @@ class VisualisationFrame(ctk.CTkFrame):
             None
         """
 
-        self.rendering_progress_lb.configure(text="Please wait. Rendering in progress...", text_color="red")
+        self.rendering_progress_lb.configure(text=self.strings["gui"]["visualisation_frame"]["rendering_in_progress"],
+                                             text_color="red")
         try:
             if self.batching_enabled_variable.get():
                 df_batch = VisualisationFrame.select_dataframe_batch(int(self.selected_batch_variable.get()),
@@ -490,15 +496,16 @@ class VisualisationFrame(ctk.CTkFrame):
             else:
                 self.las_handler.visualize_las_polyscope(self.rendering_stride)
         except RuntimeError as e:
-            CTkMessagebox(title="Error", message="That's not good!\n\n"
-                                                 "Unexpected polyscope error ocurred!\nPlease try again.\n\n"
-                                                 f"{str(e)}", icon="cancel")
+            CTkMessagebox(title="Error",
+                          message=self.strings["messages"]["polyscope_error_msg"].format(e=str(e)),
+                          icon="cancel")
         except Exception as e:
-            CTkMessagebox(title="Error", message="That's not good!\n\n"
-                                                 "Visualisation failed!\n\n"
-                                                 f"{str(e)}", icon="cancel")
+            CTkMessagebox(title="Error",
+                          message=self.strings["messages"]["visualisation_failed_err_msg"].format(e=str(e)),
+                          icon="cancel")
 
-        self.rendering_progress_lb.configure(text="Done!", text_color="green")
+        self.rendering_progress_lb.configure(text=self.strings["gui"]["visualisation_frame"]["done"],
+                                             text_color="green")
         self.render_btn.configure(state="normal")
 
     def render_pptk(self) -> None:
@@ -508,10 +515,15 @@ class VisualisationFrame(ctk.CTkFrame):
         Returns:
             None
         """
-        self.rendering_progress_lb.configure(text="Please wait. Rendering in progress...", text_color="red")
+        self.rendering_progress_lb.configure(text=self.strings["gui"]["visualisation_frame"]["rendering_in_progress"],
+                                             text_color="red")
 
-        userprofile_path = os.environ.get("USERPROFILE", "")
-        python37_path = os_utils.resource_path(userprofile_path + r"\.pyenv\pyenv-win\versions\3.7.9\python.exe")
+        if os_utils.get_config(self.CFG_PATH, 'Python', 'userprofile_path').lower() == 'true':
+            userprofile_path = os.environ.get("USERPROFILE", "")
+        else:
+            userprofile_path = ""
+        python37_path = os_utils.get_config(self.CFG_PATH, 'Python', 'python37')
+        python37_path = os_utils.resource_path(userprofile_path + python37_path)
         print(python37_path)
         script_path = os_utils.resource_path(r"resources\script_pptk.py")
         dataframe_temp_file_path = ".tempdf.csv"
@@ -519,8 +531,13 @@ class VisualisationFrame(ctk.CTkFrame):
         self.save_selected_columns_to_csv(['X', 'Y', 'Z', 'red', 'green', 'blue', 'classification'])
 
         os.environ.copy()
-        subprocess.run([python37_path, script_path, dataframe_temp_file_path], check=True, text=True)
-        self.rendering_progress_lb.configure(text="Done!", text_color="green")
+        try:
+            subprocess.run([python37_path, script_path, dataframe_temp_file_path], check=True, text=True)
+        except Exception as e:
+            CTkMessagebox(title="Error", message=self.strings["messages"]["python37_error_msg"].format(e=str(e)),
+                          icon="cancel")
+        self.rendering_progress_lb.configure(text=self.strings["gui"]["visualisation_frame"]["done"],
+                                             text_color="green")
         self.render_btn.configure(state="normal")
 
     def save_selected_columns_to_csv(self, selected_columns, filename=".tempdf.csv") -> None:

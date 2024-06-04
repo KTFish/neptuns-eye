@@ -71,6 +71,7 @@
     "rendering_in_progress_msg_b": "Processing...\n\nPlease allow some time for rendering. The duration depends on the number of points and your computer's performance.\n\nThe result will open in your main browser.",
     "visualisation_failed_err_title": "Visualisation error",
     "visualisation_failed_err_msg": "Unexpected error occurred and visualisation failed.\n\n{e}",
+    "python37_error_msg": "There was a problem with running Python 3.7.9 for pptk. Make sure it's correctly installed on your system.\n\n{e}",
     "polyscope_error_msg": "Unexpected polyscope error ocurred!\n\nPlease try again.\n\n{e}"
 
   }
