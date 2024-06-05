@@ -313,21 +313,16 @@ kortowo.las represents a fragment of the kortowo district in Olsztyn.
 | Threes     | 20,106,010   |
 
 ### Data dependencies
-#### Raw corelation matrix of wmii.las 
-![raw_corelation_matrix](images/image.png)
+
 #### Corelation matrix of wmii.las with empty columns removed
-![corelation_matrix_wmii](images/image1.png)
-#### Corelation matrix of user area.las with empty columns removed
-![corelation_matrix_user_area](images/image2.png)
-#### Correlation matrix of Kortowo.las with empty columns removed except for the classification column
-![corelation_matrix_kortowo](images/image3.png)
+<img src="images/image1.png" alt="corelation_matrix_wmii" width="750" height="600">
 
 ### Searching for the most significant columns 
 
 #### The impact of given columns on the accuracy of the RandomForestClassifier model
 *stride for validation dataset = 30, stride for training dataset = 30, n_estimators = 100*
 
-![feature_sets](images/feature_sets.png)
+<img src="images/feature_sets.png" alt="feature_sets" width="800" height="500">
 
 | Feature             | Set 1 | Set 2 | Set 3 | Set 4 | Set 5 |
 |---------------------|-------|-------|-------|-------|-------|
@@ -345,7 +340,8 @@ kortowo.las represents a fragment of the kortowo district in Olsztyn.
 
 #### the influence of R, G and B columns on the accuracy of the RandomForestClassifier model
 *feature_columns = ['Z', 'red', 'green', 'blue', 'intensity','number_of_returns', 'return_number','edge_of_flight_line', 'scan_angle_rank'], training dataset stride = 720, validation dataset stride = 30, n_estimators = 100*
-![rgb](images/rgb.png)
+
+<img src="images/rgb.png" alt="rgb" width="800" height="420">
 
 ### Searching for dataset minimization
 
@@ -367,7 +363,7 @@ Note: Stride higher than 120 will rarely be used.
 
 #### The influence of the stride parameter on the accuracy of the RandomForestClassifier model on the training and validation dataset
 
-![stride](images/stride.png)
+<img src="images/stride.png" alt="stride" width="800" height="700">
 
 ### The effect of data scaling on the accuracy of the RandomForestClassifier model
 *stride on training dataset = 720, stride on validation dataset = 30, n_estimators = 100*
