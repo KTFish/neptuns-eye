@@ -2,14 +2,14 @@
 
 # Neptun's Eye
 
-Neptun's Eye is a ML-powered Point Cloud segmentation tool. The project have been realised by students
-from [Czarna Magia Student Artificial Intelligence Society](https://github.com/knsiczarnamagia) and students from UWM
-with mentorship from [Visimind](https://visimind.com/pl/).
+Neptun's Eye is a simple ML-powered point cloud segmentation tool. The project has been developed by students
+from [Czarna Magia Student Artificial Intelligence Society](https://github.com/knsiczarnamagia) and students from University of Warmia and Mazury
+under the mentorship of [Visimind](https://visimind.com/pl/).
 
 # Latest build
-Neptun's eye v0.1.2
+Neptun's Eye v0.1.2
 Download [**here**](https://drive.google.com/drive/folders/1DWqCq3Ph3AyKCGqjHo85kLS2jtLHdchV?usp=sharing)
-<!-- TUTAJ WSTAWIĆ LINK DO POBRANIA BUILDA !-->
+
 ### Requirements
 - Windows 10 or newer OS
 - [**Optional**] Python 3.7.9 for `pptk` support
@@ -21,21 +21,24 @@ Download [**here**](https://drive.google.com/drive/folders/1DWqCq3Ph3AyKCGqjHo85
 We packed our app into easy to run executable. You can download and run it right away or dowload some additional tools for more functionalities.
 ## Ready-to-run build
 - Download latest build above.
-- Extract the files into a single folder in any location you want.
-- Find and run `main.exe` file in the `dist` folder.
+- Extract the files into a single folder located anywhere convenient for you.
+- Locate and execute `main.exe` file in the `dist\main` folder.
 
 That's it! You're good to go!
 > [!IMPORTANT]
 > Verify if there are models you are using inside `dist\main\_internal\resources\models` folder.
+
+> [!NOTE]
+> While our project incorporates visualization tools, it's important to note that they may not support every type of Lidar data. Among them, the pptk package stands out as the most versatile option. However, utilizing it necessitates an additional Python installation, as detailed below.
 
 ## More options
 <details>
   <summary>Click to see more installation options</summary>
   
 ### Visualisation with pptk
-Our app uses a fast an efficient point cloud visualisation tool in Python called `pptk`.
-This tool requires you to install Python 3.7.9 on your computer and download `pandas` and `pptk` for this version using any package-management system.
-- You can download Python 3.7.9 from the official website [here](https://www.python.org/downloads/release/python-379/)
+Our app leverages a swift and efficient point cloud visualization tool in Python `pptk`. To utilize this tool, you'll need to install Python 3.7.9 on your computer and download `pandas` and `pptk` for this specific version using any package management system.
+
+You can download Python 3.7.9 from the official website [here](https://www.python.org/downloads/release/python-379/)
 
 **After you install python you must change the Python 3.7.9 path in the app settings. See how to do that below.**
 <details>
@@ -50,8 +53,8 @@ This tool requires you to install Python 3.7.9 on your computer and download `pa
 %LOCALAPPDATA%/Programs/Python/Python37/python.exe -m pip install pptk
 ```
 - Navigate to the `%LOCALAPPDATA%/Programs/Python/Python37` folder in your system.
-- Copy the absolute path from navigation bar e.g. `C:\Users\<YourName>\AppData\Local\Programs\Python\Python37`
-- Open our app, click settings and paste the path into `python37` variable.
+- Copy the path from navigation bar e.g. `C:\Users\<YourName>\AppData\Local\Programs\Python\Python37`
+- Open the Neptun's Eye app, click settings and paste the path into `python37` variable.
 - Change `userprofile_path` to **False**
 
 </details>
