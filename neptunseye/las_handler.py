@@ -18,11 +18,12 @@ class LasHandler(object):
 
     def __init__(self, file_path: str = None) -> None:
 
-        self.visualisation_figure = None
-        self.file_loaded = False
+        self.__file_path = ""
+        self.__file_loaded = False
+        self.__las = None
         self.__exception = None
-        self.data_frame = None
-        self.unique_classes = []
+        self.__data_frame = pd.DataFrame()
+        self.__unique_classes = []
 
         if file_path is not None:
             self.__file_path = file_path
@@ -34,7 +35,30 @@ class LasHandler(object):
             except Exception as e:
                 self.__exception = e
 
-    def visualize_las_plotly(self, stride: int = 25, data_frame: pd.DataFrame = None):
+    def visualize_las_plotly(self, stride: int = 25, data_frame: pd.DataFrame = None) -> None:
+        """
+        Visualize LAS point cloud data using Plotly in a 3D scatter plot.
+
+        Args:
+            stride (int): Step size for subsampling points (default is 25).
+            data_frame (pd.DataFrame): DataFrame containing LAS data (default is self.data_frame).
+
+        The function generates a 3D scatter plot using Plotly to visualize LAS point cloud data.
+        The plot displays points with colors based on classification values:
+            - White for unclassified or never classified (0 or 1)
+            - Blue for ground (11)
+            - Green for vegetation (13)
+            - Cyan for buildings (15)
+            - Gray for main roads (17)
+            - Red for power lines (19)
+            - Brown for minor roads (25)
+
+        If `data_frame` is not provided, it uses `self.data_frame`. It subsamples points based on
+        the `stride` value to improve performance. The resulting plot is displayed interactively.
+
+        Returns:
+            None
+        """
 
         if data_frame is None:
             data_frame = self.data_frame
@@ -88,7 +112,38 @@ class LasHandler(object):
         fig.show()
 
     def visualize_las_polyscope(self, stride: int = 25, data_frame: pd.DataFrame = None) -> None:
+        """
+            Visualize LAS point cloud data using Polyscope.
 
+            Args:
+                stride (int): Step size for subsampling points (default is 25).
+                data_frame (pd.DataFrame): DataFrame containing LAS data (default is self.data_frame).
+
+            This function visualizes LAS point cloud data using Polyscope.
+            Points are subsampled based on the `stride` value for improved performance.
+
+            If `data_frame` is not provided, it uses `self.data_frame`.
+
+            Point cloud is colored based on classification values:
+                - White for unclassified or never classified (0 or 1)
+                - Black for unclassified (1)
+                - Blue for ground (11)
+                - Green for vegetation (13)
+                - Cyan for buildings (15)
+                - Gray for main roads (17)
+                - Red for power lines (19)
+                - Brown for minor roads (25)
+
+            Polyscope settings are configured for visualization:
+                - Up direction set to 'z_up'
+                - Front direction set to 'x_front'
+                - Navigation style set to 'turntable'
+
+            The resulting interactive visualization is displayed using Polyscope's `ps.show()`.
+
+            Returns:
+                None
+            """
         if data_frame is None:
             data_frame = self.data_frame
         else:
@@ -99,14 +154,14 @@ class LasHandler(object):
 
         classifications = data_frame.classification.values
         class_color_map = {
-            0: [1.0, 1.0, 1.0],  # 0 never classified - white
-            1: [0.0, 0.0, 0.0],  # 1 unclassified - black
-            11: [0.0, 0.0, 1.0],  # 11 ground - blue
-            13: [0.0, 0.5, 0.0],  # 13 vegetation - green
-            15: [0.0, 1.0, 1.0],  # 15 building - cyjan
-            17: [0.5, 0.5, 0.5],  # 17 main road - gray
-            19: [1.0, 0.0, 0.0],  # 19 power lines - red
-            25: [0.6, 0.29, 0.0],  # 25 minor road - brown
+            0: [1.0, 1.0, 1.0],
+            1: [0.0, 0.0, 0.0],
+            11: [0.0, 0.0, 1.0],
+            13: [0.0, 0.5, 0.0],
+            15: [0.0, 1.0, 1.0],
+            17: [0.5, 0.5, 0.5],
+            19: [1.0, 0.0, 0.0],
+            25: [0.6, 0.29, 0.0],
         }
         classification = np.array([class_color_map[class_val] for class_val in classifications])
 
@@ -123,16 +178,51 @@ class LasHandler(object):
         ps.show()
 
     def __get_unique_classes(self) -> List[int]:
+        """
+        Get unique classification values from the LAS data frame.
+
+        Returns a list of unique classification values extracted from the 'classification'
+        column of the LAS data frame (`self.data_frame`).
+
+        Returns:
+            List[int]: A list of unique classification values.
+        """
         return self.data_frame['classification'].unique().tolist()
 
-    def create_dataframe(self):
+    def create_dataframe(self) -> pd.DataFrame:
+        """
+        Create a Pandas DataFrame from the LAS file.
 
+        This function constructs a Pandas DataFrame from the data extracted from the LAS file.
+        It retrieves column names from the LAS point format dimensions and populates the DataFrame
+        with corresponding data from the LAS object.
+
+        Returns:
+            pd.DataFrame: A DataFrame containing the LAS data with columns based on point format dimensions.
+        """
         columns = [dimension.name for dimension in self.las.point_format.dimensions]
         data = np.vstack([getattr(self.las, dimension) for dimension in columns]).transpose()
         df = pd.DataFrame(data, columns=columns)
         return df
 
     def save_las_file(self, file_path: str = None) -> None:
+        """
+        Save LAS data to a LAS file.
+
+        Creates a new LAS file (`laspy.LASFile`) and populates it with data from the DataFrame
+        (`self.data_frame`). LAS point attributes are set based on DataFrame columns that match
+        LAS point format dimension names.
+
+        Args:
+            file_path (str, optional): File path to save the LAS file (default is `None`,
+                which uses the instance's `file_path` attribute).
+
+        If an error occurs while writing the LAS file, the exception is stored in the instance's
+        `exception` attribute.
+
+        Returns:
+            None
+        """
         las = laspy.create(point_format=2)
 
         for column in self.data_frame.columns:
@@ -140,14 +230,12 @@ class LasHandler(object):
                 setattr(las, column, self.data_frame[column].values)
 
         if file_path is None:
-            file_path = self.__file_path
+            file_path = self.file_path
 
         try:
             las.write(file_path)
         except Exception as e:
-            self.__exception = e
-
-
+            self.exception = e
 
     @property
     def file_path(self):

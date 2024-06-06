@@ -1,0 +1,10 @@
+{
+  "ExtraTreesClassifier": "resources/models/aha41.joblib",
+  "ExtraTreesClassifier851": "resources/models/ExtraTreesClassifier851.joblib",
+  "AdaBoostClassifier731": "resources/models/AdaBoostClassifier731.joblib",
+  "BaggingClassifier650": "resources/models/BaggingClassifier650.joblib",
+  "GradientBoostingClassifier653": "resources/models/GradientBoostingClassifier653.joblib",
+  "HistGradientBoostingClassifier720": "resources/models/HistGradientBoostingClassifier720.joblib",
+  "KNeighborsClassifier795": "resources/models/KNeighborsClassifier795.joblib",
+  "RandomForestClassifier851": "resources/models/RandomForestClassifier851.joblib"
+}
