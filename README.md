@@ -9,12 +9,13 @@ with mentorship from [Visimind](https://visimind.com/pl/).
 # Latest build
 Neptun's eye v0.1.2
 Download [**here**](https://github.com)
+<!-- TUTAJ WSTAWIĆ LINK DO POBRANIA BUILDA !-->
 ### Requirements
 - Windows 10 or newer OS
 - [**Optional**] Python 3.7.9 for `pptk` support
 > [!NOTE]
 > The app requires OpenGL 3.3 or newer and might not work correctly on virtual machines or old computers.
-<!-- TUTAJ WSTAWIĆ LINK DO POBRANIA BUILDA !-->
+
 
 # Installation
 We packed our app into easy to run executable. You can download and run it right away or dowload some additional tools for more functionalities.
@@ -28,17 +29,40 @@ That's it! You're good to go!
 > Verify if there are models you are using inside `dist\main\_internal\resources\models` folder.
 
 ## More options
+<details>
+  <summary>Click to see more installation options</summary>
+  
 ### Visualisation with pptk
 Our app uses a fast an efficient point cloud visualisation tool in Python called `pptk`.
 This tool requires you to install Python 3.7.9 on your computer and download `pandas` and `pptk` for this version using any package-management system.
 - You can download Python 3.7.9 from the official website [here](https://www.python.org/downloads/release/python-379/)
-> [!IMPORTANT]
-> After you install python you must change the Python 3.7.9 path in the app settings. See how to do that below.
-<!-- TUTAJ BĘDZIE ZWIJANY AKAPIT, KTÓRY NIE WIEM JAK SIĘ ROBI NA TEMAT INSTALACJI O KTÓREJ MOWA WYŻEJ !-->
 
-<!-- TO CO PONIŻEJ TRZEBA SCHOWAĆ !-->
+**After you install python you must change the Python 3.7.9 path in the app settings. See how to do that below.**
+<details>
+  <summary>Click to see how to set up Python 3.7.9 for our app</summary>
+  <br>
+  
+- Locate your python installation. The default location is `%LOCALAPPDATA%/Programs/Python/Python37`
+- Make sure you installed `pandas` and `pptk` for Python 3.7.9:
+  
+```
+%LOCALAPPDATA%/Programs/Python/Python37/python.exe -m pip install pandas
+%LOCALAPPDATA%/Programs/Python/Python37/python.exe -m pip install pptk
+```
+- Navigate to the `%LOCALAPPDATA%/Programs/Python/Python37` folder in your system.
+- Copy the absolute path from navigation bar e.g. `C:\Users\<YourName>\AppData\Local\Programs\Python\Python37`
+- Open our app, click settings and paste the path into `python37` variable.
+- Change `userprofile_path` to **False**
+
+</details>
+
 ### Run with Poetry
+  <details>
+    <summary>Click to see how to run our app with Poetry</summary>
+    <br>
 
+> **Note**: This is for advanced users. We do not recommend this method.
+    
 - Install `pipx`.
 - Install poetry using `pipx` (do not use brew).
 - Install `pyenv`. Check if it is installed correctly by running `pyenv --vesion`.
@@ -94,8 +118,18 @@ make test
 ```powershell
 choco install make
 ```
+  </details>
+</details>
 
-## Research & ML
+# Usage
+<details>
+  <summary>Click to see the user guide</summary>
+  
+  Coming soon
+  
+</details>
+
+# Research & ML
 
 During the project a lot of effort has been invested in the data preprocessing. Each dataset that we worked with have
 been described by a Dataset Card. It was crucial for the project because it was the first time we have been working with
@@ -110,7 +144,9 @@ For experiment tracking we used Weights and Biases, which helped us tremendously
 for our models. Latter we used also Optuna.
 
 ## Data
-
+<details>
+  <summary>Click to check out how we processed data</summary>
+  
 ### Data types and description
 
 | Exact Name        | Data Type | Description                                                  |
@@ -395,15 +431,16 @@ Note: Stride higher than 120 will rarely be used.
 | StackingClassifier              | 0.9385        | 0.7021              | -                               |
 | VotingClassifier                | 0.9359        | 0.7205              | -                               |
 
+</details>
 
 # Used stack
 
-- ML: Sklearn, Pandas, Laspy
-- Experiment Tracking: Weights and Biases, Optuna
-- GUI: customtkinter
-- Point cloud visualisation: pptk, polyscope, plotly
-- Version Control: Git & GitHub
-- Organization: GitHub Projects
+- **ML:** Sklearn, Pandas, Laspy
+- **Experiment Tracking:** Weights and Biases, Optuna
+- **GUI:** customtkinter
+- **Point cloud visualisation:** pptk, polyscope, plotly
+- **Version Control:** Git & GitHub
+- **Project Organization:** GitHub Projects
 
 # License
 
