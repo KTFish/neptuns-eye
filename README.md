@@ -8,7 +8,7 @@ with mentorship from [Visimind](https://visimind.com/pl/).
 
 # Latest build
 Neptun's eye v0.1.2
-Download [**here**](https://github.com)
+Download [**here**](https://drive.google.com/drive/folders/1DWqCq3Ph3AyKCGqjHo85kLS2jtLHdchV?usp=sharing)
 <!-- TUTAJ WSTAWIĆ LINK DO POBRANIA BUILDA !-->
 ### Requirements
 - Windows 10 or newer OS
