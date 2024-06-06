@@ -239,8 +239,28 @@ Note: Stride higher than 120 will rarely be used.
 | HistGradientBoostingClassifier  | **0.9390**    | 0.7094              | **0.7995**                               |
 | KNeighborsClassifier            | 0.8913        | 0.7044              | 0.6992                               |
 | RandomForestClassifier          | 0.9311        | 0.7099              | 0.7205                               |
-| StackingClassifier              | 0.9385        | 0.7021              | -                               |
-| VotingClassifier                | 0.9359        | 0.7205              | -                               |
+| StackingClassifier              | 0.9385        | 0.7021              | 0.7011                               |
+| VotingClassifier                | 0.9359        | 0.7205              | 0,7392                               |
+
+
+### Correlation matrix of ExtraTreesClassifier
+
+<img src="images/corr.png" alt="confusion_matrix_wmii" width="750" height="600">
+
+### Models description
+
+#### ExtraTreesClassifier
+
+The ExtraTreesClassifier is an ensemble learning method provided by the scikit-learn library for classification tasks. It stands for Extremely Randomized Trees and operates by constructing a multitude of decision trees during training. Unlike traditional decision trees, ExtraTreesClassifier introduces additional randomness by selecting split points and features at random for each tree. This results in a diverse set of trees, which enhances predictive performance and robustness. The classifier is efficient, can handle large datasets, and provides feature importance scores, helping to identify the most relevant features for the classification task.
+
+#### RandomForestClassifier
+
+The RandomForestClassifier is an ensemble learning method in the scikit-learn library designed for classification tasks. It operates by constructing multiple decision trees during training and combines their outputs to determine the final class prediction. This approach improves predictive performance and controls over-fitting by averaging the results of individual trees, each trained on random subsets of the data and features. The classifier is robust, handling missing values and noisy data effectively, and can scale well with large datasets. Additionally, it provides estimates of feature importance, helping to identify which features are most influential in making predictions. 
+
+#### HistGradientBoostingClassifier
+
+The HistGradientBoostingClassifier is a machine learning model provided by the scikit-learn library in Python. It is a type of gradient boosting algorithm that uses histograms to speed up the training process. This classifier is designed for supervised learning tasks, specifically classification problems. It works by building an ensemble of decision trees in a stage-wise manner and optimizing for a loss function. The histogram-based approach allows it to handle large datasets efficiently, making it faster and more scalable compared to traditional gradient boosting methods.
+
 
 </details>
 
