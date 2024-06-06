@@ -1,5 +1,6 @@
 .idea
 .venv
+optuna_trials
 __pycache__
 
 wandb
@@ -8,5 +9,3 @@ config.cpython-312.pyc
 *.joblib
 /dist
 /build
-/AI
-/AI
