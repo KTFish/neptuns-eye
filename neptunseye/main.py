@@ -14,7 +14,7 @@ from visualisation_frame import VisualisationFrame
 
 import constants, os_utils
 
-ctk.set_appearance_mode("System")
+ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme(os_utils.resource_path(constants.THEME_FILE_PATH))
 
 
@@ -56,11 +56,16 @@ class App(ctk.CTk):
         dropdown.add_option(option="English", command=lambda: App.set_language(self.CFG_PATH, "English"))
         dropdown.add_option(option="Polski", command=lambda: App.set_language(self.CFG_PATH, "Polski"))
 
-        self.width = int(self.winfo_screenwidth() / 2.5)
-        self.height = int(self.winfo_screenheight() / 2)
+        screen_width = self.winfo_screenwidth()
+        screen_height = self.winfo_screenheight()
+        self.width = int(screen_width * 0.65)
+        self.height = int(screen_height * 0.45)
+        self.maxw = int(screen_width * 0.8)
+        self.maxh = int(screen_height * 0.6)
         self.geometry(f"{self.width}x{self.height}")
-        self.minsize(1280, 360)
-        self.resizable(False, False)
+        self.minsize(self.width, self.height)
+        self.maxsize(self.maxw, self.maxh)
+        self.resizable(True, True)
         self.after(201, lambda: self.iconbitmap(os_utils.resource_path(constants.APP_ICON_PATH)))
 
         self.initialize_frames()

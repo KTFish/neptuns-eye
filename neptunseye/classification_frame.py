@@ -209,7 +209,7 @@ class ClassificationFrame(ctk.CTkFrame):
 
     def save_as_las_file(self) -> None:
 
-        file_name = ClassificationFrame.open_save_as_dialog()
+        file_name = self.open_save_as_dialog()
 
         self.las_handler.save_las_file(file_name)
 
