@@ -1,5 +1,6 @@
 .idea
 .venv
+optuna_trials
 __pycache__
 
 wandb
