@@ -127,8 +127,17 @@ choco install make
 # Usage
 <details>
   <summary>Click to see the user guide</summary>
+
+### Visualisation and classification
   
-  Coming soon
+  - Launch the Neptun's Eye application.
+  - Click the **Select File** button to load your point cloud.
+  - If the point cloud loads successfully, select a **Rendering tool**. We recommend using either *Polyscope* or *pptk*.
+  - Visualization in Neptun's Eye is designed just for preview purposes. Set the **Rendering stride** to ensure smooth rendering. We recommend generating between 500,000 and 2,000,000 points.
+  - Click **Render visualization** and wait for the result. This process may take up to one minute, depending on the size of your point cloud.
+  - To perform classification, choose a model from the **Classification options** section. If you're using our models, we recommend *ExtraTrees* or *RandomForest*.
+  - To classify the entire point cloud, press the **Run classification** button and wait for the confirmation message. This process duration depends on the point cloud size.
+  - To preview model performance, check the **Use stride** box in the **Classification section**. This option will classify points based on the **Rendering stride** selected in the visualization section, saving time and resources.
   
 </details>
 
